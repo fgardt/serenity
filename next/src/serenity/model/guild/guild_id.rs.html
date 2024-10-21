@@ -2668,7 +2668,7 @@
 
     <span class="doccomment">/// Gets the default permission role (@everyone) from the guild.
     </span><span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>everyone_role(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RoleId {
+    </span><span class="kw">pub fn </span>everyone_role(<span class="self">self</span>) -&gt; RoleId {
         RoleId::from(<span class="self">self</span>.get())
     }
 
@@ -3176,7 +3176,7 @@
 
     <span class="doccomment">/// Same as [`Self::await_reply`].
     </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
-    </span><span class="kw">pub fn </span>await_replies(<span class="kw-2">&amp;</span><span class="self">self</span>, shard_messenger: ShardMessenger) -&gt; MessageCollector {
+    </span><span class="kw">pub fn </span>await_replies(<span class="self">self</span>, shard_messenger: ShardMessenger) -&gt; MessageCollector {
         <span class="self">self</span>.await_reply(shard_messenger)
     }
 
@@ -3189,7 +3189,7 @@
 
     <span class="doccomment">/// Same as [`Self::await_reaction`].
     </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
-    </span><span class="kw">pub fn </span>await_reactions(<span class="kw-2">&amp;</span><span class="self">self</span>, shard_messenger: ShardMessenger) -&gt; ReactionCollector {
+    </span><span class="kw">pub fn </span>await_reactions(<span class="self">self</span>, shard_messenger: ShardMessenger) -&gt; ReactionCollector {
         <span class="self">self</span>.await_reaction(shard_messenger)
     }
 

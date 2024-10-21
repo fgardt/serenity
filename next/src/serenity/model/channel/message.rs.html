@@ -1990,7 +1990,7 @@
     <span class="doccomment">/// Returns a link referencing this message. When clicked, users will jump to the message. The
     /// link will be valid for messages in either private channels or guilds.
     </span><span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>link(<span class="kw-2">&amp;</span><span class="self">self</span>, channel_id: ChannelId, guild_id: <span class="prelude-ty">Option</span>&lt;GuildId&gt;) -&gt; String {
+    </span><span class="kw">pub fn </span>link(<span class="self">self</span>, channel_id: ChannelId, guild_id: <span class="prelude-ty">Option</span>&lt;GuildId&gt;) -&gt; String {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(guild_id) = guild_id {
             <span class="macro">format!</span>(<span class="string">"https://discord.com/channels/{guild_id}/{channel_id}/{self}"</span>)
         } <span class="kw">else </span>{

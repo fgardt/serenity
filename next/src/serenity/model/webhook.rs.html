@@ -613,7 +613,7 @@
     /// # Errors
     ///
     /// Returns an [`Error::Http`] if the current user is not in the guild.
-    </span><span class="kw">pub async fn </span>to_partial_guild(<span class="self">self</span>, cache_http: <span class="kw">impl </span>CacheHttp) -&gt; <span class="prelude-ty">Result</span>&lt;PartialGuild&gt; {
+    </span><span class="kw">pub async fn </span>to_partial_guild(<span class="kw-2">&amp;</span><span class="self">self</span>, cache_http: <span class="kw">impl </span>CacheHttp) -&gt; <span class="prelude-ty">Result</span>&lt;PartialGuild&gt; {
         <span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
         </span>{
             <span class="kw">if let </span><span class="prelude-val">Some</span>(cache) = cache_http.cache() {
@@ -634,7 +634,7 @@
     /// # Errors
     ///
     /// Returns an [`Error::Http`] if the current user is not in the guild.
-    </span><span class="kw">pub async fn </span>to_partial_guild_with_counts(<span class="self">self</span>, http: <span class="kw-2">&amp;</span>Http) -&gt; <span class="prelude-ty">Result</span>&lt;PartialGuild&gt; {
+    </span><span class="kw">pub async fn </span>to_partial_guild_with_counts(<span class="kw-2">&amp;</span><span class="self">self</span>, http: <span class="kw-2">&amp;</span>Http) -&gt; <span class="prelude-ty">Result</span>&lt;PartialGuild&gt; {
         http.get_guild_with_counts(<span class="self">self</span>.id).<span class="kw">await
     </span>}
 }

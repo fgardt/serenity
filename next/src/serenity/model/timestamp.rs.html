@@ -244,7 +244,9 @@
 <a href="#243" id="243">243</a>
 <a href="#244" id="244">244</a>
 <a href="#245" id="245">245</a>
-<a href="#246" id="246">246</a></pre></div><pre class="rust"><code><span class="doccomment">//! Utilities for parsing and formatting RFC 3339 timestamps.
+<a href="#246" id="246">246</a>
+<a href="#247" id="247">247</a>
+<a href="#248" id="248">248</a></pre></div><pre class="rust"><code><span class="doccomment">//! Utilities for parsing and formatting RFC 3339 timestamps.
 //!
 //! The [`Timestamp`] newtype wraps `chrono::DateTime&lt;Utc&gt;` or `time::OffsetDateTime` if the `time`
 //! feature is enabled.
@@ -379,18 +381,20 @@
     }
 
     <span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>to_rfc3339(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;String&gt; {
+    </span><span class="kw">pub fn </span>to_rfc3339(<span class="self">self</span>) -&gt; String {
         <span class="attr">#[cfg(feature = <span class="string">"chrono"</span>)]
-        </span><span class="kw">let </span>x = <span class="self">self</span>.<span class="number">0</span>.to_rfc3339_opts(SecondsFormat::Millis, <span class="bool-val">true</span>);
+        </span><span class="kw">return </span><span class="self">self</span>.<span class="number">0</span>.to_rfc3339_opts(SecondsFormat::Millis, <span class="bool-val">true</span>);
         <span class="attr">#[cfg(not(feature = <span class="string">"chrono"</span>))]
-        </span><span class="kw">let </span>x = <span class="self">self</span>.<span class="number">0</span>.format(<span class="kw-2">&amp;</span>Rfc3339).ok()<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>(x)
+        </span><span class="kw">return </span><span class="self">self
+            </span>.<span class="number">0
+            </span>.format(<span class="kw-2">&amp;</span>Rfc3339)
+            .expect(<span class="string">"as the OffsetDateTime is always parsed from rfc3339, this should never fail"</span>);
     }
 }
 
 <span class="kw">impl </span>std::fmt::Display <span class="kw">for </span>Timestamp {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
-        f.write_str(<span class="kw-2">&amp;</span><span class="self">self</span>.to_rfc3339().ok_or(std::fmt::Error)<span class="question-mark">?</span>)
+        f.write_str(<span class="kw-2">&amp;</span><span class="self">self</span>.to_rfc3339())
     }
 }
 

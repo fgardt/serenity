@@ -264,8 +264,8 @@
     }
 
     <span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>headers_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span>&lt;Headers&gt; {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.headers
+    </span><span class="kw">pub fn </span>headers_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Headers&gt; {
+        <span class="self">self</span>.headers.as_ref()
     }
 
     <span class="attr">#[must_use]
