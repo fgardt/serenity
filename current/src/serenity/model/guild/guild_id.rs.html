@@ -1875,8 +1875,7 @@
 <a href="#1874" id="1874">1874</a>
 <a href="#1875" id="1875">1875</a>
 <a href="#1876" id="1876">1876</a>
-<a href="#1877" id="1877">1877</a>
-<a href="#1878" id="1878">1878</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::fmt;
+<a href="#1877" id="1877">1877</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::fmt;
 
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 </span><span class="kw">use </span>futures::stream::Stream;
@@ -1911,7 +1910,6 @@
 </span><span class="kw">use </span><span class="kw">crate</span>::internal::prelude::<span class="kw-2">*</span>;
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::json::json;
-<span class="kw">use </span><span class="kw">crate</span>::model::guild::SerializeIter;
 <span class="kw">use </span><span class="kw">crate</span>::model::prelude::<span class="kw-2">*</span>;
 
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
@@ -2141,18 +2139,18 @@
     </span><span class="kw">pub async fn </span>bulk_ban(
         <span class="self">self</span>,
         http: <span class="kw-2">&amp;</span>Http,
-        users: <span class="kw">impl </span>IntoIterator&lt;Item = UserId&gt;,
+        user_ids: <span class="kw-2">&amp;</span>[UserId],
         delete_message_seconds: u32,
         reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;BulkBanResponse&gt; {
         <span class="attr">#[derive(serde::Serialize)]
-        </span><span class="kw">struct </span>BulkBan&lt;I&gt; {
-            user_ids: I,
+        </span><span class="kw">struct </span>BulkBan&lt;<span class="lifetime">'a</span>&gt; {
+            user_ids: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[UserId],
             delete_message_seconds: u32,
         }
 
         <span class="kw">let </span>map = BulkBan {
-            user_ids: SerializeIter::new(users.into_iter()),
+            user_ids,
             delete_message_seconds,
         };
 

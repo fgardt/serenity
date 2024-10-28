@@ -3437,7 +3437,7 @@
     </span><span class="kw">pub async fn </span>bulk_ban(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         cache_http: <span class="kw">impl </span>CacheHttp,
-        users: <span class="kw">impl </span>IntoIterator&lt;Item = UserId&gt;,
+        user_ids: <span class="kw-2">&amp;</span>[UserId],
         delete_message_seconds: u32,
         reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;BulkBanResponse&gt; {
@@ -3448,7 +3448,7 @@
             }
         }
 
-        <span class="self">self</span>.id.bulk_ban(cache_http.http(), users, delete_message_seconds, reason).<span class="kw">await
+        <span class="self">self</span>.id.bulk_ban(cache_http.http(), user_ids, delete_message_seconds, reason).<span class="kw">await
     </span>}
 
     <span class="doccomment">/// Returns the formatted URL of the guild's banner image, if one exists.
