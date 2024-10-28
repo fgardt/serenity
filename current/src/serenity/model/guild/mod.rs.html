@@ -2900,7 +2900,8 @@
 <a href="#2899" id="2899">2899</a>
 <a href="#2900" id="2900">2900</a>
 <a href="#2901" id="2901">2901</a>
-<a href="#2902" id="2902">2902</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models relating to guilds and types that it owns.
+<a href="#2902" id="2902">2902</a>
+<a href="#2903" id="2903">2903</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models relating to guilds and types that it owns.
 
 </span><span class="kw">pub mod </span>audit_log;
 <span class="kw">pub mod </span>automod;
@@ -2979,14 +2980,15 @@
 
 <span class="doccomment">/// The response from [`GuildId::bulk_ban`].
 ///
-/// [Discord docs](https://github.com/discord/discord-api-docs/pull/6720).
+/// [Discord docs](https://discord.com/developers/docs/resources/guild#bulk-guild-ban).
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 #[derive(Clone, Debug, PartialEq, Deserialize, Serialize)]
+#[non_exhaustive]
 </span><span class="kw">pub struct </span>BulkBanResponse {
     <span class="doccomment">/// The users that were successfully banned.
-    </span>banned_users: Vec&lt;UserId&gt;,
+    </span><span class="kw">pub </span>banned_users: Vec&lt;UserId&gt;,
     <span class="doccomment">/// The users that were not successfully banned.
-    </span>failed_users: Vec&lt;UserId&gt;,
+    </span><span class="kw">pub </span>failed_users: Vec&lt;UserId&gt;,
 }
 
 <span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
