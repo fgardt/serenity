@@ -531,15 +531,7 @@
 <a href="#530" id="530">530</a>
 <a href="#531" id="531">531</a>
 <a href="#532" id="532">532</a>
-<a href="#533" id="533">533</a>
-<a href="#534" id="534">534</a>
-<a href="#535" id="535">535</a>
-<a href="#536" id="536">536</a>
-<a href="#537" id="537">537</a>
-<a href="#538" id="538">538</a>
-<a href="#539" id="539">539</a>
-<a href="#540" id="540">540</a>
-<a href="#541" id="541">541</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
+<a href="#533" id="533">533</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>std::collections::HashMap;
 
 <span class="attr">#[cfg(feature = <span class="string">"http"</span>)]
@@ -885,11 +877,9 @@
     <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     #[serde(rename = <span class="string">"type"</span>)]
     </span>kind: <span class="prelude-ty">Option</span>&lt;CommandType&gt;,
-    <span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>integration_types: <span class="prelude-ty">Option</span>&lt;Vec&lt;InstallationContext&gt;&gt;,
-    <span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>contexts: <span class="prelude-ty">Option</span>&lt;Vec&lt;InteractionContext&gt;&gt;,
     nsfw: bool,
 }
@@ -908,10 +898,8 @@
             <span class="attr">#[cfg(not(feature = <span class="string">"unstable"</span>))]
             </span>dm_permission: <span class="prelude-val">None</span>,
 
-            <span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-            </span>integration_types: <span class="prelude-val">None</span>,
-            <span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-            </span>contexts: <span class="prelude-val">None</span>,
+            integration_types: <span class="prelude-val">None</span>,
+            contexts: <span class="prelude-val">None</span>,
 
             options: Cow::default(),
             nsfw: <span class="bool-val">false</span>,
@@ -1007,29 +995,25 @@
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-    </span><span class="doccomment">/// Adds an installation context that this application command can be used in.
+    <span class="doccomment">/// Adds an installation context that this application command can be used in.
     </span><span class="kw">pub fn </span>add_integration_type(<span class="kw-2">mut </span><span class="self">self</span>, integration_type: InstallationContext) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.integration_types.get_or_insert_with(Vec::default).push(integration_type);
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-    </span><span class="doccomment">/// Sets the installation contexts that this application command can be used in.
+    <span class="doccomment">/// Sets the installation contexts that this application command can be used in.
     </span><span class="kw">pub fn </span>integration_types(<span class="kw-2">mut </span><span class="self">self</span>, integration_types: Vec&lt;InstallationContext&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.integration_types = <span class="prelude-val">Some</span>(integration_types);
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-    </span><span class="doccomment">/// Adds an interaction context that this application command can be used in.
+    <span class="doccomment">/// Adds an interaction context that this application command can be used in.
     </span><span class="kw">pub fn </span>add_context(<span class="kw-2">mut </span><span class="self">self</span>, context: InteractionContext) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.contexts.get_or_insert_with(Vec::default).push(context);
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-    </span><span class="doccomment">/// Sets the interaction contexts that this application command can be used in.
+    <span class="doccomment">/// Sets the interaction contexts that this application command can be used in.
     </span><span class="kw">pub fn </span>contexts(<span class="kw-2">mut </span><span class="self">self</span>, contexts: Vec&lt;InteractionContext&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.contexts = <span class="prelude-val">Some</span>(contexts);
         <span class="self">self

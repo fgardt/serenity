@@ -4444,7 +4444,8 @@
 <a href="#4443" id="4443">4443</a>
 <a href="#4444" id="4444">4444</a>
 <a href="#4445" id="4445">4445</a>
-<a href="#4446" id="4446">4446</a></pre></div><pre class="rust"><code><span class="attr">#![allow(clippy::missing_errors_doc)]
+<a href="#4446" id="4446">4446</a>
+<a href="#4447" id="4447">4447</a></pre></div><pre class="rust"><code><span class="attr">#![allow(clippy::missing_errors_doc)]
 
 </span><span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>std::cell::Cell;
@@ -4803,7 +4804,8 @@
 
     <span class="doccomment">/// Bans multiple users from a [`Guild`], optionally removing their messages.
     ///
-    /// See the [Discord Docs](https://github.com/discord/discord-api-docs/pull/6720) for more information.
+    /// See the [Discord docs](https://discord.com/developers/docs/resources/guild#bulk-guild-ban)
+    /// for more information.
     </span><span class="kw">pub async fn </span>bulk_ban_users(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         guild_id: GuildId,

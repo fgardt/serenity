@@ -888,17 +888,13 @@
 <a href="#887" id="887">887</a>
 <a href="#888" id="888">888</a>
 <a href="#889" id="889">889</a>
-<a href="#890" id="890">890</a>
-<a href="#891" id="891">891</a>
-<a href="#892" id="892">892</a>
-<a href="#893" id="893">893</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
+<a href="#890" id="890">890</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
 
 <span class="kw">use </span>serde::de::{Deserializer, Error <span class="kw">as </span>DeError};
 <span class="kw">use </span>serde::ser::{Error <span class="kw">as _</span>, Serializer};
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
-<span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-</span><span class="kw">use super</span>::{AuthorizingIntegrationOwners, InteractionContext};
+<span class="kw">use super</span>::{AuthorizingIntegrationOwners, InteractionContext};
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::builder::{
     CreateInteractionResponse,
@@ -959,10 +955,8 @@
     </span><span class="kw">pub </span>entitlements: Vec&lt;Entitlement&gt;,
     <span class="doccomment">/// The owners of the applications that authorized the interaction, such as a guild or user.
     </span><span class="attr">#[serde(default)]
-    #[cfg(feature = <span class="string">"unstable"</span>)]
     </span><span class="kw">pub </span>authorizing_integration_owners: AuthorizingIntegrationOwners,
     <span class="doccomment">/// The context where the interaction was triggered from.
-    </span><span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
     </span><span class="kw">pub </span>context: <span class="prelude-ty">Option</span>&lt;InteractionContext&gt;,
 }
 

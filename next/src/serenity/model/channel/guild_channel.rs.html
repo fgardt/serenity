@@ -579,7 +579,13 @@
 <a href="#578" id="578">578</a>
 <a href="#579" id="579">579</a>
 <a href="#580" id="580">580</a>
-<a href="#581" id="581">581</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::fmt;
+<a href="#581" id="581">581</a>
+<a href="#582" id="582">582</a>
+<a href="#583" id="583">583</a>
+<a href="#584" id="584">584</a>
+<a href="#585" id="585">585</a>
+<a href="#586" id="586">586</a>
+<a href="#587" id="587">587</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::fmt;
 
 <span class="kw">use </span>nonmax::{NonMaxU16, NonMaxU32, NonMaxU8};
 
@@ -766,7 +772,13 @@
     </span><span class="kw">pub fn </span>is_text_based(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         <span class="macro">matches!</span>(
             <span class="self">self</span>.kind,
-            ChannelType::Text | ChannelType::News | ChannelType::Voice | ChannelType::Stage
+            ChannelType::Text
+                | ChannelType::News
+                | ChannelType::Voice
+                | ChannelType::Stage
+                | ChannelType::PublicThread
+                | ChannelType::PrivateThread
+                | ChannelType::NewsThread
         )
     }
 

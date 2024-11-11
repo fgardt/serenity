@@ -763,7 +763,8 @@
 <a href="#762" id="762">762</a>
 <a href="#763" id="763">763</a>
 <a href="#764" id="764">764</a>
-<a href="#765" id="765">765</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models pertaining to the gateway.
+<a href="#765" id="765">765</a>
+<a href="#766" id="766">766</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models pertaining to the gateway.
 
 </span><span class="kw">use </span>std::num::{NonZeroU16, NonZeroU64};
 
@@ -801,6 +802,7 @@
 #[non_exhaustive]
 </span><span class="kw">pub struct </span>Activity {
     <span class="doccomment">/// The ID of the application for the activity.
+    </span><span class="attr">#[serde(default)]
     </span><span class="kw">pub </span>application_id: <span class="prelude-ty">Option</span>&lt;ApplicationId&gt;,
     <span class="doccomment">/// Images for the presence and their texts.
     </span><span class="kw">pub </span>assets: <span class="prelude-ty">Option</span>&lt;ActivityAssets&gt;,

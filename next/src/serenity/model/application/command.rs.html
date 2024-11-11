@@ -405,15 +405,11 @@
 <a href="#404" id="404">404</a>
 <a href="#405" id="405">405</a>
 <a href="#406" id="406">406</a>
-<a href="#407" id="407">407</a>
-<a href="#408" id="408">408</a>
-<a href="#409" id="409">409</a>
-<a href="#410" id="410">410</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
+<a href="#407" id="407">407</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
 
 <span class="kw">use </span>serde::Serialize;
 
-<span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-</span><span class="kw">use super</span>::{InstallationContext, InteractionContext};
+<span class="kw">use super</span>::{InstallationContext, InteractionContext};
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::builder::CreateCommand;
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
@@ -483,14 +479,12 @@
     </span><span class="kw">pub </span>nsfw: bool,
     <span class="doccomment">/// Installation context(s) where the command is available, only for globally-scoped commands.
     ///
-    /// Defaults to [`InstallationContext::Guild`]
-    </span><span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
-    #[serde(default)]
+    /// Defaults to [`InstallationContext::Guild`] and [`InstallationContext::User`].
+    </span><span class="attr">#[serde(default)]
     </span><span class="kw">pub </span>integration_types: Vec&lt;InstallationContext&gt;,
     <span class="doccomment">/// Interaction context(s) where the command can be used, only for globally-scoped commands.
     ///
     /// By default, all interaction context types are included.
-    </span><span class="attr">#[cfg(feature = <span class="string">"unstable"</span>)]
     </span><span class="kw">pub </span>contexts: <span class="prelude-ty">Option</span>&lt;Vec&lt;InteractionContext&gt;&gt;,
     <span class="doccomment">/// An autoincremented version identifier updated during substantial record changes.
     </span><span class="kw">pub </span>version: CommandVersionId,

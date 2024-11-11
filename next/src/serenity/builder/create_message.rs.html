@@ -504,7 +504,7 @@
         <span class="self">self
     </span>}
 
-    <span class="doccomment">/// Set the reference message this message is a reply to.
+    <span class="doccomment">/// Set the message this reply or forward is referring to.
     </span><span class="kw">pub fn </span>reference_message(<span class="kw-2">mut </span><span class="self">self</span>, reference: <span class="kw">impl </span>Into&lt;MessageReference&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.message_reference = <span class="prelude-val">Some</span>(reference.into());
         <span class="self">self

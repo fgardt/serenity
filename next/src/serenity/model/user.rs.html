@@ -845,8 +845,7 @@
 <a href="#844" id="844">844</a>
 <a href="#845" id="845">845</a>
 <a href="#846" id="846">846</a>
-<a href="#847" id="847">847</a>
-<a href="#848" id="848">848</a></pre></div><pre class="rust"><code><span class="doccomment">//! User information-related models.
+<a href="#847" id="847">847</a></pre></div><pre class="rust"><code><span class="doccomment">//! User information-related models.
 
 </span><span class="kw">use </span>std::fmt;
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
@@ -1254,8 +1253,7 @@
     /// The global name takes priority over the user's username if it exists.
     ///
     /// Note: Guild specific information is not included as this is only available on the [Member].
-    </span><span class="attr">#[inline]
-    #[must_use]
+    </span><span class="attr">#[must_use]
     </span><span class="kw">pub fn </span>display_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
         <span class="self">self</span>.global_name.as_deref().unwrap_or(<span class="kw-2">&amp;</span><span class="self">self</span>.name)
     }

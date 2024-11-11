@@ -179,13 +179,27 @@
 <a href="#178" id="178">178</a>
 <a href="#179" id="179">179</a>
 <a href="#180" id="180">180</a>
-<a href="#181" id="181">181</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
+<a href="#181" id="181">181</a>
+<a href="#182" id="182">182</a>
+<a href="#183" id="183">183</a>
+<a href="#184" id="184">184</a>
+<a href="#185" id="185">185</a>
+<a href="#186" id="186">186</a>
+<a href="#187" id="187">187</a>
+<a href="#188" id="188">188</a>
+<a href="#189" id="189">189</a>
+<a href="#190" id="190">190</a>
+<a href="#191" id="191">191</a>
+<a href="#192" id="192">192</a>
+<a href="#193" id="193">193</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
 
+<span class="kw">use </span><span class="kw">super</span>::create_poll::Ready;
 <span class="kw">use super</span>::{
     CreateActionRow,
     CreateAllowedMentions,
     CreateAttachment,
     CreateEmbed,
+    CreatePoll,
     EditAttachments,
 };
 <span class="attr">#[cfg(feature = <span class="string">"http"</span>)]
@@ -211,6 +225,8 @@
     </span>components: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'a</span>, [CreateActionRow&lt;<span class="lifetime">'a</span>&gt;]&gt;&gt;,
     <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>flags: <span class="prelude-ty">Option</span>&lt;MessageFlags&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>poll: <span class="prelude-ty">Option</span>&lt;CreatePoll&lt;<span class="lifetime">'a</span>, Ready&gt;&gt;,
     attachments: EditAttachments&lt;<span class="lifetime">'a</span>&gt;,
 }
 
@@ -318,6 +334,14 @@
         };
 
         <span class="self">self</span>.flags = <span class="prelude-val">Some</span>(flags);
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Adds a poll to the message. Only one poll can be added per message.
+    ///
+    /// See [`CreatePoll`] for more information on creating and configuring a poll.
+    </span><span class="kw">pub fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>, poll: CreatePoll&lt;<span class="lifetime">'a</span>, Ready&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.poll = <span class="prelude-val">Some</span>(poll);
         <span class="self">self
     </span>}
 

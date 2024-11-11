@@ -424,14 +424,29 @@
 <a href="#423" id="423">423</a>
 <a href="#424" id="424">424</a>
 <a href="#425" id="425">425</a>
-<a href="#426" id="426">426</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
+<a href="#426" id="426">426</a>
+<a href="#427" id="427">427</a>
+<a href="#428" id="428">428</a>
+<a href="#429" id="429">429</a>
+<a href="#430" id="430">430</a>
+<a href="#431" id="431">431</a>
+<a href="#432" id="432">432</a>
+<a href="#433" id="433">433</a>
+<a href="#434" id="434">434</a>
+<a href="#435" id="435">435</a>
+<a href="#436" id="436">436</a>
+<a href="#437" id="437">437</a>
+<a href="#438" id="438">438</a>
+<a href="#439" id="439">439</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>std::collections::HashMap;
 
+<span class="kw">use </span><span class="kw">super</span>::create_poll::Ready;
 <span class="kw">use super</span>::{
     CreateActionRow,
     CreateAllowedMentions,
     CreateAttachment,
     CreateEmbed,
+    CreatePoll,
     EditAttachments,
 };
 <span class="attr">#[cfg(feature = <span class="string">"http"</span>)]
@@ -576,6 +591,8 @@
     </span>flags: <span class="prelude-ty">Option</span>&lt;InteractionResponseFlags&gt;,
     <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>components: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'a</span>, [CreateActionRow&lt;<span class="lifetime">'a</span>&gt;]&gt;&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>poll: <span class="prelude-ty">Option</span>&lt;CreatePoll&lt;<span class="lifetime">'a</span>, Ready&gt;&gt;,
     attachments: EditAttachments&lt;<span class="lifetime">'a</span>&gt;,
 }
 
@@ -690,6 +707,15 @@
         <span class="self">self</span>.components = <span class="prelude-val">Some</span>(components.into());
         <span class="self">self
     </span>}
+
+    <span class="doccomment">/// Adds a poll to the message. Only one poll can be added per message.
+    ///
+    /// See [`CreatePoll`] for more information on creating and configuring a poll.
+    </span><span class="kw">pub fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>, poll: CreatePoll&lt;<span class="lifetime">'a</span>, Ready&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.poll = <span class="prelude-val">Some</span>(poll);
+        <span class="self">self
+    </span>}
+
     <span class="macro">super::button_and_select_menu_convenience_methods!</span>(<span class="self">self</span>.components);
 }
 

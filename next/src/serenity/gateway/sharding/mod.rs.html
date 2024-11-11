@@ -1481,7 +1481,7 @@
                 <span class="self">self</span>.handle_gateway_closed(data.as_ref())
             },
             <span class="prelude-val">Err</span>(Error::Tungstenite(why)) =&gt; {
-                <span class="macro">warn!</span>(<span class="string">"[{:?}] Websocket error: {:?}"</span>, <span class="self">self</span>.shard_info, why);
+                <span class="macro">info!</span>(<span class="string">"[{:?}] Websocket error: {:?}"</span>, <span class="self">self</span>.shard_info, why);
                 <span class="macro">info!</span>(<span class="string">"[{:?}] Will attempt to auto-reconnect"</span>, <span class="self">self</span>.shard_info);
 
                 <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(ShardAction::Reconnect(<span class="self">self</span>.reconnection_type())))

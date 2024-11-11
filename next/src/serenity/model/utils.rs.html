@@ -246,7 +246,15 @@
 <a href="#245" id="245">245</a>
 <a href="#246" id="246">246</a>
 <a href="#247" id="247">247</a>
-<a href="#248" id="248">248</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::fmt;
+<a href="#248" id="248">248</a>
+<a href="#249" id="249">249</a>
+<a href="#250" id="250">250</a>
+<a href="#251" id="251">251</a>
+<a href="#252" id="252">252</a>
+<a href="#253" id="253">253</a>
+<a href="#254" id="254">254</a>
+<a href="#255" id="255">255</a>
+<a href="#256" id="256">256</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::fmt;
 
 <span class="kw">use </span>arrayvec::ArrayVec;
 <span class="kw">use </span>serde::de::Error <span class="kw">as </span>DeError;
@@ -297,6 +305,14 @@
     E: serde::de::Error,
 {
     T::deserialize(val).map_err(serde::de::Error::custom)
+}
+
+<span class="kw">pub fn </span>remove_from_map&lt;T, E&gt;(map: <span class="kw-2">&amp;mut </span>JsonMap, key: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str) -&gt; StdResult&lt;T, E&gt;
+<span class="kw">where
+    </span>T: serde::de::DeserializeOwned,
+    E: serde::de::Error,
+{
+    map.remove(key).ok_or_else(|| serde::de::Error::missing_field(key)).and_then(deserialize_val)
 }
 
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">enum </span>StrOrInt&lt;<span class="lifetime">'de</span>&gt; {
