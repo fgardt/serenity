@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/message.rs`."><title>message.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-590a400c.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0-nightly (bc5cf994d 2024-11-05)" data-channel="nightly" data-search-js="search-c5a66128.js" data-settings-js="settings-0f613d39.js" ><script src="../../../../static.files/storage-59e33391.js"></script><script defer src="../../../../static.files/src-script-56102188.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/channel/</div>message.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/message.rs`."><title>message.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-590a400c.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0-nightly (143ce0920 2024-11-10)" data-channel="nightly" data-search-js="search-c5a66128.js" data-settings-js="settings-0f613d39.js" ><script src="../../../../static.files/storage-59e33391.js"></script><script defer src="../../../../static.files/src-script-56102188.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/channel/</div>message.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
 <a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -1374,7 +1374,60 @@
 <a href="#1373" id="1373">1373</a>
 <a href="#1374" id="1374">1374</a>
 <a href="#1375" id="1375">1375</a>
-<a href="#1376" id="1376">1376</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models relating to Discord channels.
+<a href="#1376" id="1376">1376</a>
+<a href="#1377" id="1377">1377</a>
+<a href="#1378" id="1378">1378</a>
+<a href="#1379" id="1379">1379</a>
+<a href="#1380" id="1380">1380</a>
+<a href="#1381" id="1381">1381</a>
+<a href="#1382" id="1382">1382</a>
+<a href="#1383" id="1383">1383</a>
+<a href="#1384" id="1384">1384</a>
+<a href="#1385" id="1385">1385</a>
+<a href="#1386" id="1386">1386</a>
+<a href="#1387" id="1387">1387</a>
+<a href="#1388" id="1388">1388</a>
+<a href="#1389" id="1389">1389</a>
+<a href="#1390" id="1390">1390</a>
+<a href="#1391" id="1391">1391</a>
+<a href="#1392" id="1392">1392</a>
+<a href="#1393" id="1393">1393</a>
+<a href="#1394" id="1394">1394</a>
+<a href="#1395" id="1395">1395</a>
+<a href="#1396" id="1396">1396</a>
+<a href="#1397" id="1397">1397</a>
+<a href="#1398" id="1398">1398</a>
+<a href="#1399" id="1399">1399</a>
+<a href="#1400" id="1400">1400</a>
+<a href="#1401" id="1401">1401</a>
+<a href="#1402" id="1402">1402</a>
+<a href="#1403" id="1403">1403</a>
+<a href="#1404" id="1404">1404</a>
+<a href="#1405" id="1405">1405</a>
+<a href="#1406" id="1406">1406</a>
+<a href="#1407" id="1407">1407</a>
+<a href="#1408" id="1408">1408</a>
+<a href="#1409" id="1409">1409</a>
+<a href="#1410" id="1410">1410</a>
+<a href="#1411" id="1411">1411</a>
+<a href="#1412" id="1412">1412</a>
+<a href="#1413" id="1413">1413</a>
+<a href="#1414" id="1414">1414</a>
+<a href="#1415" id="1415">1415</a>
+<a href="#1416" id="1416">1416</a>
+<a href="#1417" id="1417">1417</a>
+<a href="#1418" id="1418">1418</a>
+<a href="#1419" id="1419">1419</a>
+<a href="#1420" id="1420">1420</a>
+<a href="#1421" id="1421">1421</a>
+<a href="#1422" id="1422">1422</a>
+<a href="#1423" id="1423">1423</a>
+<a href="#1424" id="1424">1424</a>
+<a href="#1425" id="1425">1425</a>
+<a href="#1426" id="1426">1426</a>
+<a href="#1427" id="1427">1427</a>
+<a href="#1428" id="1428">1428</a>
+<a href="#1429" id="1429">1429</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models relating to Discord channels.
 
 </span><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 </span><span class="kw">use </span>std::fmt::Display;
@@ -2462,6 +2515,22 @@
     </span><span class="kw">pub </span>party_id: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
+<span class="macro">enum_number!</span> {
+    <span class="doccomment">/// Message Reference Type information
+    ///
+    /// [Discord docs](https://discord.com/developers/docs/resources/message#message-reference-types)
+    </span><span class="attr">#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd, Deserialize, Serialize)]
+    #[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
+    #[serde(from = <span class="string">"u8"</span>, into = <span class="string">"u8"</span>)]
+    #[non_exhaustive]
+    </span><span class="kw">pub enum </span>MessageReferenceKind {
+        <span class="attr">#[default]
+        </span>Default = <span class="number">0</span>,
+        Forward = <span class="number">1</span>,
+        <span class="kw">_ </span>=&gt; Unknown(u8),
+    }
+}
+
 <span class="doccomment">/// Reference data sent with crossposted messages.
 ///
 /// [Discord docs](https://discord.com/developers/docs/resources/channel#message-reference-object-message-reference-structure).
@@ -2469,6 +2538,9 @@
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[non_exhaustive]
 </span><span class="kw">pub struct </span>MessageReference {
+    <span class="doccomment">/// The Type of Message Reference
+    </span><span class="attr">#[serde(rename = <span class="string">"type"</span>, default = <span class="string">"MessageReferenceKind::default"</span>)]
+    </span><span class="kw">pub </span>kind: MessageReferenceKind,
     <span class="doccomment">/// ID of the originating message.
     </span><span class="kw">pub </span>message_id: <span class="prelude-ty">Option</span>&lt;MessageId&gt;,
     <span class="doccomment">/// ID of the originating message's channel.
@@ -2480,9 +2552,41 @@
     </span><span class="kw">pub </span>fail_if_not_exists: <span class="prelude-ty">Option</span>&lt;bool&gt;,
 }
 
+<span class="kw">impl </span>MessageReference {
+    <span class="attr">#[must_use]
+    </span><span class="kw">pub fn </span>new(kind: MessageReferenceKind, channel_id: ChannelId) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            kind,
+            channel_id,
+            message_id: <span class="prelude-val">None</span>,
+            guild_id: <span class="prelude-val">None</span>,
+            fail_if_not_exists: <span class="prelude-val">None</span>,
+        }
+    }
+
+    <span class="attr">#[must_use]
+    </span><span class="kw">pub fn </span>message_id(<span class="kw-2">mut </span><span class="self">self</span>, message_id: MessageId) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.message_id = <span class="prelude-val">Some</span>(message_id);
+        <span class="self">self
+    </span>}
+
+    <span class="attr">#[must_use]
+    </span><span class="kw">pub fn </span>guild_id(<span class="kw-2">mut </span><span class="self">self</span>, guild_id: GuildId) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.guild_id = <span class="prelude-val">Some</span>(guild_id);
+        <span class="self">self
+    </span>}
+
+    <span class="attr">#[must_use]
+    </span><span class="kw">pub fn </span>fail_if_not_exists(<span class="kw-2">mut </span><span class="self">self</span>, fail_if_not_exists: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fail_if_not_exists = <span class="prelude-val">Some</span>(fail_if_not_exists);
+        <span class="self">self
+    </span>}
+}
+
 <span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span>Message&gt; <span class="kw">for </span>MessageReference {
     <span class="kw">fn </span>from(m: <span class="kw-2">&amp;</span>Message) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
+            kind: MessageReferenceKind::default(),
             message_id: <span class="prelude-val">Some</span>(m.id),
             channel_id: m.channel_id,
             guild_id: m.guild_id,
@@ -2492,8 +2596,10 @@
 }
 
 <span class="kw">impl </span>From&lt;(ChannelId, MessageId)&gt; <span class="kw">for </span>MessageReference {
-    <span class="kw">fn </span>from(pair: (ChannelId, MessageId)) -&gt; <span class="self">Self </span>{
+    <span class="comment">// TODO(next): Remove this
+    </span><span class="kw">fn </span>from(pair: (ChannelId, MessageId)) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
+            kind: MessageReferenceKind::default(),
             message_id: <span class="prelude-val">Some</span>(pair.<span class="number">1</span>),
             channel_id: pair.<span class="number">0</span>,
             guild_id: <span class="prelude-val">None</span>,
