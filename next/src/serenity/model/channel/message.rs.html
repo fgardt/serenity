@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/message.rs`."><title>message.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-590a400c.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0-nightly (bc5cf994d 2024-11-05)" data-channel="nightly" data-search-js="search-c5a66128.js" data-settings-js="settings-0f613d39.js" ><script src="../../../../static.files/storage-59e33391.js"></script><script defer src="../../../../static.files/src-script-56102188.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/channel/</div>message.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/message.rs`."><title>message.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-590a400c.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.84.0-nightly (143ce0920 2024-11-10)" data-channel="nightly" data-search-js="search-c5a66128.js" data-settings-js="settings-0f613d39.js" ><script src="../../../../static.files/storage-59e33391.js"></script><script defer src="../../../../static.files/src-script-56102188.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/channel/</div>message.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
 <a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -1630,57 +1630,6 @@
         <span class="self">self</span>.id.link(<span class="self">self</span>.channel_id, <span class="self">self</span>.guild_id)
     }
 
-    <span class="doccomment">/// Returns a builder which can be awaited to obtain a reaction or stream of reactions on this
-    /// message.
-    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
-    </span><span class="kw">pub fn </span>await_reaction(<span class="kw-2">&amp;</span><span class="self">self</span>, shard_messenger: ShardMessenger) -&gt; ReactionCollector {
-        ReactionCollector::new(shard_messenger).message_id(<span class="self">self</span>.id)
-    }
-
-    <span class="doccomment">/// Same as [`Self::await_reaction`].
-    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
-    </span><span class="kw">pub fn </span>await_reactions(<span class="kw-2">&amp;</span><span class="self">self</span>, shard_messenger: ShardMessenger) -&gt; ReactionCollector {
-        <span class="self">self</span>.await_reaction(shard_messenger)
-    }
-
-    <span class="doccomment">/// Returns a builder which can be awaited to obtain a single component interactions or a
-    /// stream of component interactions on this message.
-    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
-    </span><span class="kw">pub fn </span>await_component_interaction(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        shard_messenger: ShardMessenger,
-    ) -&gt; ComponentInteractionCollector {
-        ComponentInteractionCollector::new(shard_messenger).message_id(<span class="self">self</span>.id)
-    }
-
-    <span class="doccomment">/// Same as [`Self::await_component_interaction`].
-    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
-    </span><span class="kw">pub fn </span>await_component_interactions(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        shard_messenger: ShardMessenger,
-    ) -&gt; ComponentInteractionCollector {
-        <span class="self">self</span>.await_component_interaction(shard_messenger)
-    }
-
-    <span class="doccomment">/// Returns a builder which can be awaited to obtain a model submit interaction or stream of
-    /// modal submit interactions on this message.
-    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
-    </span><span class="kw">pub fn </span>await_modal_interaction(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        shard_messenger: ShardMessenger,
-    ) -&gt; ModalInteractionCollector {
-        ModalInteractionCollector::new(shard_messenger).message_id(<span class="self">self</span>.id)
-    }
-
-    <span class="doccomment">/// Same as [`Self::await_modal_interaction`].
-    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
-    </span><span class="kw">pub fn </span>await_modal_interactions(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        shard_messenger: ShardMessenger,
-    ) -&gt; ModalInteractionCollector {
-        <span class="self">self</span>.await_modal_interaction(shard_messenger)
-    }
-
     <span class="doccomment">/// Retrieves the message channel's category ID if the channel has one.
     </span><span class="kw">pub async fn </span>category_id(<span class="kw-2">&amp;</span><span class="self">self</span>, cache_http: <span class="kw">impl </span>CacheHttp) -&gt; <span class="prelude-ty">Option</span>&lt;ChannelId&gt; {
         <span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
@@ -1996,6 +1945,57 @@
         } <span class="kw">else </span>{
             <span class="macro">format!</span>(<span class="string">"https://discord.com/channels/@me/{channel_id}/{self}"</span>)
         }
+    }
+
+    <span class="doccomment">/// Returns a builder which can be awaited to obtain a reaction or stream of reactions on this
+    /// message.
+    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
+    </span><span class="kw">pub fn </span>await_reaction(<span class="self">self</span>, shard_messenger: ShardMessenger) -&gt; ReactionCollector {
+        ReactionCollector::new(shard_messenger).message_id(<span class="self">self</span>)
+    }
+
+    <span class="doccomment">/// Same as [`Self::await_reaction`].
+    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
+    </span><span class="kw">pub fn </span>await_reactions(<span class="self">self</span>, shard_messenger: ShardMessenger) -&gt; ReactionCollector {
+        <span class="self">self</span>.await_reaction(shard_messenger)
+    }
+
+    <span class="doccomment">/// Returns a builder which can be awaited to obtain a single component interactions or a
+    /// stream of component interactions on this message.
+    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
+    </span><span class="kw">pub fn </span>await_component_interaction(
+        <span class="self">self</span>,
+        shard_messenger: ShardMessenger,
+    ) -&gt; ComponentInteractionCollector {
+        ComponentInteractionCollector::new(shard_messenger).message_id(<span class="self">self</span>)
+    }
+
+    <span class="doccomment">/// Same as [`Self::await_component_interaction`].
+    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
+    </span><span class="kw">pub fn </span>await_component_interactions(
+        <span class="self">self</span>,
+        shard_messenger: ShardMessenger,
+    ) -&gt; ComponentInteractionCollector {
+        <span class="self">self</span>.await_component_interaction(shard_messenger)
+    }
+
+    <span class="doccomment">/// Returns a builder which can be awaited to obtain a model submit interaction or stream of
+    /// modal submit interactions on this message.
+    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
+    </span><span class="kw">pub fn </span>await_modal_interaction(
+        <span class="self">self</span>,
+        shard_messenger: ShardMessenger,
+    ) -&gt; ModalInteractionCollector {
+        ModalInteractionCollector::new(shard_messenger).message_id(<span class="self">self</span>)
+    }
+
+    <span class="doccomment">/// Same as [`Self::await_modal_interaction`].
+    </span><span class="attr">#[cfg(feature = <span class="string">"collector"</span>)]
+    </span><span class="kw">pub fn </span>await_modal_interactions(
+        <span class="self">self</span>,
+        shard_messenger: ShardMessenger,
+    ) -&gt; ModalInteractionCollector {
+        <span class="self">self</span>.await_modal_interaction(shard_messenger)
     }
 }
 
