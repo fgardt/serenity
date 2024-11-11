@@ -433,13 +433,28 @@
 <a href="#432" id="432">432</a>
 <a href="#433" id="433">433</a>
 <a href="#434" id="434">434</a>
-<a href="#435" id="435">435</a></pre></div><pre class="rust"><code><span class="attr">#[cfg(feature = <span class="string">"http"</span>)]
+<a href="#435" id="435">435</a>
+<a href="#436" id="436">436</a>
+<a href="#437" id="437">437</a>
+<a href="#438" id="438">438</a>
+<a href="#439" id="439">439</a>
+<a href="#440" id="440">440</a>
+<a href="#441" id="441">441</a>
+<a href="#442" id="442">442</a>
+<a href="#443" id="443">443</a>
+<a href="#444" id="444">444</a>
+<a href="#445" id="445">445</a>
+<a href="#446" id="446">446</a>
+<a href="#447" id="447">447</a>
+<a href="#448" id="448">448</a></pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::create_poll::Ready;
+<span class="attr">#[cfg(feature = <span class="string">"http"</span>)]
 </span><span class="kw">use super</span>::{check_overflow, Builder};
 <span class="kw">use super</span>::{
     CreateActionRow,
     CreateAllowedMentions,
     CreateAttachment,
     CreateEmbed,
+    CreatePoll,
     EditAttachments,
 };
 <span class="attr">#[cfg(feature = <span class="string">"http"</span>)]
@@ -614,6 +629,8 @@
     </span>flags: <span class="prelude-ty">Option</span>&lt;InteractionResponseFlags&gt;,
     <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>components: <span class="prelude-ty">Option</span>&lt;Vec&lt;CreateActionRow&gt;&gt;,
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    </span>poll: <span class="prelude-ty">Option</span>&lt;CreatePoll&lt;Ready&gt;&gt;,
     attachments: EditAttachments,
 }
 
@@ -729,6 +746,15 @@
         <span class="self">self</span>.components = <span class="prelude-val">Some</span>(components);
         <span class="self">self
     </span>}
+
+    <span class="doccomment">/// Adds a poll to the message. Only one poll can be added per message.
+    ///
+    /// See [`CreatePoll`] for more information on creating and configuring a poll.
+    </span><span class="kw">pub fn </span>poll(<span class="kw-2">mut </span><span class="self">self</span>, poll: CreatePoll&lt;Ready&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.poll = <span class="prelude-val">Some</span>(poll);
+        <span class="self">self
+    </span>}
+
     <span class="macro">super::button_and_select_menu_convenience_methods!</span>(<span class="self">self</span>.components);
 }
 
