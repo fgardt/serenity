@@ -493,15 +493,7 @@
 <a href="#492" id="492">492</a>
 <a href="#493" id="493">493</a>
 <a href="#494" id="494">494</a>
-<a href="#495" id="495">495</a>
-<a href="#496" id="496">496</a>
-<a href="#497" id="497">497</a>
-<a href="#498" id="498">498</a>
-<a href="#499" id="499">499</a>
-<a href="#500" id="500">500</a>
-<a href="#501" id="501">501</a>
-<a href="#502" id="502">502</a>
-<a href="#503" id="503">503</a></pre></div><pre class="rust"><code><span class="attr">#[cfg(feature = <span class="string">"http"</span>)]
+<a href="#495" id="495">495</a></pre></div><pre class="rust"><code><span class="attr">#[cfg(feature = <span class="string">"http"</span>)]
 </span><span class="kw">use </span><span class="kw">super</span>::Builder;
 <span class="attr">#[cfg(feature = <span class="string">"http"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::http::CacheHttp;
@@ -816,11 +808,9 @@
     <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     #[serde(rename = <span class="string">"type"</span>)]
     </span>kind: <span class="prelude-ty">Option</span>&lt;CommandType&gt;,
-    <span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>integration_types: <span class="prelude-ty">Option</span>&lt;Vec&lt;InstallationContext&gt;&gt;,
-    <span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
+    <span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>contexts: <span class="prelude-ty">Option</span>&lt;Vec&lt;InteractionContext&gt;&gt;,
     nsfw: bool,
 }
@@ -838,10 +828,8 @@
             default_member_permissions: <span class="prelude-val">None</span>,
             dm_permission: <span class="prelude-val">None</span>,
 
-            <span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-            </span>integration_types: <span class="prelude-val">None</span>,
-            <span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-            </span>contexts: <span class="prelude-val">None</span>,
+            integration_types: <span class="prelude-val">None</span>,
+            contexts: <span class="prelude-val">None</span>,
 
             options: Vec::new(),
             nsfw: <span class="bool-val">false</span>,
@@ -933,29 +921,25 @@
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-    </span><span class="doccomment">/// Adds an installation context that this application command can be used in.
+    <span class="doccomment">/// Adds an installation context that this application command can be used in.
     </span><span class="kw">pub fn </span>add_integration_type(<span class="kw-2">mut </span><span class="self">self</span>, integration_type: InstallationContext) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.integration_types.get_or_insert_with(Vec::default).push(integration_type);
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-    </span><span class="doccomment">/// Sets the installation contexts that this application command can be used in.
+    <span class="doccomment">/// Sets the installation contexts that this application command can be used in.
     </span><span class="kw">pub fn </span>integration_types(<span class="kw-2">mut </span><span class="self">self</span>, integration_types: Vec&lt;InstallationContext&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.integration_types = <span class="prelude-val">Some</span>(integration_types);
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-    </span><span class="doccomment">/// Adds an interaction context that this application command can be used in.
+    <span class="doccomment">/// Adds an interaction context that this application command can be used in.
     </span><span class="kw">pub fn </span>add_context(<span class="kw-2">mut </span><span class="self">self</span>, context: InteractionContext) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.contexts.get_or_insert_with(Vec::default).push(context);
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-    </span><span class="doccomment">/// Sets the interaction contexts that this application command can be used in.
+    <span class="doccomment">/// Sets the interaction contexts that this application command can be used in.
     </span><span class="kw">pub fn </span>contexts(<span class="kw-2">mut </span><span class="self">self</span>, contexts: Vec&lt;InteractionContext&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.contexts = <span class="prelude-val">Some</span>(contexts);
         <span class="self">self

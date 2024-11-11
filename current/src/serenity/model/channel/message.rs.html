@@ -1423,11 +1423,7 @@
 <a href="#1422" id="1422">1422</a>
 <a href="#1423" id="1423">1423</a>
 <a href="#1424" id="1424">1424</a>
-<a href="#1425" id="1425">1425</a>
-<a href="#1426" id="1426">1426</a>
-<a href="#1427" id="1427">1427</a>
-<a href="#1428" id="1428">1428</a>
-<a href="#1429" id="1429">1429</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models relating to Discord channels.
+<a href="#1425" id="1425">1425</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models relating to Discord channels.
 
 </span><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 </span><span class="kw">use </span>std::fmt::Display;
@@ -1535,15 +1531,11 @@
     </span><span class="kw">pub </span>flags: <span class="prelude-ty">Option</span>&lt;MessageFlags&gt;,
     <span class="doccomment">/// The message that was replied to using this message.
     </span><span class="kw">pub </span>referenced_message: <span class="prelude-ty">Option</span>&lt;Box&lt;Message&gt;&gt;, <span class="comment">// Boxed to avoid recursion
-    </span><span class="attr">#[cfg_attr(
-        all(not(ignore_serenity_deprecated), feature = <span class="string">"unstable_discord_api"</span>),
-        deprecated = <span class="string">"Use interaction_metadata"
-    </span>)]
+    </span><span class="attr">#[cfg_attr(not(ignore_serenity_deprecated), deprecated = <span class="string">"Use interaction_metadata"</span>)]
     </span><span class="kw">pub </span>interaction: <span class="prelude-ty">Option</span>&lt;Box&lt;MessageInteraction&gt;&gt;,
     <span class="doccomment">/// Sent if the message is a response to an [`Interaction`].
     ///
     /// [`Interaction`]: crate::model::application::Interaction
-    </span><span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
     </span><span class="kw">pub </span>interaction_metadata: <span class="prelude-ty">Option</span>&lt;Box&lt;MessageInteractionMetadata&gt;&gt;,
     <span class="doccomment">/// The thread that was started from this message, includes thread member object.
     </span><span class="kw">pub </span>thread: <span class="prelude-ty">Option</span>&lt;GuildChannel&gt;,

@@ -444,23 +444,112 @@
 <a href="#443" id="443">443</a>
 <a href="#444" id="444">444</a>
 <a href="#445" id="445">445</a>
-<a href="#446" id="446">446</a></pre></div><pre class="rust"><code><span class="kw">use </span>serde::de::{Deserialize, Deserializer, Error <span class="kw">as </span>DeError};
+<a href="#446" id="446">446</a>
+<a href="#447" id="447">447</a>
+<a href="#448" id="448">448</a>
+<a href="#449" id="449">449</a>
+<a href="#450" id="450">450</a>
+<a href="#451" id="451">451</a>
+<a href="#452" id="452">452</a>
+<a href="#453" id="453">453</a>
+<a href="#454" id="454">454</a>
+<a href="#455" id="455">455</a>
+<a href="#456" id="456">456</a>
+<a href="#457" id="457">457</a>
+<a href="#458" id="458">458</a>
+<a href="#459" id="459">459</a>
+<a href="#460" id="460">460</a>
+<a href="#461" id="461">461</a>
+<a href="#462" id="462">462</a>
+<a href="#463" id="463">463</a>
+<a href="#464" id="464">464</a>
+<a href="#465" id="465">465</a>
+<a href="#466" id="466">466</a>
+<a href="#467" id="467">467</a>
+<a href="#468" id="468">468</a>
+<a href="#469" id="469">469</a>
+<a href="#470" id="470">470</a>
+<a href="#471" id="471">471</a>
+<a href="#472" id="472">472</a>
+<a href="#473" id="473">473</a>
+<a href="#474" id="474">474</a>
+<a href="#475" id="475">475</a>
+<a href="#476" id="476">476</a>
+<a href="#477" id="477">477</a>
+<a href="#478" id="478">478</a>
+<a href="#479" id="479">479</a>
+<a href="#480" id="480">480</a>
+<a href="#481" id="481">481</a>
+<a href="#482" id="482">482</a>
+<a href="#483" id="483">483</a>
+<a href="#484" id="484">484</a>
+<a href="#485" id="485">485</a>
+<a href="#486" id="486">486</a>
+<a href="#487" id="487">487</a>
+<a href="#488" id="488">488</a>
+<a href="#489" id="489">489</a>
+<a href="#490" id="490">490</a>
+<a href="#491" id="491">491</a>
+<a href="#492" id="492">492</a>
+<a href="#493" id="493">493</a>
+<a href="#494" id="494">494</a>
+<a href="#495" id="495">495</a>
+<a href="#496" id="496">496</a>
+<a href="#497" id="497">497</a>
+<a href="#498" id="498">498</a>
+<a href="#499" id="499">499</a>
+<a href="#500" id="500">500</a>
+<a href="#501" id="501">501</a>
+<a href="#502" id="502">502</a>
+<a href="#503" id="503">503</a>
+<a href="#504" id="504">504</a>
+<a href="#505" id="505">505</a>
+<a href="#506" id="506">506</a>
+<a href="#507" id="507">507</a>
+<a href="#508" id="508">508</a>
+<a href="#509" id="509">509</a>
+<a href="#510" id="510">510</a>
+<a href="#511" id="511">511</a>
+<a href="#512" id="512">512</a>
+<a href="#513" id="513">513</a>
+<a href="#514" id="514">514</a>
+<a href="#515" id="515">515</a>
+<a href="#516" id="516">516</a>
+<a href="#517" id="517">517</a>
+<a href="#518" id="518">518</a>
+<a href="#519" id="519">519</a>
+<a href="#520" id="520">520</a>
+<a href="#521" id="521">521</a>
+<a href="#522" id="522">522</a>
+<a href="#523" id="523">523</a>
+<a href="#524" id="524">524</a>
+<a href="#525" id="525">525</a>
+<a href="#526" id="526">526</a>
+<a href="#527" id="527">527</a>
+<a href="#528" id="528">528</a>
+<a href="#529" id="529">529</a>
+<a href="#530" id="530">530</a>
+<a href="#531" id="531">531</a>
+<a href="#532" id="532">532</a>
+<a href="#533" id="533">533</a>
+<a href="#534" id="534">534</a>
+<a href="#535" id="535">535</a></pre></div><pre class="rust"><code><span class="kw">use </span>serde::de::{Deserialize, Deserializer, Error <span class="kw">as </span>DeError};
 <span class="kw">use </span>serde::ser::{Serialize, Serializer};
 
-<span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-</span><span class="kw">use </span><span class="kw">super</span>::InstallationContext;
-<span class="kw">use super</span>::{CommandInteraction, ComponentInteraction, ModalInteraction, PingInteraction};
+<span class="kw">use super</span>::{
+    CommandInteraction,
+    ComponentInteraction,
+    InstallationContext,
+    ModalInteraction,
+    PingInteraction,
+};
 <span class="kw">use </span><span class="kw">crate</span>::internal::prelude::<span class="kw-2">*</span>;
 <span class="kw">use </span><span class="kw">crate</span>::json::from_value;
 <span class="kw">use </span><span class="kw">crate</span>::model::guild::PartialMember;
-<span class="kw">use </span><span class="kw">crate</span>::model::id::{ApplicationId, InteractionId};
-<span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-</span><span class="kw">use </span><span class="kw">crate</span>::model::id::{GuildId, MessageId, UserId};
+<span class="kw">use </span><span class="kw">crate</span>::model::id::{ApplicationId, GuildId, InteractionId, MessageId, UserId};
 <span class="kw">use </span><span class="kw">crate</span>::model::monetization::Entitlement;
 <span class="kw">use </span><span class="kw">crate</span>::model::user::User;
-<span class="kw">use </span><span class="kw">crate</span>::model::utils::deserialize_val;
-<span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-</span><span class="kw">use </span><span class="kw">crate</span>::model::utils::StrOrInt;
+<span class="kw">use </span><span class="kw">crate</span>::model::utils::{deserialize_val, remove_from_map, StrOrInt};
 <span class="kw">use </span><span class="kw">crate</span>::model::Permissions;
 
 <span class="doccomment">/// [Discord docs](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object)
@@ -745,7 +834,6 @@
 ///
 /// [Discord Docs](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-authorizing-integration-owners-object)
 </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
-#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
 #[derive(Clone, Debug)]
 #[non_exhaustive]
 </span><span class="kw">pub enum </span>AuthorizingIntegrationOwner {
@@ -761,13 +849,11 @@
 }
 
 <span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
-#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
 #[derive(Clone, Debug, Default)]
 #[repr(transparent)]
 </span><span class="kw">pub struct </span>AuthorizingIntegrationOwners(<span class="kw">pub </span>Vec&lt;AuthorizingIntegrationOwner&gt;);
 
-<span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; serde::Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>AuthorizingIntegrationOwners {
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; serde::Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>AuthorizingIntegrationOwners {
     <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; StdResult&lt;<span class="self">Self</span>, D::Error&gt; {
         <span class="kw">struct </span>Visitor;
 
@@ -812,8 +898,7 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-</span><span class="kw">impl </span>serde::Serialize <span class="kw">for </span>AuthorizingIntegrationOwners {
+<span class="kw">impl </span>serde::Serialize <span class="kw">for </span>AuthorizingIntegrationOwners {
     <span class="kw">fn </span>serialize&lt;S: Serializer&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; StdResult&lt;S::Ok, S::Error&gt; {
         <span class="kw">use </span>serde::ser::SerializeMap;
 
@@ -865,29 +950,122 @@
     </span><span class="kw">pub </span>member: <span class="prelude-ty">Option</span>&lt;PartialMember&gt;,
 }
 
-<span class="doccomment">/// Metadata about the interaction, including the source of the interaction relevant server and
-/// user IDs.
-</span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
-#[derive(Clone, Debug, Deserialize, Serialize)]
-#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-</span><span class="kw">pub struct </span>MessageInteractionMetadata {
+<span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
+#[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
+#[non_exhaustive]
+</span><span class="kw">pub struct </span>MessageCommandInteractionMetadata {
     <span class="doccomment">/// The ID of the interaction
     </span><span class="kw">pub </span>id: InteractionId,
-    <span class="doccomment">/// The type of interaction
-    </span><span class="attr">#[serde(rename = <span class="string">"type"</span>)]
-    </span><span class="kw">pub </span>kind: InteractionType,
-    <span class="doccomment">/// The ID of the user who triggered the interaction
+    <span class="doccomment">/// The user who triggered the interaction
     </span><span class="kw">pub </span>user: User,
     <span class="doccomment">/// The IDs for installation context(s) related to an interaction.
-    </span><span class="attr">#[serde(default)]
     </span><span class="kw">pub </span>authorizing_integration_owners: AuthorizingIntegrationOwners,
     <span class="doccomment">/// The ID of the original response message, present only on follow-up messages.
     </span><span class="kw">pub </span>original_response_message_id: <span class="prelude-ty">Option</span>&lt;MessageId&gt;,
-    <span class="doccomment">/// ID of the message that contained interactive component, present only on messages created
-    /// from component interactions.
-    </span><span class="kw">pub </span>interacted_message_id: <span class="prelude-ty">Option</span>&lt;MessageId&gt;,
-    <span class="doccomment">/// Metadata for the interaction that was used to open the modal, present only on modal submit
-    /// interactions
-    </span><span class="kw">pub </span>triggering_interaction_metadata: <span class="prelude-ty">Option</span>&lt;Box&lt;MessageInteractionMetadata&gt;&gt;,
+    <span class="doccomment">/// The user the command was run on, present only on user command interactions
+    </span><span class="kw">pub </span>target_user: <span class="prelude-ty">Option</span>&lt;User&gt;,
+    <span class="doccomment">/// The ID of the message the command was run on, present only on message command
+    /// interactions.
+    </span><span class="kw">pub </span>target_message_id: <span class="prelude-ty">Option</span>&lt;MessageId&gt;,
+}
+
+<span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
+#[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
+#[non_exhaustive]
+</span><span class="kw">pub struct </span>MessageComponentInteractionMetadata {
+    <span class="doccomment">/// The ID of the interaction
+    </span><span class="kw">pub </span>id: InteractionId,
+    <span class="doccomment">/// The user who triggered the interaction
+    </span><span class="kw">pub </span>user: User,
+    <span class="doccomment">/// The IDs for installation context(s) related to an interaction.
+    </span><span class="kw">pub </span>authorizing_integration_owners: AuthorizingIntegrationOwners,
+    <span class="doccomment">/// The ID of the original response message, present only on follow-up messages.
+    </span><span class="kw">pub </span>original_response_message_id: <span class="prelude-ty">Option</span>&lt;MessageId&gt;,
+    <span class="doccomment">/// The ID of the message that contained the interactive component
+    </span><span class="kw">pub </span>interacted_message_id: MessageId,
+}
+
+<span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
+#[derive(Clone, Debug, serde::Deserialize, serde::Serialize)]
+#[non_exhaustive]
+</span><span class="kw">pub struct </span>MessageModalSubmitInteractionMetadata {
+    <span class="doccomment">/// The ID of the interaction
+    </span><span class="kw">pub </span>id: InteractionId,
+    <span class="doccomment">/// The user who triggered the interaction
+    </span><span class="kw">pub </span>user: User,
+    <span class="doccomment">/// The IDs for installation context(s) related to an interaction.
+    </span><span class="kw">pub </span>authorizing_integration_owners: AuthorizingIntegrationOwners,
+    <span class="doccomment">/// The ID of the original response message, present only on follow-up messages.
+    </span><span class="kw">pub </span>original_response_message_id: <span class="prelude-ty">Option</span>&lt;MessageId&gt;,
+    <span class="doccomment">/// Metadata for the interaction that was used to open the modal
+    </span><span class="kw">pub </span>triggering_interaction_metadata: Box&lt;MessageInteractionMetadata&gt;,
+}
+
+<span class="doccomment">/// Metadata about the interaction, including the source of the interaction relevant server and
+/// user IDs.
+</span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
+#[derive(Clone, Debug)]
+#[non_exhaustive]
+</span><span class="kw">pub enum </span>MessageInteractionMetadata {
+    Command(MessageCommandInteractionMetadata),
+    Component(MessageComponentInteractionMetadata),
+    ModalSubmit(MessageModalSubmitInteractionMetadata),
+    Unknown(InteractionType),
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; serde::Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>MessageInteractionMetadata {
+    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; StdResult&lt;<span class="self">Self</span>, D::Error&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>data = JsonMap::deserialize(deserializer)<span class="question-mark">?</span>;
+        <span class="kw">let </span>kind: InteractionType = remove_from_map(<span class="kw-2">&amp;mut </span>data, <span class="string">"type"</span>)<span class="question-mark">?</span>;
+
+        <span class="kw">match </span>kind {
+            InteractionType::Command =&gt; deserialize_val(Value::from(data)).map(<span class="self">Self</span>::Command),
+            InteractionType::Component =&gt; deserialize_val(Value::from(data)).map(<span class="self">Self</span>::Component),
+            InteractionType::Modal =&gt; deserialize_val(Value::from(data)).map(<span class="self">Self</span>::ModalSubmit),
+
+            unknown =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Unknown(unknown)),
+        }
+    }
+}
+
+<span class="kw">impl </span>serde::Serialize <span class="kw">for </span>MessageInteractionMetadata {
+    <span class="kw">fn </span>serialize&lt;S: Serializer&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; StdResult&lt;S::Ok, S::Error&gt; {
+        <span class="attr">#[derive(serde::Serialize)]
+        </span><span class="kw">struct </span>WithType&lt;T&gt; {
+            <span class="attr">#[serde(rename = <span class="string">"type"</span>)]
+            </span>kind: InteractionType,
+            <span class="attr">#[serde(flatten)]
+            </span>val: T,
+        }
+
+        <span class="kw">fn </span>serialize_with_type&lt;S: Serializer, T: serde::Serialize&gt;(
+            serializer: S,
+            val: T,
+            kind: InteractionType,
+        ) -&gt; StdResult&lt;S::Ok, S::Error&gt; {
+            <span class="kw">let </span>wrapper = WithType {
+                kind,
+                val,
+            };
+
+            wrapper.serialize(serializer)
+        }
+
+        <span class="kw">match </span><span class="self">self </span>{
+            MessageInteractionMetadata::Command(val) =&gt; {
+                serialize_with_type(serializer, val, InteractionType::Command)
+            },
+            MessageInteractionMetadata::Component(val) =&gt; {
+                serialize_with_type(serializer, val, InteractionType::Component)
+            },
+            MessageInteractionMetadata::ModalSubmit(val) =&gt; {
+                serialize_with_type(serializer, val, InteractionType::Modal)
+            },
+            <span class="kw-2">&amp;</span>MessageInteractionMetadata::Unknown(kind) =&gt; {
+                <span class="macro">tracing::warn!</span>(<span class="string">"Tried to serialize MessageInteractionMetadata::Unknown({}), serialising null instead"</span>, u8::from(kind));
+                serializer.serialize_none()
+            },
+        }
+    }
 }
 </code></pre></div></section></main></body></html>

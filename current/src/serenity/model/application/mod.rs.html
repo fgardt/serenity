@@ -314,12 +314,11 @@
 <a href="#313" id="313">313</a>
 <a href="#314" id="314">314</a>
 <a href="#315" id="315">315</a>
-<a href="#316" id="316">316</a>
-<a href="#317" id="317">317</a>
-<a href="#318" id="318">318</a>
-<a href="#319" id="319">319</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models about OAuth2 applications.
+<a href="#316" id="316">316</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models about OAuth2 applications.
 
-</span><span class="kw">mod </span>command;
+</span><span class="kw">use </span>std::collections::HashMap;
+
+<span class="kw">mod </span>command;
 <span class="kw">pub use </span>command::<span class="kw-2">*</span>;
 <span class="kw">mod </span>command_interaction;
 <span class="kw">pub use </span>command_interaction::<span class="kw-2">*</span>;
@@ -396,10 +395,8 @@
     <span class="doccomment">/// The application's role connection verification entry point, which when configured will
     /// render the app as a verification method in the guild role verification configuration.
     </span><span class="kw">pub </span>role_connections_verification_url: <span class="prelude-ty">Option</span>&lt;String&gt;,
-    <span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-    #[serde(default)]
-    </span><span class="kw">pub </span>integration_types_config:
-        std::collections::HashMap&lt;InstallationContext, InstallationContextConfig&gt;,
+    <span class="attr">#[serde(default)]
+    </span><span class="kw">pub </span>integration_types_config: HashMap&lt;InstallationContext, InstallationContextConfig&gt;,
     <span class="kw">pub </span>approximate_guild_count: <span class="prelude-ty">Option</span>&lt;u32&gt;,
     <span class="kw">pub </span>approximate_user_install_count: <span class="prelude-ty">Option</span>&lt;u32&gt;,
     <span class="kw">pub </span>guild: <span class="prelude-ty">Option</span>&lt;PartialGuild&gt;,
@@ -418,8 +415,7 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-</span><span class="macro">enum_number!</span> {
+<span class="macro">enum_number!</span> {
     <span class="doccomment">/// An enum representing the [installation contexts].
     ///
     /// [interaction contexts](https://discord.com/developers/docs/resources/application#application-object-application-integration-types).
@@ -434,8 +430,7 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-</span><span class="macro">enum_number!</span> {
+<span class="macro">enum_number!</span> {
     <span class="doccomment">/// An enum representing the different [interaction contexts].
     ///
     /// [interaction contexts](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-context-types).
@@ -457,8 +452,7 @@
 <span class="doccomment">/// Information about how the [`CurrentApplicationInfo`] is installed.
 ///
 /// [Discord docs](https://discord.com/developers/docs/resources/application#application-object-application-integration-types).
-</span><span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-#[derive(Clone, Debug, Deserialize, Serialize)]
+</span><span class="attr">#[derive(Clone, Debug, Deserialize, Serialize)]
 </span><span class="kw">pub struct </span>InstallationContextConfig {
     <span class="kw">pub </span>oauth2_install_params: <span class="prelude-ty">Option</span>&lt;InstallParams&gt;,
 }

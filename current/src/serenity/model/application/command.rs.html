@@ -432,15 +432,11 @@
 <a href="#431" id="431">431</a>
 <a href="#432" id="432">432</a>
 <a href="#433" id="433">433</a>
-<a href="#434" id="434">434</a>
-<a href="#435" id="435">435</a>
-<a href="#436" id="436">436</a>
-<a href="#437" id="437">437</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
+<a href="#434" id="434">434</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
 
 <span class="kw">use </span>serde::Serialize;
 
-<span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-</span><span class="kw">use super</span>::{InstallationContext, InteractionContext};
+<span class="kw">use super</span>::{InstallationContext, InteractionContext};
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::builder::{Builder, CreateCommand};
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
@@ -523,14 +519,12 @@
     </span><span class="kw">pub </span>nsfw: bool,
     <span class="doccomment">/// Installation context(s) where the command is available, only for globally-scoped commands.
     ///
-    /// Defaults to [`InstallationContext::Guild`]
-    </span><span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
-    #[serde(default)]
+    /// Defaults to [`InstallationContext::Guild`] and [`InstallationContext::User`].
+    </span><span class="attr">#[serde(default)]
     </span><span class="kw">pub </span>integration_types: Vec&lt;InstallationContext&gt;,
     <span class="doccomment">/// Interaction context(s) where the command can be used, only for globally-scoped commands.
     ///
     /// By default, all interaction context types are included.
-    </span><span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
     </span><span class="kw">pub </span>contexts: <span class="prelude-ty">Option</span>&lt;Vec&lt;InteractionContext&gt;&gt;,
     <span class="doccomment">/// An autoincremented version identifier updated during substantial record changes.
     </span><span class="kw">pub </span>version: CommandVersionId,

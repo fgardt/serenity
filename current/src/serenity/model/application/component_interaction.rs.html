@@ -344,9 +344,7 @@
 <a href="#343" id="343">343</a>
 <a href="#344" id="344">344</a>
 <a href="#345" id="345">345</a>
-<a href="#346" id="346">346</a>
-<a href="#347" id="347">347</a>
-<a href="#348" id="348">348</a></pre></div><pre class="rust"><code><span class="kw">use </span>serde::de::Error <span class="kw">as </span>DeError;
+<a href="#346" id="346">346</a></pre></div><pre class="rust"><code><span class="kw">use </span>serde::de::Error <span class="kw">as </span>DeError;
 <span class="kw">use </span>serde::ser::{Serialize, SerializeMap <span class="kw">as _</span>};
 
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
@@ -412,10 +410,8 @@
     </span><span class="kw">pub </span>entitlements: Vec&lt;Entitlement&gt;,
     <span class="doccomment">/// The owners of the applications that authorized the interaction, such as a guild or user.
     </span><span class="attr">#[serde(default)]
-    #[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
     </span><span class="kw">pub </span>authorizing_integration_owners: AuthorizingIntegrationOwners,
     <span class="doccomment">/// The context where the interaction was triggered from.
-    </span><span class="attr">#[cfg(feature = <span class="string">"unstable_discord_api"</span>)]
     </span><span class="kw">pub </span>context: <span class="prelude-ty">Option</span>&lt;InteractionContext&gt;,
 }
 
