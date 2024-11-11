@@ -79,7 +79,7 @@
 
 <span class="kw">impl </span>CreateAttachment&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>into_part(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Part&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>part = Part::bytes(<span class="self">self</span>.data);
+        <span class="kw">let </span><span class="kw-2">mut </span>part = Part::stream(<span class="self">self</span>.data);
         part = guess_mime_str(part, <span class="kw-2">&amp;</span><span class="self">self</span>.filename)<span class="question-mark">?</span>;
         part = part.file_name(<span class="self">self</span>.filename);
         <span class="prelude-val">Ok</span>(part)

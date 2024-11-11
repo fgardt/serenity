@@ -298,11 +298,10 @@
 <a href="#297" id="297">297</a>
 <a href="#298" id="298">298</a>
 <a href="#299" id="299">299</a>
-<a href="#300" id="300">300</a>
-<a href="#301" id="301">301</a>
-<a href="#302" id="302">302</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
+<a href="#300" id="300">300</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>std::path::Path;
 
+<span class="kw">use </span>bytes::Bytes;
 <span class="kw">use </span>serde::ser::{Serialize, SerializeSeq, Serializer};
 <span class="kw">use </span>tokio::fs::File;
 <span class="kw">use </span>tokio::io::AsyncReadExt;
@@ -323,15 +322,12 @@
 </span><span class="kw">pub struct </span>CreateAttachment&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">pub </span>filename: Cow&lt;<span class="lifetime">'static</span>, str&gt;,
     <span class="kw">pub </span>description: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
-    <span class="kw">pub </span>data: Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;,
+    <span class="kw">pub </span>data: Bytes,
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; CreateAttachment&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Builds an [`CreateAttachment`] from the raw attachment data.
-    </span><span class="kw">pub fn </span>bytes(
-        data: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;&gt;,
-        filename: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt;,
-    ) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>bytes(data: <span class="kw">impl </span>Into&lt;Bytes&gt;, filename: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt;) -&gt; <span class="self">Self </span>{
         CreateAttachment {
             data: data.into(),
             filename: filename.into(),
@@ -387,7 +383,7 @@
         filename: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt;,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
         <span class="kw">let </span>response = http.client.get(url).send().<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">let </span>data = response.bytes().<span class="kw">await</span><span class="question-mark">?</span>.to_vec();
+        <span class="kw">let </span>data = response.bytes().<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(CreateAttachment::bytes(data, filename))
     }
