@@ -307,7 +307,12 @@
 <a href="#306" id="306">306</a>
 <a href="#307" id="307">307</a>
 <a href="#308" id="308">308</a>
-<a href="#309" id="309">309</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::cmp::Ordering;
+<a href="#309" id="309">309</a>
+<a href="#310" id="310">310</a>
+<a href="#311" id="311">311</a>
+<a href="#312" id="312">312</a>
+<a href="#313" id="313">313</a>
+<a href="#314" id="314">314</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::cmp::Ordering;
 <span class="kw">use </span>std::fmt;
 
 <span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
@@ -320,6 +325,10 @@
 </span><span class="kw">use </span><span class="kw">crate</span>::internal::prelude::<span class="kw-2">*</span>;
 <span class="kw">use </span><span class="kw">crate</span>::model::prelude::<span class="kw-2">*</span>;
 <span class="kw">use </span><span class="kw">crate</span>::model::utils::is_false;
+
+<span class="kw">fn </span>minus1_as_0&lt;<span class="lifetime">'de</span>, D: serde::Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;u16, D::Error&gt; {
+    i16::deserialize(deserializer).map(|val| <span class="kw">if </span>val == -<span class="number">1 </span>{ <span class="number">0 </span>} <span class="kw">else </span>{ val <span class="kw">as </span>u16 })
+}
 
 <span class="doccomment">/// Information about a role within a guild.
 ///
@@ -366,6 +375,7 @@
     /// position is higher.
     ///
     /// The `@everyone` role is usually either `-1` or `0`.
+    </span><span class="attr">#[serde(deserialize_with = <span class="string">"minus1_as_0"</span>)]
     </span><span class="kw">pub </span>position: u16,
     <span class="doccomment">/// The tags this role has. It can be used to determine if this role is a special role in this
     /// guild such as guild subscriber role, or if the role is linked to an [`Integration`] or a
