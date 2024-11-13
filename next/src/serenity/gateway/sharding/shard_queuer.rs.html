@@ -352,8 +352,7 @@
 <a href="#351" id="351">351</a>
 <a href="#352" id="352">352</a>
 <a href="#353" id="353">353</a>
-<a href="#354" id="354">354</a>
-<a href="#355" id="355">355</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::{HashMap, VecDeque};
+<a href="#354" id="354">354</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::{HashMap, VecDeque};
 <span class="kw">use </span>std::num::NonZeroU16;
 <span class="kw">use </span>std::sync::Arc;
 <span class="attr">#[cfg(feature = <span class="string">"framework"</span>)]
@@ -385,8 +384,6 @@
 <span class="kw">use </span><span class="kw">crate</span>::internal::prelude::<span class="kw-2">*</span>;
 <span class="kw">use </span><span class="kw">crate</span>::internal::tokio::spawn_named;
 <span class="kw">use </span><span class="kw">crate</span>::model::gateway::{GatewayIntents, ShardInfo};
-
-<span class="kw">const </span>WAIT_BETWEEN_BOOTS_IN_SECONDS: u64 = <span class="number">5</span>;
 
 <span class="doccomment">/// The shard queuer is a simple loop that runs indefinitely to manage the startup of shards.
 ///
@@ -423,6 +420,8 @@
     </span><span class="kw">pub </span>ws_url: Arc&lt;str&gt;,
     <span class="doccomment">/// The total amount of shards to start.
     </span><span class="kw">pub </span>shard_total: NonZeroU16,
+    <span class="doccomment">/// Number of seconds to wait between each start
+    </span><span class="kw">pub </span>wait_time_between_shard_start: Duration,
     <span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
     </span><span class="kw">pub </span>cache: Arc&lt;Cache&gt;,
     <span class="kw">pub </span>http: Arc&lt;Http&gt;,
@@ -449,14 +448,14 @@
     /// **Note**: This should be run in its own thread due to the blocking nature of the loop.
     </span><span class="attr">#[cfg_attr(feature = <span class="string">"tracing_instrument"</span>, instrument(skip(<span class="self">self</span>)))]
     </span><span class="kw">pub async fn </span>run(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
-        <span class="comment">// We read from the Rx channel in a loop, and use a timeout of 5 seconds so that we don't
+        <span class="comment">// We read from the Rx channel in a loop, and use a timeout of
+        // {self.WAIT_TIME_BETWEEN_SHARD_START} (5 seconds normally) seconds so that we don't
         // hang forever. When we receive a command to start a shard, we append it to our queue. The
         // queue is popped in batches of shards, which are started in parallel. A batch is fired
-        // every 5 seconds at minimum in order to avoid being ratelimited.
-        </span><span class="kw">const </span>TIMEOUT: Duration = Duration::from_secs(WAIT_BETWEEN_BOOTS_IN_SECONDS);
+        // every WAIT_TIME_BETWEEN_SHARD_START at minimum in order to avoid being ratelimited.
 
-        <span class="kw">loop </span>{
-            <span class="kw">if let </span><span class="prelude-val">Ok</span>(msg) = timeout(TIMEOUT, <span class="self">self</span>.rx.next()).<span class="kw">await </span>{
+        </span><span class="kw">loop </span>{
+            <span class="kw">if let </span><span class="prelude-val">Ok</span>(msg) = timeout(<span class="self">self</span>.wait_time_between_shard_start, <span class="self">self</span>.rx.next()).<span class="kw">await </span>{
                 <span class="kw">match </span>msg {
                     <span class="prelude-val">Some</span>(ShardQueuerMessage::SetShardTotal(shard_total)) =&gt; {
                         <span class="self">self</span>.shard_total = shard_total;
@@ -512,14 +511,13 @@
         <span class="kw">let </span><span class="prelude-val">Some</span>(instant) = <span class="self">self</span>.last_start <span class="kw">else </span>{ <span class="kw">return </span>};
 
         <span class="comment">// We must wait 5 seconds between IDENTIFYs to avoid session invalidations.
-        </span><span class="kw">let </span>duration = Duration::from_secs(WAIT_BETWEEN_BOOTS_IN_SECONDS);
-        <span class="kw">let </span>elapsed = instant.elapsed();
+        </span><span class="kw">let </span>elapsed = instant.elapsed();
 
-        <span class="kw">if </span>elapsed &gt;= duration {
+        <span class="kw">if </span>elapsed &gt;= <span class="self">self</span>.wait_time_between_shard_start {
             <span class="kw">return</span>;
         }
 
-        <span class="kw">let </span>to_sleep = duration - elapsed;
+        <span class="kw">let </span>to_sleep = <span class="self">self</span>.wait_time_between_shard_start - elapsed;
 
         sleep(to_sleep).<span class="kw">await</span>;
     }

@@ -373,7 +373,14 @@
 <a href="#372" id="372">372</a>
 <a href="#373" id="373">373</a>
 <a href="#374" id="374">374</a>
-<a href="#375" id="375">375</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
+<a href="#375" id="375">375</a>
+<a href="#376" id="376">376</a>
+<a href="#377" id="377">377</a>
+<a href="#378" id="378">378</a>
+<a href="#379" id="379">379</a>
+<a href="#380" id="380">380</a>
+<a href="#381" id="381">381</a>
+<a href="#382" id="382">382</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
 <span class="kw">use </span>std::num::NonZeroU16;
 <span class="kw">use </span>std::sync::Arc;
 <span class="attr">#[cfg(feature = <span class="string">"framework"</span>)]
@@ -400,6 +407,9 @@
 <span class="kw">use </span><span class="kw">crate</span>::internal::tokio::spawn_named;
 <span class="kw">use </span><span class="kw">crate</span>::model::gateway::GatewayIntents;
 
+<span class="doccomment">/// The default time to wait between starting each shard or set of shards.
+</span><span class="kw">pub const </span>DEFAULT_WAIT_BETWEEN_SHARD_START: Duration = Duration::from_secs(<span class="number">5</span>);
+
 <span class="doccomment">/// A manager for handling the status of shards by starting them, restarting them, and stopping
 /// them when required.
 ///
@@ -425,7 +435,7 @@
 /// use std::sync::{Arc, OnceLock};
 ///
 /// use serenity::gateway::client::EventHandler;
-/// use serenity::gateway::{ShardManager, ShardManagerOptions};
+/// use serenity::gateway::{ShardManager, ShardManagerOptions, DEFAULT_WAIT_BETWEEN_SHARD_START};
 /// use serenity::http::Http;
 /// use serenity::model::gateway::GatewayIntents;
 /// use serenity::prelude::*;
@@ -459,6 +469,7 @@
 ///     intents: GatewayIntents::non_privileged(),
 ///     presence: None,
 ///     max_concurrency,
+///     wait_time_between_shard_start: DEFAULT_WAIT_BETWEEN_SHARD_START,
 /// });
 /// # Ok(())
 /// # }
@@ -521,6 +532,7 @@
             http: opt.http,
             intents: opt.intents,
             presence: opt.presence,
+            wait_time_between_shard_start: opt.wait_time_between_shard_start,
         };
 
         spawn_named(<span class="string">"shard_queuer::run"</span>, <span class="kw">async move </span>{
@@ -747,5 +759,7 @@
     <span class="kw">pub </span>intents: GatewayIntents,
     <span class="kw">pub </span>presence: <span class="prelude-ty">Option</span>&lt;PresenceData&gt;,
     <span class="kw">pub </span>max_concurrency: NonZeroU16,
+    <span class="doccomment">/// Number of seconds to wait between starting each shard/set of shards start
+    </span><span class="kw">pub </span>wait_time_between_shard_start: Duration,
 }
 </code></pre></div></section></main></body></html>

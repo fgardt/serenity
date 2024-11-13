@@ -950,7 +950,11 @@
 <a href="#949" id="949">949</a>
 <a href="#950" id="950">950</a>
 <a href="#951" id="951">951</a>
-<a href="#952" id="952">952</a></pre></div><pre class="rust"><code><span class="doccomment">//! Mechanisms for configuring and managing sharded gateway connections.
+<a href="#952" id="952">952</a>
+<a href="#953" id="953">953</a>
+<a href="#954" id="954">954</a>
+<a href="#955" id="955">955</a>
+<a href="#956" id="956">956</a></pre></div><pre class="rust"><code><span class="doccomment">//! Mechanisms for configuring and managing sharded gateway connections.
 //!
 //! Sharding is a method for load-balancing bots across separate threads or processes. Sharding is
 //! enforced on bots by Discord once they reach a certain number of guilds (2500). Once this
@@ -1002,7 +1006,11 @@
 <span class="kw">use </span>tracing::{debug, error, info, trace, warn};
 <span class="kw">use </span>url::Url;
 
-<span class="kw">pub use </span><span class="self">self</span>::shard_manager::{ShardManager, ShardManagerOptions};
+<span class="kw">pub use </span><span class="self">self</span>::shard_manager::{
+    ShardManager,
+    ShardManagerOptions,
+    DEFAULT_WAIT_BETWEEN_SHARD_START,
+};
 <span class="kw">pub use </span><span class="self">self</span>::shard_messenger::ShardMessenger;
 <span class="kw">pub use </span><span class="self">self</span>::shard_queuer::{ShardQueue, ShardQueuer, ShardQueuerMessage};
 <span class="kw">pub use </span><span class="self">self</span>::shard_runner::{ShardRunner, ShardRunnerMessage, ShardRunnerOptions};
