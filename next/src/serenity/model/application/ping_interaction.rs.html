@@ -18,7 +18,9 @@
 <a href="#17" id="17">17</a>
 <a href="#18" id="18">18</a>
 <a href="#19" id="19">19</a>
-<a href="#20" id="20">20</a></pre></div><pre class="rust"><code><span class="kw">use </span>serde::{Deserialize, Serialize};
+<a href="#20" id="20">20</a>
+<a href="#21" id="21">21</a>
+<a href="#22" id="22">22</a></pre></div><pre class="rust"><code><span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="kw">use </span><span class="kw">crate</span>::model::prelude::<span class="kw-2">*</span>;
 
@@ -37,5 +39,7 @@
     </span><span class="kw">pub </span>token: FixedString,
     <span class="doccomment">/// Always `1`.
     </span><span class="kw">pub </span>version: u8,
+    <span class="doccomment">/// Permissions the app or bot has within the channel the interaction was sent from.
+    </span><span class="kw">pub </span>app_permissions: Permissions,
 }
 </code></pre></div></section></main></body></html>

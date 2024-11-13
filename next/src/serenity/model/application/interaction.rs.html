@@ -594,9 +594,9 @@
 
     <span class="doccomment">/// Permissions the app or bot has within the channel the interaction was sent from.
     </span><span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>app_permissions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Permissions&gt; {
+    </span><span class="kw">pub fn </span>app_permissions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Permissions {
         <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::Ping(<span class="kw">_</span>) =&gt; <span class="prelude-val">None</span>,
+            <span class="self">Self</span>::Ping(i) =&gt; i.app_permissions,
             <span class="self">Self</span>::Command(i) | <span class="self">Self</span>::Autocomplete(i) =&gt; i.app_permissions,
             <span class="self">Self</span>::Component(i) =&gt; i.app_permissions,
             <span class="self">Self</span>::Modal(i) =&gt; i.app_permissions,
