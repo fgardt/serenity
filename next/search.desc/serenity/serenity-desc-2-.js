@@ -1,1 +1,1 @@
-searchState.loadedDescShard("serenity", 2, "Assign the dummy message the webhook author’s ID.\nError that can be return by <code>validate</code>.\nReturns the argument unchanged.\nCalls <code>U::from(self)</code>.\nValidates that a token is likely in a valid format.")
+searchState.loadedDescShard("serenity", 2, "Error that can be return by <code>validate</code>.\nReturns the argument unchanged.\nCalls <code>U::from(self)</code>.\nValidates that a token is likely in a valid format.")
