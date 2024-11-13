@@ -1126,7 +1126,27 @@
 <a href="#1125" id="1125">1125</a>
 <a href="#1126" id="1126">1126</a>
 <a href="#1127" id="1127">1127</a>
-<a href="#1128" id="1128">1128</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models relating to Discord channels.
+<a href="#1128" id="1128">1128</a>
+<a href="#1129" id="1129">1129</a>
+<a href="#1130" id="1130">1130</a>
+<a href="#1131" id="1131">1131</a>
+<a href="#1132" id="1132">1132</a>
+<a href="#1133" id="1133">1133</a>
+<a href="#1134" id="1134">1134</a>
+<a href="#1135" id="1135">1135</a>
+<a href="#1136" id="1136">1136</a>
+<a href="#1137" id="1137">1137</a>
+<a href="#1138" id="1138">1138</a>
+<a href="#1139" id="1139">1139</a>
+<a href="#1140" id="1140">1140</a>
+<a href="#1141" id="1141">1141</a>
+<a href="#1142" id="1142">1142</a>
+<a href="#1143" id="1143">1143</a>
+<a href="#1144" id="1144">1144</a>
+<a href="#1145" id="1145">1145</a>
+<a href="#1146" id="1146">1146</a>
+<a href="#1147" id="1147">1147</a>
+<a href="#1148" id="1148">1148</a></pre></div><pre class="rust"><code><span class="doccomment">//! Models relating to Discord channels.
 
 </span><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 </span><span class="kw">use </span>std::borrow::Cow;
@@ -1325,6 +1345,26 @@
     </span><span class="kw">pub async fn </span>guild_channel(<span class="kw-2">&amp;</span><span class="self">self</span>, cache_http: <span class="kw">impl </span>CacheHttp) -&gt; <span class="prelude-ty">Result</span>&lt;GuildChannel&gt; {
         <span class="self">self</span>.channel_id.to_guild_channel(cache_http, <span class="self">self</span>.guild_id).<span class="kw">await
     </span>}
+
+    <span class="doccomment">/// Calculates the permissions of the message author in the current channel.
+    ///
+    /// This may return `None` if:
+    /// - The [`Cache`] does not have the current [`Guild`]
+    /// - This message is not from [`MessageCreateEvent`] and the author's [`Member`] cannot be
+    ///   found in [`Guild#structfield.members`].
+    </span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+    </span><span class="kw">pub fn </span>author_permissions(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>Cache) -&gt; <span class="prelude-ty">Option</span>&lt;Permissions&gt; {
+        <span class="kw">let </span><span class="prelude-val">Some</span>(guild_id) = <span class="self">self</span>.guild_id <span class="kw">else </span>{
+            <span class="kw">return </span><span class="prelude-val">Some</span>(Permissions::dm_permissions());
+        };
+
+        <span class="kw">let </span>guild = cache.guild(guild_id)<span class="question-mark">?</span>;
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(member) = <span class="kw-2">&amp;</span><span class="self">self</span>.member {
+            <span class="prelude-val">Some</span>(guild.partial_member_permissions(<span class="self">self</span>.author.id, member))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Some</span>(guild.member_permissions(guild.members.get(<span class="kw-2">&amp;</span><span class="self">self</span>.author.id)<span class="question-mark">?</span>))
+        }
+    }
 
     <span class="doccomment">/// Deletes the message.
     ///
@@ -1662,7 +1702,7 @@
     /// # Errors
     ///
     /// See [`ChannelId::end_poll`] for more information.
-    </span><span class="kw">pub async fn </span>end_poll(<span class="kw-2">&amp;</span><span class="self">self</span>, http: <span class="kw">impl </span>AsRef&lt;Http&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
+    </span><span class="kw">pub async fn </span>end_poll(<span class="kw-2">&amp;</span><span class="self">self</span>, http: <span class="kw-2">&amp;</span>Http) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
         <span class="self">self</span>.channel_id.end_poll(http, <span class="self">self</span>.id).<span class="kw">await
     </span>}
 

@@ -2275,13 +2275,13 @@
     /// If the message does not have a poll.
     </span><span class="kw">pub async fn </span>get_poll_answer_voters(
         <span class="self">self</span>,
-        http: <span class="kw">impl </span>AsRef&lt;Http&gt;,
+        http: <span class="kw-2">&amp;</span>Http,
         message_id: MessageId,
         answer_id: AnswerId,
         after: <span class="prelude-ty">Option</span>&lt;UserId&gt;,
         limit: <span class="prelude-ty">Option</span>&lt;u8&gt;,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;User&gt;&gt; {
-        http.as_ref().get_poll_answer_voters(<span class="self">self</span>, message_id, answer_id, after, limit).<span class="kw">await
+        http.get_poll_answer_voters(<span class="self">self</span>, message_id, answer_id, after, limit).<span class="kw">await
     </span>}
 
     <span class="doccomment">/// Ends the [`Poll`] on a given [`MessageId`], if there is one.
@@ -2289,8 +2289,8 @@
     /// # Errors
     ///
     /// If the message does not have a poll, or if the poll was not created by the current user.
-    </span><span class="kw">pub async fn </span>end_poll(<span class="self">self</span>, http: <span class="kw">impl </span>AsRef&lt;Http&gt;, message_id: MessageId) -&gt; <span class="prelude-ty">Result</span>&lt;Message&gt; {
-        http.as_ref().expire_poll(<span class="self">self</span>, message_id).<span class="kw">await
+    </span><span class="kw">pub async fn </span>end_poll(<span class="self">self</span>, http: <span class="kw-2">&amp;</span>Http, message_id: MessageId) -&gt; <span class="prelude-ty">Result</span>&lt;Message&gt; {
+        http.expire_poll(<span class="self">self</span>, message_id).<span class="kw">await
     </span>}
 }
 

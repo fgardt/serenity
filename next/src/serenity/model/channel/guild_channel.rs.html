@@ -584,8 +584,7 @@
 <a href="#583" id="583">583</a>
 <a href="#584" id="584">584</a>
 <a href="#585" id="585">585</a>
-<a href="#586" id="586">586</a>
-<a href="#587" id="587">587</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::fmt;
+<a href="#586" id="586">586</a></pre></div><pre class="rust"><code><span class="kw">use </span>std::fmt;
 
 <span class="kw">use </span>nonmax::{NonMaxU16, NonMaxU32, NonMaxU8};
 
@@ -990,6 +989,7 @@
     /// [Attach Files]: Permissions::ATTACH_FILES
     /// [Send Messages]: Permissions::SEND_MESSAGES
     </span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+    #[deprecated = <span class="string">"Use `Guild::user_permissions_in`"</span>]
     </span><span class="kw">pub fn </span>permissions_for_user(<span class="kw-2">&amp;</span><span class="self">self</span>, cache: <span class="kw-2">&amp;</span>Cache, user_id: UserId) -&gt; <span class="prelude-ty">Result</span>&lt;Permissions&gt; {
         <span class="kw">let </span>guild = <span class="self">self</span>.guild(cache).ok_or(Error::Model(ModelError::GuildNotFound))<span class="question-mark">?</span>;
         <span class="kw">let </span>member = guild.members.get(<span class="kw-2">&amp;</span>user_id).ok_or(Error::Model(ModelError::MemberNotFound))<span class="question-mark">?</span>;
@@ -1041,10 +1041,8 @@
             ChannelType::News | ChannelType::Text =&gt; <span class="prelude-val">Ok</span>(guild
                 .members
                 .iter()
-                .filter(|m| {
-                    <span class="self">self</span>.permissions_for_user(cache, m.user.id)
-                        .map(|p| p.contains(Permissions::VIEW_CHANNEL))
-                        .unwrap_or(<span class="bool-val">false</span>)
+                .filter(|member| {
+                    guild.user_permissions_in(<span class="self">self</span>, member).contains(Permissions::VIEW_CHANNEL)
                 })
                 .cloned()
                 .collect::&lt;Vec&lt;Member&gt;&gt;()),
