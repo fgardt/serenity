@@ -90,18 +90,14 @@ enum Compression {
     },
 }
 
-const DECOMPRESSION_MULTIPLIER: usize = 3;
-#[cfg(feature = "transport_compression_zlib")]
-const ZLIB_SUFFIX: [u8; 4] = [0x00, 0x00, 0xFF, 0xFF];
-#[cfg(feature = "transport_compression_zlib")]
-const ZLIB_BUFFER_SIZE: usize = 32 * 1024;
-
 impl Compression {
     fn inflate(&mut self, slice: &[u8]) -> Result<Option<&[u8]>> {
         match self {
             Compression::Payload {
                 decompressed,
             } => {
+                const DECOMPRESSION_MULTIPLIER: usize = 3;
+
                 decompressed.clear();
                 decompressed.reserve(slice.len() * DECOMPRESSION_MULTIPLIER);
 
@@ -121,6 +117,8 @@ impl Compression {
                 compressed,
                 decompressed,
             } => {
+                const ZLIB_SUFFIX: [u8; 4] = [0x00, 0x00, 0xFF, 0xFF];
+
                 compressed.extend_from_slice(slice);
                 let length = compressed.len();
 
@@ -150,7 +148,7 @@ impl From<TransportCompression> for Compression {
             TransportCompression::Zlib => Compression::Zlib {
                 inflater: Decompress::new(true),
                 compressed: Vec::new(),
-                decompressed: Vec::with_capacity(ZLIB_BUFFER_SIZE),
+                decompressed: Vec::with_capacity(32 * 1024),
             },
         }
     }

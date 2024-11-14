@@ -44,7 +44,7 @@ use std::fmt;
 use std::sync::Arc;
 use std::time::{Duration as StdDuration, Instant};
 
-use aformat::{aformat, CapStr};
+use aformat::{aformat, aformat_into, ArrayString, CapStr};
 use tokio_tungstenite::tungstenite::error::Error as TungsteniteError;
 use tokio_tungstenite::tungstenite::protocol::frame::CloseFrame;
 use tracing::{debug, error, info, trace, warn};
@@ -823,7 +823,7 @@ async fn connect(base_url: &str, compression: TransportCompression) -> Result<Ws
         "{}?v={}{}",
         CapStr::<64>(base_url),
         constants::GATEWAY_VERSION,
-        CapStr::<21>(compression.query_param())
+        compression.query_param()
     ))
     .map_err(|why| {
         warn!("Error building gateway URL with base `{base_url}`: {why:?}");
@@ -973,6 +973,7 @@ impl PartialEq for CollectorCallback {
 
 /// The transport compression method to use.
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
+#[non_exhaustive]
 pub enum TransportCompression {
     /// No transport compression. Payload compression will be used instead.
     None,
@@ -983,11 +984,14 @@ pub enum TransportCompression {
 }
 
 impl TransportCompression {
-    fn query_param(self) -> &'static str {
+    fn query_param(self) -> ArrayString<21> {
+        let mut res = ArrayString::new();
         match self {
-            Self::None => "",
+            Self::None => {},
             #[cfg(feature = "transport_compression_zlib")]
-            Self::Zlib => "&compress=zlib-stream",
+            Self::Zlib => aformat_into!(res, "&compress=zlib-stream"),
         }
+
+        res
     }
 }
