@@ -60,7 +60,12 @@ pub const DEFAULT_WAIT_BETWEEN_SHARD_START: Duration = Duration::from_secs(5);
 /// use std::sync::{Arc, OnceLock};
 ///
 /// use serenity::gateway::client::EventHandler;
-/// use serenity::gateway::{ShardManager, ShardManagerOptions, DEFAULT_WAIT_BETWEEN_SHARD_START};
+/// use serenity::gateway::{
+///     ShardManager,
+///     ShardManagerOptions,
+///     TransportCompression,
+///     DEFAULT_WAIT_BETWEEN_SHARD_START,
+/// };
 /// use serenity::http::Http;
 /// use serenity::model::gateway::GatewayIntents;
 /// use serenity::prelude::*;
@@ -95,6 +100,7 @@ pub const DEFAULT_WAIT_BETWEEN_SHARD_START: Duration = Duration::from_secs(5);
 ///     presence: None,
 ///     max_concurrency,
 ///     wait_time_between_shard_start: DEFAULT_WAIT_BETWEEN_SHARD_START,
+///     compression: TransportCompression::None,
 /// });
 /// # Ok(())
 /// # }

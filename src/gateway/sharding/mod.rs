@@ -130,7 +130,7 @@ impl Shard {
     /// use std::num::NonZeroU16;
     /// use std::sync::Arc;
     ///
-    /// use serenity::gateway::Shard;
+    /// use serenity::gateway::{Shard, TransportCompression};
     /// use serenity::model::gateway::{GatewayIntents, ShardInfo};
     /// use serenity::model::id::ShardId;
     /// use serenity::secret_string::SecretString;
@@ -148,7 +148,15 @@ impl Shard {
     ///
     /// // retrieve the gateway response, which contains the URL to connect to
     /// let gateway = Arc::from(http.get_gateway().await?.url);
-    /// let shard = Shard::new(gateway, token, shard_info, GatewayIntents::all(), None).await?;
+    /// let shard = Shard::new(
+    ///     gateway,
+    ///     token,
+    ///     shard_info,
+    ///     GatewayIntents::all(),
+    ///     None,
+    ///     TransportCompression::None,
+    /// )
+    /// .await?;
     ///
     /// // at this point, you can create a `loop`, and receive events and match
     /// // their variants
