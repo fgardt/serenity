@@ -7,7 +7,7 @@ use tokio_tungstenite::tungstenite::protocol::CloseFrame;
 ///
 /// Note that - from a user standpoint - there should be no situation in which you manually handle
 /// these.
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 #[non_exhaustive]
 pub enum Error {
     /// There was an error building a URL.
@@ -50,6 +50,9 @@ pub enum Error {
     /// If an connection has been established but privileged gateway intents were provided without
     /// enabling them prior.
     DisallowedGatewayIntents,
+    #[cfg(feature = "transport_compression_zlib")]
+    /// A decompression error from the `flate2` crate.
+    DecompressZlib(flate2::DecompressError),
 }
 
 impl fmt::Display for Error {
@@ -70,6 +73,8 @@ impl fmt::Display for Error {
             Self::DisallowedGatewayIntents => {
                 f.write_str("Disallowed gateway intents were provided")
             },
+            #[cfg(feature = "transport_compression_zlib")]
+            Self::DecompressZlib(inner) => fmt::Display::fmt(&inner, f),
         }
     }
 }

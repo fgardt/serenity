@@ -128,7 +128,9 @@ impl Compression {
 
                 let pre_out = inflater.total_out();
                 decompressed.clear();
-                inflater.decompress_vec(compressed, decompressed, flate2::FlushDecompress::Sync)?;
+                inflater
+                    .decompress_vec(compressed, decompressed, flate2::FlushDecompress::Sync)
+                    .map_err(GatewayError::DecompressZlib)?;
 
                 let size = inflater.total_out() - pre_out;
                 Ok(Some(&decompressed[..size as usize]))

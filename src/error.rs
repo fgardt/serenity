@@ -46,9 +46,6 @@ pub enum Error {
     /// An error from the `tungstenite` crate.
     #[cfg(feature = "gateway")]
     Tungstenite(Box<TungsteniteError>),
-    #[cfg(feature = "transport_compression_zlib")]
-    /// A decompression error from the `flate2` crate.
-    DecompressZlib(flate2::DecompressError),
 }
 
 #[cfg(feature = "gateway")]
@@ -104,13 +101,6 @@ impl From<ReqwestError> for Error {
     }
 }
 
-#[cfg(feature = "transport_compression_zlib")]
-impl From<flate2::DecompressError> for Error {
-    fn from(e: flate2::DecompressError) -> Error {
-        Error::DecompressZlib(e)
-    }
-}
-
 impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
@@ -123,8 +113,6 @@ impl fmt::Display for Error {
             Self::Http(inner) => fmt::Display::fmt(&inner, f),
             #[cfg(feature = "gateway")]
             Self::Tungstenite(inner) => fmt::Display::fmt(&inner, f),
-            #[cfg(feature = "transport_compression_zlib")]
-            Self::DecompressZlib(inner) => fmt::Display::fmt(&inner, f),
         }
     }
 }
@@ -142,8 +130,6 @@ impl StdError for Error {
             Self::Http(inner) => Some(inner),
             #[cfg(feature = "gateway")]
             Self::Tungstenite(inner) => Some(inner),
-            #[cfg(feature = "transport_compression_zlib")]
-            Self::DecompressZlib(inner) => Some(inner),
         }
     }
 }
