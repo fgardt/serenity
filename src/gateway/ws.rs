@@ -3,6 +3,8 @@ use std::io::Read;
 use std::time::SystemTime;
 
 use flate2::read::ZlibDecoder;
+#[cfg(feature = "transport_compression_zlib")]
+use flate2::Decompress;
 use futures::{SinkExt, StreamExt};
 use small_fixed_array::FixedString;
 use tokio::net::TcpStream;
@@ -13,7 +15,7 @@ use tokio_tungstenite::{connect_async_with_config, MaybeTlsStream, WebSocketStre
 use tracing::{debug, trace, warn};
 use url::Url;
 
-use super::{ActivityData, ChunkGuildFilter, GatewayError, PresenceData};
+use super::{ActivityData, ChunkGuildFilter, GatewayError, PresenceData, TransportCompression};
 use crate::constants::{self, Opcode};
 use crate::model::event::GatewayEvent;
 use crate::model::gateway::{GatewayIntents, ShardInfo};
@@ -75,13 +77,94 @@ struct WebSocketMessage<'a> {
     d: WebSocketMessageData<'a>,
 }
 
-pub struct WsClient(WebSocketStream<MaybeTlsStream<TcpStream>>);
+enum Compression {
+    Payload {
+        decompressed: Vec<u8>,
+    },
+
+    #[cfg(feature = "transport_compression_zlib")]
+    Zlib {
+        inflater: Decompress,
+        compressed: Vec<u8>,
+        decompressed: Vec<u8>,
+    },
+}
+
+const DECOMPRESSION_MULTIPLIER: usize = 3;
+#[cfg(feature = "transport_compression_zlib")]
+const ZLIB_SUFFIX: [u8; 4] = [0x00, 0x00, 0xFF, 0xFF];
+#[cfg(feature = "transport_compression_zlib")]
+const ZLIB_BUFFER_SIZE: usize = 32 * 1024;
+
+impl Compression {
+    fn inflate(&mut self, slice: &[u8]) -> Result<Option<&[u8]>> {
+        match self {
+            Compression::Payload {
+                decompressed,
+            } => {
+                decompressed.clear();
+                decompressed.reserve(slice.len() * DECOMPRESSION_MULTIPLIER);
+
+                ZlibDecoder::new(slice).read_to_end(decompressed).map_err(|why| {
+                    warn!("Err decompressing bytes: {why:?}");
+                    debug!("Failing bytes: {slice:?}");
+
+                    why
+                })?;
+
+                Ok(Some(decompressed.as_slice()))
+            },
+
+            #[cfg(feature = "transport_compression_zlib")]
+            Compression::Zlib {
+                inflater,
+                compressed,
+                decompressed,
+            } => {
+                compressed.extend_from_slice(slice);
+                let length = compressed.len();
+
+                if length < 4 || compressed[length - 4..] != ZLIB_SUFFIX {
+                    return Ok(None);
+                }
+
+                let pre_out = inflater.total_out();
+                decompressed.clear();
+                inflater.decompress_vec(compressed, decompressed, flate2::FlushDecompress::Sync)?;
+
+                let size = inflater.total_out() - pre_out;
+                Ok(Some(&decompressed[..size as usize]))
+            },
+        }
+    }
+}
+
+impl From<TransportCompression> for Compression {
+    fn from(value: TransportCompression) -> Self {
+        match value {
+            TransportCompression::None => Compression::Payload {
+                decompressed: Vec::new(),
+            },
+
+            #[cfg(feature = "transport_compression_zlib")]
+            TransportCompression::Zlib => Compression::Zlib {
+                inflater: Decompress::new(true),
+                compressed: Vec::new(),
+                decompressed: Vec::with_capacity(ZLIB_BUFFER_SIZE),
+            },
+        }
+    }
+}
+
+pub struct WsClient {
+    stream: WebSocketStream<MaybeTlsStream<TcpStream>>,
+    compression: Compression,
+}
 
 const TIMEOUT: Duration = Duration::from_millis(500);
-const DECOMPRESSION_MULTIPLIER: usize = 3;
 
 impl WsClient {
-    pub(crate) async fn connect(url: Url) -> Result<Self> {
+    pub(crate) async fn connect(url: Url, compression: TransportCompression) -> Result<Self> {
         let config = WebSocketConfig {
             max_message_size: None,
             max_frame_size: None,
@@ -89,11 +172,14 @@ impl WsClient {
         };
         let (stream, _) = connect_async_with_config(url, Some(config), false).await?;
 
-        Ok(Self(stream))
+        Ok(Self {
+            stream,
+            compression: compression.into(),
+        })
     }
 
     pub(crate) async fn recv_json(&mut self) -> Result<Option<GatewayEvent>> {
-        let message = match timeout(TIMEOUT, self.0.next()).await {
+        let message = match timeout(TIMEOUT, self.stream.next()).await {
             Ok(Some(Ok(msg))) => msg,
             Ok(Some(Err(e))) => return Err(e.into()),
             Ok(None) | Err(_) => return Ok(None),
@@ -102,17 +188,11 @@ impl WsClient {
         let json_str = match message {
             Message::Text(payload) => payload,
             Message::Binary(bytes) => {
-                let mut decompressed =
-                    String::with_capacity(bytes.len() * DECOMPRESSION_MULTIPLIER);
+                let Some(decompressed) = self.compression.inflate(&bytes)? else {
+                    return Ok(None);
+                };
 
-                ZlibDecoder::new(&bytes[..]).read_to_string(&mut decompressed).map_err(|why| {
-                    warn!("Err decompressing bytes: {why:?}");
-                    debug!("Failing bytes: {bytes:?}");
-
-                    why
-                })?;
-
-                decompressed
+                String::from_utf8_lossy(decompressed).to_string()
             },
             Message::Close(Some(frame)) => {
                 return Err(Error::Gateway(GatewayError::Closed(Some(frame))));
@@ -141,24 +221,24 @@ impl WsClient {
     pub(crate) async fn send_json(&mut self, value: &impl serde::Serialize) -> Result<()> {
         let message = serde_json::to_string(value).map(Message::Text)?;
 
-        self.0.send(message).await?;
+        self.stream.send(message).await?;
         Ok(())
     }
 
     /// Delegate to `StreamExt::next`
     pub(crate) async fn next(&mut self) -> Option<std::result::Result<Message, WsError>> {
-        self.0.next().await
+        self.stream.next().await
     }
 
     /// Delegate to `SinkExt::send`
     pub(crate) async fn send(&mut self, message: Message) -> Result<()> {
-        self.0.send(message).await?;
+        self.stream.send(message).await?;
         Ok(())
     }
 
     /// Delegate to `WebSocketStream::close`
     pub(crate) async fn close(&mut self, msg: Option<CloseFrame<'_>>) -> Result<()> {
-        self.0.close(msg).await?;
+        self.stream.close(msg).await?;
         Ok(())
     }
 
@@ -230,7 +310,7 @@ impl WsClient {
                 token,
                 shard,
                 intents,
-                compress: true,
+                compress: matches!(self.compression, Compression::Payload { .. }),
                 large_threshold: constants::LARGE_THRESHOLD,
                 properties: IdentifyProperties {
                     browser: "serenity",

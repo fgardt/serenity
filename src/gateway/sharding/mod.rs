@@ -113,6 +113,7 @@ pub struct Shard {
     token: SecretString,
     ws_url: Arc<str>,
     resume_ws_url: Option<FixedString>,
+    compression: TransportCompression,
     pub intents: GatewayIntents,
 }
 
@@ -165,8 +166,9 @@ impl Shard {
         shard_info: ShardInfo,
         intents: GatewayIntents,
         presence: Option<PresenceData>,
+        compression: TransportCompression,
     ) -> Result<Shard> {
-        let client = connect(&ws_url).await?;
+        let client = connect(&ws_url, compression).await?;
 
         let presence = presence.unwrap_or_default();
         let last_heartbeat_sent = None;
@@ -193,6 +195,7 @@ impl Shard {
             shard_info,
             ws_url,
             resume_ws_url: None,
+            compression,
             intents,
         })
     }
@@ -748,7 +751,7 @@ impl Shard {
         // Hello is received.
         self.stage = ConnectionStage::Connecting;
         self.started = Instant::now();
-        let client = connect(ws_url).await?;
+        let client = connect(ws_url, self.compression).await?;
         self.stage = ConnectionStage::Handshake;
 
         Ok(client)
@@ -807,14 +810,19 @@ impl Shard {
     }
 }
 
-async fn connect(base_url: &str) -> Result<WsClient> {
-    let url = Url::parse(&aformat!("{}?v={}", CapStr::<64>(base_url), constants::GATEWAY_VERSION))
-        .map_err(|why| {
-            warn!("Error building gateway URL with base `{base_url}`: {why:?}");
-            Error::Gateway(GatewayError::BuildingUrl)
-        })?;
+async fn connect(base_url: &str, compression: TransportCompression) -> Result<WsClient> {
+    let url = Url::parse(&aformat!(
+        "{}?v={}{}",
+        CapStr::<64>(base_url),
+        constants::GATEWAY_VERSION,
+        CapStr::<21>(compression.query_param())
+    ))
+    .map_err(|why| {
+        warn!("Error building gateway URL with base `{base_url}`: {why:?}");
+        Error::Gateway(GatewayError::BuildingUrl)
+    })?;
 
-    WsClient::connect(url).await
+    WsClient::connect(url, compression).await
 }
 
 #[derive(Debug)]
@@ -952,5 +960,26 @@ impl fmt::Debug for CollectorCallback {
 impl PartialEq for CollectorCallback {
     fn eq(&self, other: &Self) -> bool {
         Arc::ptr_eq(&self.0, &other.0)
+    }
+}
+
+/// The transport compression method to use.
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+pub enum TransportCompression {
+    /// No transport compression. Payload compression will be used instead.
+    None,
+
+    #[cfg(feature = "transport_compression_zlib")]
+    /// Use zlib-stream transport compression.
+    Zlib,
+}
+
+impl TransportCompression {
+    fn query_param(self) -> &'static str {
+        match self {
+            Self::None => "",
+            #[cfg(feature = "transport_compression_zlib")]
+            Self::Zlib => "&compress=zlib-stream",
+        }
     }
 }

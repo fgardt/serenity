@@ -11,7 +11,14 @@ use tokio::sync::Mutex;
 use tokio::time::timeout;
 use tracing::{info, warn};
 
-use super::{ShardId, ShardQueue, ShardQueuer, ShardQueuerMessage, ShardRunnerInfo};
+use super::{
+    ShardId,
+    ShardQueue,
+    ShardQueuer,
+    ShardQueuerMessage,
+    ShardRunnerInfo,
+    TransportCompression,
+};
 #[cfg(feature = "cache")]
 use crate::cache::Cache;
 #[cfg(feature = "framework")]
@@ -144,6 +151,7 @@ impl ShardManager {
             #[cfg(feature = "voice")]
             voice_manager: opt.voice_manager,
             ws_url: opt.ws_url,
+            compression: opt.compression,
             shard_total: opt.shard_total,
             #[cfg(feature = "cache")]
             cache: opt.cache,
@@ -379,4 +387,5 @@ pub struct ShardManagerOptions {
     pub max_concurrency: NonZeroU16,
     /// Number of seconds to wait between starting each shard/set of shards start
     pub wait_time_between_shard_start: Duration,
+    pub compression: TransportCompression,
 }
