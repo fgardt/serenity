@@ -53,6 +53,8 @@ pub enum Error {
     #[cfg(feature = "transport_compression_zlib")]
     /// A decompression error from the `flate2` crate.
     DecompressZlib(flate2::DecompressError),
+    /// When decompressed gateway data is not valid UTF-8.
+    DecompressUtf8(std::string::FromUtf8Error),
 }
 
 impl fmt::Display for Error {
@@ -75,6 +77,7 @@ impl fmt::Display for Error {
             },
             #[cfg(feature = "transport_compression_zlib")]
             Self::DecompressZlib(inner) => fmt::Display::fmt(&inner, f),
+            Self::DecompressUtf8(inner) => fmt::Display::fmt(&inner, f),
         }
     }
 }

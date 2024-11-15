@@ -86,11 +86,14 @@ enum Compression {
     Zlib {
         inflater: Decompress,
         compressed: Vec<u8>,
-        decompressed: Vec<u8>,
+        decompressed: Box<[u8]>,
     },
 }
 
 impl Compression {
+    #[cfg(feature = "transport_compression_zlib")]
+    const ZLIB_DECOMPRESSED_CAPACITY: usize = 64 * 1024;
+
     fn inflate(&mut self, slice: &[u8]) -> Result<Option<&[u8]>> {
         match self {
             Compression::Payload {
@@ -127,13 +130,13 @@ impl Compression {
                 }
 
                 let pre_out = inflater.total_out();
-                decompressed.clear();
                 inflater
-                    .decompress_vec(compressed, decompressed, flate2::FlushDecompress::Sync)
+                    .decompress(compressed, decompressed, flate2::FlushDecompress::Sync)
                     .map_err(GatewayError::DecompressZlib)?;
+                compressed.clear();
+                let produced = (inflater.total_out() - pre_out) as usize;
 
-                let size = inflater.total_out() - pre_out;
-                Ok(Some(&decompressed[..size as usize]))
+                Ok(Some(&decompressed[..produced]))
             },
         }
     }
@@ -150,7 +153,7 @@ impl From<TransportCompression> for Compression {
             TransportCompression::Zlib => Compression::Zlib {
                 inflater: Decompress::new(true),
                 compressed: Vec::new(),
-                decompressed: Vec::with_capacity(32 * 1024),
+                decompressed: vec![0; Self::ZLIB_DECOMPRESSED_CAPACITY].into_boxed_slice(),
             },
         }
     }
@@ -192,7 +195,13 @@ impl WsClient {
                     return Ok(None);
                 };
 
-                String::from_utf8_lossy(decompressed).to_string()
+                String::from_utf8(decompressed.to_vec()).map_err(|why| {
+                    warn!("Err decompressing bytes: Decompression resulted in invalid UTF-8 data: {why}");
+                    debug!("Failing bytes: {bytes:?}");
+                    debug!("Decompressed bytes: {decompressed:?}");
+
+                    GatewayError::DecompressUtf8(why)
+                })?
             },
             Message::Close(Some(frame)) => {
                 return Err(Error::Gateway(GatewayError::Closed(Some(frame))));

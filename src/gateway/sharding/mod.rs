@@ -44,7 +44,9 @@ use std::fmt;
 use std::sync::Arc;
 use std::time::{Duration as StdDuration, Instant};
 
-use aformat::{aformat, aformat_into, ArrayString, CapStr};
+#[cfg(feature = "transport_compression_zlib")]
+use aformat::aformat_into;
+use aformat::{aformat, ArrayString, CapStr};
 use tokio_tungstenite::tungstenite::error::Error as TungsteniteError;
 use tokio_tungstenite::tungstenite::protocol::frame::CloseFrame;
 use tracing::{debug, error, info, trace, warn};
@@ -985,6 +987,7 @@ pub enum TransportCompression {
 
 impl TransportCompression {
     fn query_param(self) -> ArrayString<21> {
+        #[cfg_attr(not(feature = "transport_compression_zlib"), expect(unused_mut))]
         let mut res = ArrayString::new();
         match self {
             Self::None => {},
