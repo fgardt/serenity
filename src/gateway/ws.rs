@@ -4,7 +4,7 @@ use std::time::SystemTime;
 
 use flate2::read::ZlibDecoder;
 #[cfg(feature = "transport_compression_zlib")]
-use flate2::Decompress;
+use flate2::Decompress as ZlibInflater;
 use futures::{SinkExt, StreamExt};
 use small_fixed_array::FixedString;
 use tokio::net::TcpStream;
@@ -14,6 +14,8 @@ use tokio_tungstenite::tungstenite::{Error as WsError, Message};
 use tokio_tungstenite::{connect_async_with_config, MaybeTlsStream, WebSocketStream};
 use tracing::{debug, trace, warn};
 use url::Url;
+#[cfg(feature = "transport_compression_zstd")]
+use zstd_safe::{DStream as ZstdInflater, InBuffer, OutBuffer};
 
 use super::{ActivityData, ChunkGuildFilter, GatewayError, PresenceData, TransportCompression};
 use crate::constants::{self, Opcode};
@@ -84,15 +86,21 @@ enum Compression {
 
     #[cfg(feature = "transport_compression_zlib")]
     Zlib {
-        inflater: Decompress,
+        inflater: ZlibInflater,
         compressed: Vec<u8>,
+        decompressed: Box<[u8]>,
+    },
+
+    #[cfg(feature = "transport_compression_zstd")]
+    Zstd {
+        inflater: ZstdInflater<'static>,
         decompressed: Box<[u8]>,
     },
 }
 
 impl Compression {
-    #[cfg(feature = "transport_compression_zlib")]
-    const ZLIB_DECOMPRESSED_CAPACITY: usize = 64 * 1024;
+    #[cfg(any(feature = "transport_compression_zlib", feature = "transport_compression_zstd"))]
+    const DECOMPRESSED_CAPACITY: usize = 64 * 1024;
 
     fn inflate(&mut self, slice: &[u8]) -> Result<Option<&[u8]>> {
         match self {
@@ -138,6 +146,46 @@ impl Compression {
 
                 Ok(Some(&decompressed[..produced]))
             },
+
+            #[cfg(feature = "transport_compression_zstd")]
+            Compression::Zstd {
+                inflater,
+                decompressed,
+            } => {
+                let mut in_buffer = InBuffer::around(slice);
+                let mut out_buffer = OutBuffer::around(decompressed.as_mut());
+
+                let length = slice.len();
+                let mut processed = 0;
+
+                loop {
+                    match inflater.decompress_stream(&mut out_buffer, &mut in_buffer) {
+                        Ok(0) => break,
+                        Ok(_hint) => {},
+                        Err(code) => {
+                            return Err(Error::Gateway(GatewayError::DecompressZstd(code)))
+                        },
+                    }
+
+                    let in_pos = in_buffer.pos();
+
+                    let progressed = in_pos > processed;
+                    let read_all_input = in_pos == length;
+
+                    if !progressed {
+                        if read_all_input {
+                            break;
+                        }
+
+                        return Err(Error::Gateway(GatewayError::DecompressZstdCorrupted));
+                    }
+
+                    processed = in_pos;
+                }
+
+                let produced = out_buffer.pos();
+                Ok(Some(&decompressed[..produced]))
+            },
         }
     }
 }
@@ -151,9 +199,20 @@ impl From<TransportCompression> for Compression {
 
             #[cfg(feature = "transport_compression_zlib")]
             TransportCompression::Zlib => Compression::Zlib {
-                inflater: Decompress::new(true),
+                inflater: ZlibInflater::new(true),
                 compressed: Vec::new(),
-                decompressed: vec![0; Self::ZLIB_DECOMPRESSED_CAPACITY].into_boxed_slice(),
+                decompressed: vec![0; Self::DECOMPRESSED_CAPACITY].into_boxed_slice(),
+            },
+
+            #[cfg(feature = "transport_compression_zstd")]
+            TransportCompression::Zstd => {
+                let mut inflater = ZstdInflater::create();
+                inflater.init().expect("Failed to initialize Zstd decompressor");
+
+                Compression::Zstd {
+                    inflater,
+                    decompressed: vec![0; Self::DECOMPRESSED_CAPACITY].into_boxed_slice(),
+                }
             },
         }
     }

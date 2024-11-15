@@ -983,16 +983,28 @@ pub enum TransportCompression {
     #[cfg(feature = "transport_compression_zlib")]
     /// Use zlib-stream transport compression.
     Zlib,
+
+    #[cfg(feature = "transport_compression_zstd")]
+    /// Use zstd-stream transport compression.
+    Zstd,
 }
 
 impl TransportCompression {
     fn query_param(self) -> ArrayString<21> {
-        #[cfg_attr(not(feature = "transport_compression_zlib"), expect(unused_mut))]
+        #[cfg_attr(
+            not(any(
+                feature = "transport_compression_zlib",
+                feature = "transport_compression_zstd"
+            )),
+            expect(unused_mut)
+        )]
         let mut res = ArrayString::new();
         match self {
             Self::None => {},
             #[cfg(feature = "transport_compression_zlib")]
             Self::Zlib => aformat_into!(res, "&compress=zlib-stream"),
+            #[cfg(feature = "transport_compression_zstd")]
+            Self::Zstd => aformat_into!(res, "&compress=zstd-stream"),
         }
 
         res
