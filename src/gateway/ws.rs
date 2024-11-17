@@ -1,3 +1,4 @@
+use std::borrow::Cow;
 use std::env::consts;
 use std::io::Read;
 use std::time::SystemTime;
@@ -247,20 +248,14 @@ impl WsClient {
             Ok(None) | Err(_) => return Ok(None),
         };
 
-        let json_str = match message {
-            Message::Text(payload) => payload,
+        let json_bytes = match message {
+            Message::Text(payload) => Cow::Owned(payload.into_bytes()),
             Message::Binary(bytes) => {
                 let Some(decompressed) = self.compression.inflate(&bytes)? else {
                     return Ok(None);
                 };
 
-                String::from_utf8(decompressed.to_vec()).map_err(|why| {
-                    warn!("Err decompressing bytes: Decompression resulted in invalid UTF-8 data: {why}");
-                    debug!("Failing bytes: {bytes:?}");
-                    debug!("Decompressed bytes: {decompressed:?}");
-
-                    GatewayError::DecompressUtf8(why)
-                })?
+                Cow::Borrowed(decompressed)
             },
             Message::Close(Some(frame)) => {
                 return Err(Error::Gateway(GatewayError::Closed(Some(frame))));
@@ -268,19 +263,21 @@ impl WsClient {
             _ => return Ok(None),
         };
 
-        match serde_json::from_str(&json_str) {
+        // TODO: Use `String::from_utf8_lossy_owned` when stable.
+        let json_str = || String::from_utf8_lossy(&json_bytes);
+        match serde_json::from_slice(&json_bytes) {
             Ok(mut event) => {
                 if let GatewayEvent::Dispatch {
                     original_str, ..
                 } = &mut event
                 {
-                    *original_str = FixedString::from_string_trunc(json_str);
+                    *original_str = FixedString::from_string_trunc(json_str().into_owned());
                 }
 
                 Ok(Some(event))
             },
             Err(err) => {
-                debug!("Failing text: {json_str}");
+                debug!("Failing text: {}", json_str());
                 Err(Error::Json(err))
             },
         }
