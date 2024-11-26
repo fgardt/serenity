@@ -55,11 +55,11 @@ jobs:
             features: unstable
             dont-test: true
           - name: zlib compression
-            features: transport_compression_zlib
+            features: default transport_compression_zlib
           - name: zstd compression
-            features: transport_compression_zstd
+            features: default transport_compression_zstd
           - name: zlib and zstd compression
-            features: transport_compression_zlib transport_compression_zstd
+            features: default transport_compression_zlib transport_compression_zstd
 
     steps:
       - name: Checkout sources
