@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/framework/standard/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (bd3ac0330 2025-11-01)" data-channel="nightly" data-search-js="search-5c29b3b5.js" data-stringdex-js="stringdex-c3e638e9.js" data-settings-js="settings-c38705f0.js" ><script src="../../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-ce535bd0.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/framework/standard/</div>mod.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="attr">#![cfg_attr(
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/framework/standard/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/framework/standard/</div>mod.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="attr">#![cfg_attr(
 <a href=#2 id=2 data-nosnippet>2</a>    not(ignore_serenity_deprecated),
 <a href=#3 id=3 data-nosnippet>3</a>    deprecated = <span class="string">"The standard framework is deprecated, and will be removed in 0.13. Please migrate to `poise` for command handling"
 <a href=#4 id=4 data-nosnippet>4</a></span>)]
@@ -262,7 +262,7 @@
 <a href=#262 id=262 data-nosnippet>262</a>                }
 <a href=#263 id=263 data-nosnippet>263</a>            }
 <a href=#264 id=264 data-nosnippet>264</a>
-<a href=#265 id=265 data-nosnippet>265</a>            <span class="macro">if !</span>config.allowed_channels.is_empty()
+<a href=#265 id=265 data-nosnippet>265</a>            <span class="kw">if </span>!config.allowed_channels.is_empty()
 <a href=#266 id=266 data-nosnippet>266</a>                &amp;&amp; !config.allowed_channels.contains(<span class="kw-2">&amp;</span>msg.channel_id)
 <a href=#267 id=267 data-nosnippet>267</a>            {
 <a href=#268 id=268 data-nosnippet>268</a>                <span class="kw">return </span><span class="prelude-val">Some</span>(DispatchError::BlockedChannel);
@@ -684,7 +684,7 @@
 <a href=#684 id=684 data-nosnippet>684</a>
 <a href=#685 id=685 data-nosnippet>685</a>        <span class="kw">match </span>invoke {
 <a href=#686 id=686 data-nosnippet>686</a>            Invoke::Help(name) =&gt; {
-<a href=#687 id=687 data-nosnippet>687</a>                <span class="macro">if !</span>config.allow_dm &amp;&amp; msg.is_private() {
+<a href=#687 id=687 data-nosnippet>687</a>                <span class="kw">if </span>!config.allow_dm &amp;&amp; msg.is_private() {
 <a href=#688 id=688 data-nosnippet>688</a>                    <span class="kw">return</span>;
 <a href=#689 id=689 data-nosnippet>689</a>                }
 <a href=#690 id=690 data-nosnippet>690</a>
@@ -698,7 +698,7 @@
 <a href=#698 id=698 data-nosnippet>698</a>                </span><span class="kw">let </span>help = <span class="self">self</span>.help.unwrap();
 <a href=#699 id=699 data-nosnippet>699</a>
 <a href=#700 id=700 data-nosnippet>700</a>                <span class="kw">if let </span><span class="prelude-val">Some</span>(before) = <span class="kw-2">&amp;</span><span class="self">self</span>.before {
-<a href=#701 id=701 data-nosnippet>701</a>                    <span class="macro">if !</span>before(<span class="kw-2">&amp;mut </span>ctx, <span class="kw-2">&amp;</span>msg, name).<span class="kw">await </span>{
+<a href=#701 id=701 data-nosnippet>701</a>                    <span class="kw">if </span>!before(<span class="kw-2">&amp;mut </span>ctx, <span class="kw-2">&amp;</span>msg, name).<span class="kw">await </span>{
 <a href=#702 id=702 data-nosnippet>702</a>                        <span class="kw">return</span>;
 <a href=#703 id=703 data-nosnippet>703</a>                    }
 <a href=#704 id=704 data-nosnippet>704</a>                }
@@ -720,7 +720,7 @@
 <a href=#720 id=720 data-nosnippet>720</a>                    <span class="kw">let </span><span class="kw-2">mut </span>delims = Cow::Borrowed(<span class="kw-2">&amp;</span>config.delimiters);
 <a href=#721 id=721 data-nosnippet>721</a>
 <a href=#722 id=722 data-nosnippet>722</a>                    <span class="comment">// If user has configured the command's own delimiters, use those instead.
-<a href=#723 id=723 data-nosnippet>723</a>                    </span><span class="macro">if !</span>command.options.delimiters.is_empty() {
+<a href=#723 id=723 data-nosnippet>723</a>                    </span><span class="kw">if </span>!command.options.delimiters.is_empty() {
 <a href=#724 id=724 data-nosnippet>724</a>                        <span class="comment">// FIXME: Get rid of this allocation.
 <a href=#725 id=725 data-nosnippet>725</a>                        </span><span class="kw">let </span><span class="kw-2">mut </span>v = Vec::with_capacity(command.options.delimiters.len());
 <a href=#726 id=726 data-nosnippet>726</a>
@@ -755,7 +755,7 @@
 <a href=#755 id=755 data-nosnippet>755</a>                <span class="kw">let </span>name = command.options.names[<span class="number">0</span>];
 <a href=#756 id=756 data-nosnippet>756</a>
 <a href=#757 id=757 data-nosnippet>757</a>                <span class="kw">if let </span><span class="prelude-val">Some</span>(before) = <span class="kw-2">&amp;</span><span class="self">self</span>.before {
-<a href=#758 id=758 data-nosnippet>758</a>                    <span class="macro">if !</span>before(<span class="kw-2">&amp;mut </span>ctx, <span class="kw-2">&amp;</span>msg, name).<span class="kw">await </span>{
+<a href=#758 id=758 data-nosnippet>758</a>                    <span class="kw">if </span>!before(<span class="kw-2">&amp;mut </span>ctx, <span class="kw-2">&amp;</span>msg, name).<span class="kw">await </span>{
 <a href=#759 id=759 data-nosnippet>759</a>                        <span class="kw">return</span>;
 <a href=#760 id=760 data-nosnippet>760</a>                    }
 <a href=#761 id=761 data-nosnippet>761</a>                }

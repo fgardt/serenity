@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/framework/standard/help_commands.rs`."><title>help_commands.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (bd3ac0330 2025-11-01)" data-channel="nightly" data-search-js="search-5c29b3b5.js" data-stringdex-js="stringdex-c3e638e9.js" data-settings-js="settings-c38705f0.js" ><script src="../../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-ce535bd0.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/framework/standard/</div>help_commands.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-4"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! A collection of default help commands for the framework.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/framework/standard/help_commands.rs`."><title>help_commands.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/framework/standard/</div>help_commands.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-4"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! A collection of default help commands for the framework.
 <a href=#2 id=2 data-nosnippet>2</a>//!
 <a href=#3 id=3 data-nosnippet>3</a>//! # Example
 <a href=#4 id=4 data-nosnippet>4</a>//!
@@ -227,7 +227,7 @@
 <a href=#227 id=227 data-nosnippet>227</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
 <a href=#228 id=228 data-nosnippet>228</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
 <a href=#229 id=229 data-nosnippet>229</a>) -&gt; HelpBehaviour {
-<a href=#230 id=230 data-nosnippet>230</a>    <span class="macro">if !</span>options.help_available() {
+<a href=#230 id=230 data-nosnippet>230</a>    <span class="kw">if </span>!options.help_available() {
 <a href=#231 id=231 data-nosnippet>231</a>        <span class="kw">return </span>HelpBehaviour::Hide;
 <a href=#232 id=232 data-nosnippet>232</a>    }
 <a href=#233 id=233 data-nosnippet>233</a>
@@ -245,14 +245,14 @@
 <a href=#245 id=245 data-nosnippet>245</a>        <span class="kw">return </span>HelpBehaviour::Nothing;
 <a href=#246 id=246 data-nosnippet>246</a>    }
 <a href=#247 id=247 data-nosnippet>247</a>
-<a href=#248 id=248 data-nosnippet>248</a>    <span class="macro">if !</span>has_correct_permissions(<span class="kw-2">&amp;</span>cache, options, msg) {
+<a href=#248 id=248 data-nosnippet>248</a>    <span class="kw">if </span>!has_correct_permissions(<span class="kw-2">&amp;</span>cache, options, msg) {
 <a href=#249 id=249 data-nosnippet>249</a>        <span class="kw">return </span>help_options.lacking_permissions;
 <a href=#250 id=250 data-nosnippet>250</a>    }
 <a href=#251 id=251 data-nosnippet>251</a>
 <a href=#252 id=252 data-nosnippet>252</a>    msg.guild(cache.as_ref())
 <a href=#253 id=253 data-nosnippet>253</a>        .and_then(|guild| {
 <a href=#254 id=254 data-nosnippet>254</a>            <span class="kw">if let </span><span class="prelude-val">Some</span>(member) = guild.members.get(<span class="kw-2">&amp;</span>msg.author.id) {
-<a href=#255 id=255 data-nosnippet>255</a>                <span class="macro">if !</span>has_correct_roles(options, <span class="kw-2">&amp;</span>guild.roles, member) {
+<a href=#255 id=255 data-nosnippet>255</a>                <span class="kw">if </span>!has_correct_roles(options, <span class="kw-2">&amp;</span>guild.roles, member) {
 <a href=#256 id=256 data-nosnippet>256</a>                    <span class="kw">return </span><span class="prelude-val">Some</span>(help_options.lacking_role);
 <a href=#257 id=257 data-nosnippet>257</a>                }
 <a href=#258 id=258 data-nosnippet>258</a>            }
@@ -277,7 +277,7 @@
 <a href=#277 id=277 data-nosnippet>277</a>        &amp;&amp; (!options.owner_privilege || !owners.contains(<span class="kw-2">&amp;</span>msg.author.id))
 <a href=#278 id=278 data-nosnippet>278</a>    {
 <a href=#279 id=279 data-nosnippet>279</a>        <span class="kw">for </span>check <span class="kw">in </span>group_checks.iter().chain(options.checks) {
-<a href=#280 id=280 data-nosnippet>280</a>            <span class="macro">if !</span>check.check_in_help {
+<a href=#280 id=280 data-nosnippet>280</a>            <span class="kw">if </span>!check.check_in_help {
 <a href=#281 id=281 data-nosnippet>281</a>                <span class="kw">continue</span>;
 <a href=#282 id=282 data-nosnippet>282</a>            }
 <a href=#283 id=283 data-nosnippet>283</a>
@@ -455,7 +455,7 @@
 <a href=#455 id=455 data-nosnippet>455</a>                },
 <a href=#456 id=456 data-nosnippet>456</a>            }
 <a href=#457 id=457 data-nosnippet>457</a>
-<a href=#458 id=458 data-nosnippet>458</a>            <span class="macro">if !</span>group.options.prefixes.is_empty()
+<a href=#458 id=458 data-nosnippet>458</a>            <span class="kw">if </span>!group.options.prefixes.is_empty()
 <a href=#459 id=459 data-nosnippet>459</a>                &amp;&amp; !group.options.prefixes.iter().any(|prefix| trim_prefixless_group(prefix, name))
 <a href=#460 id=460 data-nosnippet>460</a>            {
 <a href=#461 id=461 data-nosnippet>461</a>                <span class="kw">continue</span>;
@@ -476,7 +476,7 @@
 <a href=#476 id=476 data-nosnippet>476</a>            <span class="kw">if let </span><span class="prelude-val">Some</span>(command) = found {
 <a href=#477 id=477 data-nosnippet>477</a>                <span class="kw">let </span>options = <span class="kw-2">&amp;</span>command.options;
 <a href=#478 id=478 data-nosnippet>478</a>
-<a href=#479 id=479 data-nosnippet>479</a>                <span class="macro">if !</span>options.help_available {
+<a href=#479 id=479 data-nosnippet>479</a>                <span class="kw">if </span>!options.help_available {
 <a href=#480 id=480 data-nosnippet>480</a>                    <span class="kw">return </span><span class="prelude-val">Ok</span>(CustomisedHelpData::NoCommandFound {
 <a href=#481 id=481 data-nosnippet>481</a>                        help_error_message: help_options.no_help_available_text,
 <a href=#482 id=482 data-nosnippet>482</a>                    });
@@ -701,7 +701,7 @@
 <a href=#701 id=701 data-nosnippet>701</a>
 <a href=#702 id=702 data-nosnippet>702</a>        <span class="kw">let </span>group_with_cmds = create_single_group(ctx, msg, group, owners, help_options).<span class="kw">await</span>;
 <a href=#703 id=703 data-nosnippet>703</a>
-<a href=#704 id=704 data-nosnippet>704</a>        <span class="macro">if !</span>group_with_cmds.command_names.is_empty() || !group_with_cmds.sub_groups.is_empty() {
+<a href=#704 id=704 data-nosnippet>704</a>        <span class="kw">if </span>!group_with_cmds.command_names.is_empty() || !group_with_cmds.sub_groups.is_empty() {
 <a href=#705 id=705 data-nosnippet>705</a>            listed_groups.push(group_with_cmds);
 <a href=#706 id=706 data-nosnippet>706</a>        }
 <a href=#707 id=707 data-nosnippet>707</a>    }
@@ -780,7 +780,7 @@
 <a href=#780 id=780 data-nosnippet>780</a>        <span class="kw">if </span>is_prefixless_group || is_word_prefix {
 <a href=#781 id=781 data-nosnippet>781</a>            <span class="kw">let </span>single_group = create_single_group(ctx, msg, group, owners, help_options).<span class="kw">await</span>;
 <a href=#782 id=782 data-nosnippet>782</a>
-<a href=#783 id=783 data-nosnippet>783</a>            <span class="macro">if !</span>single_group.command_names.is_empty() {
+<a href=#783 id=783 data-nosnippet>783</a>            <span class="kw">if </span>!single_group.command_names.is_empty() {
 <a href=#784 id=784 data-nosnippet>784</a>                <span class="kw">return </span><span class="prelude-val">Some</span>(CustomisedHelpData::GroupedCommands {
 <a href=#785 id=785 data-nosnippet>785</a>                    help_description: group
 <a href=#786 id=786 data-nosnippet>786</a>                        .options
@@ -824,7 +824,7 @@
 <a href=#824 id=824 data-nosnippet>824</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
 <a href=#825 id=825 data-nosnippet>825</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
 <a href=#826 id=826 data-nosnippet>826</a>) -&gt; CustomisedHelpData&lt;<span class="lifetime">'a</span>&gt; {
-<a href=#827 id=827 data-nosnippet>827</a>    <span class="macro">if !</span>args.is_empty() {
+<a href=#827 id=827 data-nosnippet>827</a>    <span class="kw">if </span>!args.is_empty() {
 <a href=#828 id=828 data-nosnippet>828</a>        <span class="kw">let </span>name = args.message();
 <a href=#829 id=829 data-nosnippet>829</a>
 <a href=#830 id=830 data-nosnippet>830</a>        <span class="kw">return match </span>fetch_single_command(ctx, msg, groups, name, help_options, owners).<span class="kw">await </span>{
@@ -911,7 +911,7 @@
 <a href=#911 id=911 data-nosnippet>911</a>        summary_or_prefixes = <span class="bool-val">true</span>;
 <a href=#912 id=912 data-nosnippet>912</a>    }
 <a href=#913 id=913 data-nosnippet>913</a>
-<a href=#914 id=914 data-nosnippet>914</a>    <span class="macro">if !</span>group.prefixes.is_empty() {
+<a href=#914 id=914 data-nosnippet>914</a>    <span class="kw">if </span>!group.prefixes.is_empty() {
 <a href=#915 id=915 data-nosnippet>915</a>        <span class="macro">writeln!</span>(
 <a href=#916 id=916 data-nosnippet>916</a>            group_text,
 <a href=#917 id=917 data-nosnippet>917</a>            <span class="string">"{}{}: `{}`"</span>,
@@ -928,14 +928,14 @@
 <a href=#928 id=928 data-nosnippet>928</a>
 <a href=#929 id=929 data-nosnippet>929</a>    <span class="kw">let </span><span class="kw-2">mut </span>joined_commands = group.command_names.join(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"\n{repeated_indent_str}"</span>));
 <a href=#930 id=930 data-nosnippet>930</a>
-<a href=#931 id=931 data-nosnippet>931</a>    <span class="macro">if !</span>group.command_names.is_empty() {
+<a href=#931 id=931 data-nosnippet>931</a>    <span class="kw">if </span>!group.command_names.is_empty() {
 <a href=#932 id=932 data-nosnippet>932</a>        joined_commands.insert_str(<span class="number">0</span>, <span class="kw-2">&amp;</span>repeated_indent_str);
 <a href=#933 id=933 data-nosnippet>933</a>    }
 <a href=#934 id=934 data-nosnippet>934</a>
 <a href=#935 id=935 data-nosnippet>935</a>    <span class="macro">writeln!</span>(group_text, <span class="string">"{joined_commands}"</span>)<span class="question-mark">?</span>;
 <a href=#936 id=936 data-nosnippet>936</a>
 <a href=#937 id=937 data-nosnippet>937</a>    <span class="kw">for </span>sub_group <span class="kw">in </span><span class="kw-2">&amp;</span>group.sub_groups {
-<a href=#938 id=938 data-nosnippet>938</a>        <span class="macro">if !</span>(sub_group.command_names.is_empty() &amp;&amp; sub_group.sub_groups.is_empty()) {
+<a href=#938 id=938 data-nosnippet>938</a>        <span class="kw">if </span>!(sub_group.command_names.is_empty() &amp;&amp; sub_group.sub_groups.is_empty()) {
 <a href=#939 id=939 data-nosnippet>939</a>            <span class="kw">let </span><span class="kw-2">mut </span>sub_group_text = String::default();
 <a href=#940 id=940 data-nosnippet>940</a>
 <a href=#941 id=941 data-nosnippet>941</a>            flatten_group_to_string(<span class="kw-2">&amp;mut </span>sub_group_text, sub_group, nest_level + <span class="number">1</span>, help_options)<span class="question-mark">?</span>;
@@ -1037,7 +1037,7 @@
 <a href=#1037 id=1037 data-nosnippet>1037</a>        embed = embed.field(help_options.usage_label, full_usage_text, <span class="bool-val">true</span>);
 <a href=#1038 id=1038 data-nosnippet>1038</a>    }
 <a href=#1039 id=1039 data-nosnippet>1039</a>
-<a href=#1040 id=1040 data-nosnippet>1040</a>    <span class="macro">if !</span>command.usage_sample.is_empty() {
+<a href=#1040 id=1040 data-nosnippet>1040</a>    <span class="kw">if </span>!command.usage_sample.is_empty() {
 <a href=#1041 id=1041 data-nosnippet>1041</a>        <span class="kw">let </span>full_example_text = <span class="kw">if let </span><span class="prelude-val">Some</span>(first_prefix) = command.group_prefixes.first() {
 <a href=#1042 id=1042 data-nosnippet>1042</a>            <span class="kw">let </span>format_example = |example| <span class="macro">format!</span>(<span class="string">"`{first_prefix} {} {example}`\n"</span>, command.name);
 <a href=#1043 id=1043 data-nosnippet>1043</a>            command.usage_sample.iter().map(format_example).collect::&lt;String&gt;()
@@ -1050,7 +1050,7 @@
 <a href=#1050 id=1050 data-nosnippet>1050</a>
 <a href=#1051 id=1051 data-nosnippet>1051</a>    embed = embed.field(help_options.grouped_label, command.group_name, <span class="bool-val">true</span>);
 <a href=#1052 id=1052 data-nosnippet>1052</a>
-<a href=#1053 id=1053 data-nosnippet>1053</a>    <span class="macro">if !</span>command.aliases.is_empty() {
+<a href=#1053 id=1053 data-nosnippet>1053</a>    <span class="kw">if </span>!command.aliases.is_empty() {
 <a href=#1054 id=1054 data-nosnippet>1054</a>        embed = embed.field(
 <a href=#1055 id=1055 data-nosnippet>1055</a>            help_options.aliases_label,
 <a href=#1056 id=1056 data-nosnippet>1056</a>            <span class="macro">format!</span>(<span class="string">"`{}`"</span>, command.aliases.join(<span class="string">"`, `"</span>)),
@@ -1058,11 +1058,11 @@
 <a href=#1058 id=1058 data-nosnippet>1058</a>        );
 <a href=#1059 id=1059 data-nosnippet>1059</a>    }
 <a href=#1060 id=1060 data-nosnippet>1060</a>
-<a href=#1061 id=1061 data-nosnippet>1061</a>    <span class="macro">if !</span>help_options.available_text.is_empty() &amp;&amp; !command.availability.is_empty() {
+<a href=#1061 id=1061 data-nosnippet>1061</a>    <span class="kw">if </span>!help_options.available_text.is_empty() &amp;&amp; !command.availability.is_empty() {
 <a href=#1062 id=1062 data-nosnippet>1062</a>        embed = embed.field(help_options.available_text, command.availability, <span class="bool-val">true</span>);
 <a href=#1063 id=1063 data-nosnippet>1063</a>    }
 <a href=#1064 id=1064 data-nosnippet>1064</a>
-<a href=#1065 id=1065 data-nosnippet>1065</a>    <span class="macro">if !</span>command.checks.is_empty() {
+<a href=#1065 id=1065 data-nosnippet>1065</a>    <span class="kw">if </span>!command.checks.is_empty() {
 <a href=#1066 id=1066 data-nosnippet>1066</a>        embed = embed.field(
 <a href=#1067 id=1067 data-nosnippet>1067</a>            help_options.checks_label,
 <a href=#1068 id=1068 data-nosnippet>1068</a>            <span class="macro">format!</span>(<span class="string">"`{}`"</span>, command.checks.join(<span class="string">"`, `"</span>)),
@@ -1070,7 +1070,7 @@
 <a href=#1070 id=1070 data-nosnippet>1070</a>        );
 <a href=#1071 id=1071 data-nosnippet>1071</a>    }
 <a href=#1072 id=1072 data-nosnippet>1072</a>
-<a href=#1073 id=1073 data-nosnippet>1073</a>    <span class="macro">if !</span>command.sub_commands.is_empty() {
+<a href=#1073 id=1073 data-nosnippet>1073</a>    <span class="kw">if </span>!command.sub_commands.is_empty() {
 <a href=#1074 id=1074 data-nosnippet>1074</a>        embed = embed.field(
 <a href=#1075 id=1075 data-nosnippet>1075</a>            help_options.sub_commands_label,
 <a href=#1076 id=1076 data-nosnippet>1076</a>            <span class="macro">format!</span>(<span class="string">"`{}`"</span>, command.sub_commands.join(<span class="string">"`, `"</span>)),
@@ -1248,7 +1248,7 @@
 <a href=#1248 id=1248 data-nosnippet>1248</a>
 <a href=#1249 id=1249 data-nosnippet>1249</a>    <span class="macro">writeln!</span>(result, <span class="string">"__**{}**__"</span>, command.name).expect(<span class="string">"writing to a string should never fail"</span>);
 <a href=#1250 id=1250 data-nosnippet>1250</a>
-<a href=#1251 id=1251 data-nosnippet>1251</a>    <span class="macro">if !</span>command.aliases.is_empty() {
+<a href=#1251 id=1251 data-nosnippet>1251</a>    <span class="kw">if </span>!command.aliases.is_empty() {
 <a href=#1252 id=1252 data-nosnippet>1252</a>        <span class="macro">write!</span>(result, <span class="string">"**{}**: `{}`"</span>, help_options.aliases_label, command.aliases.join(<span class="string">"`, `"</span>))
 <a href=#1253 id=1253 data-nosnippet>1253</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
 <a href=#1254 id=1254 data-nosnippet>1254</a>    }
@@ -1272,7 +1272,7 @@
 <a href=#1272 id=1272 data-nosnippet>1272</a>        }
 <a href=#1273 id=1273 data-nosnippet>1273</a>    }
 <a href=#1274 id=1274 data-nosnippet>1274</a>
-<a href=#1275 id=1275 data-nosnippet>1275</a>    <span class="macro">if !</span>command.usage_sample.is_empty() {
+<a href=#1275 id=1275 data-nosnippet>1275</a>    <span class="kw">if </span>!command.usage_sample.is_empty() {
 <a href=#1276 id=1276 data-nosnippet>1276</a>        <span class="kw">if let </span><span class="prelude-val">Some</span>(first_prefix) = command.group_prefixes.first() {
 <a href=#1277 id=1277 data-nosnippet>1277</a>            <span class="kw">let </span>format_example = |example| {
 <a href=#1278 id=1278 data-nosnippet>1278</a>                <span class="macro">writeln!</span>(
@@ -1299,12 +1299,12 @@
 <a href=#1299 id=1299 data-nosnippet>1299</a>    <span class="macro">writeln!</span>(result, <span class="string">"**{}**: {}"</span>, help_options.grouped_label, command.group_name)
 <a href=#1300 id=1300 data-nosnippet>1300</a>        .expect(<span class="string">"writing to a string should never fail"</span>);
 <a href=#1301 id=1301 data-nosnippet>1301</a>
-<a href=#1302 id=1302 data-nosnippet>1302</a>    <span class="macro">if !</span>help_options.available_text.is_empty() &amp;&amp; !command.availability.is_empty() {
+<a href=#1302 id=1302 data-nosnippet>1302</a>    <span class="kw">if </span>!help_options.available_text.is_empty() &amp;&amp; !command.availability.is_empty() {
 <a href=#1303 id=1303 data-nosnippet>1303</a>        <span class="macro">writeln!</span>(result, <span class="string">"**{}**: {}"</span>, help_options.available_text, command.availability)
 <a href=#1304 id=1304 data-nosnippet>1304</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
 <a href=#1305 id=1305 data-nosnippet>1305</a>    }
 <a href=#1306 id=1306 data-nosnippet>1306</a>
-<a href=#1307 id=1307 data-nosnippet>1307</a>    <span class="macro">if !</span>command.sub_commands.is_empty() {
+<a href=#1307 id=1307 data-nosnippet>1307</a>    <span class="kw">if </span>!command.sub_commands.is_empty() {
 <a href=#1308 id=1308 data-nosnippet>1308</a>        <span class="macro">writeln!</span>(
 <a href=#1309 id=1309 data-nosnippet>1309</a>            result,
 <a href=#1310 id=1310 data-nosnippet>1310</a>            <span class="string">"**{}**: `{}`"</span>,
