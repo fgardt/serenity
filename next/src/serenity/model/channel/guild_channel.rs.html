@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/guild_channel.rs`."><title>guild_channel.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/channel/</div>guild_channel.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="kw">use </span>std::fmt;
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/guild_channel.rs`."><title>guild_channel.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (3645249d7 2026-03-16)" data-channel="nightly" data-search-js="search-63369b7b.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">serenity/model/channel/</div>guild_channel.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="kw">use </span>std::fmt;
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a><span class="kw">use </span>nonmax::{NonMaxU16, NonMaxU32};
 <a href=#4 id=4 data-nosnippet>4</a>
@@ -19,7 +19,7 @@
 <a href=#19 id=19 data-nosnippet>19</a>
 <a href=#20 id=20 data-nosnippet>20</a><span class="doccomment">/// Represents the shared fields between [`GuildChannel`] and [`GuildThread`].
 <a href=#21 id=21 data-nosnippet>21</a>///
-<a href=#22 id=22 data-nosnippet>22</a>/// [Discord docs](https://discord.com/developers/docs/topics/threads#thread-fields)
+<a href=#22 id=22 data-nosnippet>22</a>/// [Discord docs](https://docs.discord.com/developers/topics/threads#thread-fields)
 <a href=#23 id=23 data-nosnippet>23</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#24 id=24 data-nosnippet>24</a>#[derive(Clone, Debug, Default, Deserialize, Serialize)]
 <a href=#25 id=25 data-nosnippet>25</a>#[non_exhaustive]
@@ -55,7 +55,7 @@
 <a href=#55 id=55 data-nosnippet>55</a>
 <a href=#56 id=56 data-nosnippet>56</a><span class="doccomment">/// Represents a channel in a [`Guild`], excluding thread information.
 <a href=#57 id=57 data-nosnippet>57</a>///
-<a href=#58 id=58 data-nosnippet>58</a>/// [Discord docs](https://discord.com/developers/docs/resources/channel#channel-object).
+<a href=#58 id=58 data-nosnippet>58</a>/// [Discord docs](https://docs.discord.com/developers/resources/channel#channel-object).
 <a href=#59 id=59 data-nosnippet>59</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#60 id=60 data-nosnippet>60</a>#[derive(Clone, Debug, Default, Deserialize, Serialize)]
 <a href=#61 id=61 data-nosnippet>61</a>#[non_exhaustive]
@@ -145,7 +145,7 @@
 <a href=#145 id=145 data-nosnippet>145</a><span class="macro">enum_number!</span> {
 <a href=#146 id=146 data-nosnippet>146</a>    <span class="doccomment">/// See [`GuildChannel::default_forum_layout`].
 <a href=#147 id=147 data-nosnippet>147</a>    ///
-<a href=#148 id=148 data-nosnippet>148</a>    /// [Discord docs](https://discord.com/developers/docs/resources/channel#channel-object-forum-layout-types).
+<a href=#148 id=148 data-nosnippet>148</a>    /// [Discord docs](https://docs.discord.com/developers/resources/channel#channel-object-forum-layout-types).
 <a href=#149 id=149 data-nosnippet>149</a>    </span><span class="attr">#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd, Deserialize, Serialize)]
 <a href=#150 id=150 data-nosnippet>150</a>    #[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#151 id=151 data-nosnippet>151</a>    #[non_exhaustive]
@@ -273,7 +273,7 @@
 <a href=#273 id=273 data-nosnippet>273</a>        user_id: UserId,
 <a href=#274 id=274 data-nosnippet>274</a>        builder: EditVoiceState,
 <a href=#275 id=275 data-nosnippet>275</a>    ) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
-<a href=#276 id=276 data-nosnippet>276</a>        <span class="kw">if </span><span class="self">self</span>.base.<span class="macro">kind !</span>= ChannelType::Stage {
+<a href=#276 id=276 data-nosnippet>276</a>        <span class="kw">if </span><span class="self">self</span>.base.kind != ChannelType::Stage {
 <a href=#277 id=277 data-nosnippet>277</a>            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::from(ModelError::InvalidChannelType));
 <a href=#278 id=278 data-nosnippet>278</a>        }
 <a href=#279 id=279 data-nosnippet>279</a>
@@ -394,7 +394,7 @@
 <a href=#394 id=394 data-nosnippet>394</a>    </span><span class="kw">pub async fn </span>create_webhook(<span class="kw-2">&amp;</span><span class="self">self</span>, http: <span class="kw-2">&amp;</span>Http, builder: CreateWebhook&lt;<span class="lifetime">'_</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;Webhook&gt; {
 <a href=#395 id=395 data-nosnippet>395</a>        <span class="comment">// forum channels are not text-based, but webhooks can be created in them
 <a href=#396 id=396 data-nosnippet>396</a>        // and used to send messages in their posts
-<a href=#397 id=397 data-nosnippet>397</a>        </span><span class="kw">if </span>!<span class="self">self</span>.is_text_based() &amp;&amp; <span class="self">self</span>.base.<span class="macro">kind !</span>= ChannelType::Forum {
+<a href=#397 id=397 data-nosnippet>397</a>        </span><span class="kw">if </span>!<span class="self">self</span>.is_text_based() &amp;&amp; <span class="self">self</span>.base.kind != ChannelType::Forum {
 <a href=#398 id=398 data-nosnippet>398</a>            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Model(ModelError::InvalidChannelType));
 <a href=#399 id=399 data-nosnippet>399</a>        }
 <a href=#400 id=400 data-nosnippet>400</a>
@@ -409,7 +409,7 @@
 <a href=#409 id=409 data-nosnippet>409</a>    ///
 <a href=#410 id=410 data-nosnippet>410</a>    /// Returns [`Error::Http`] if there is no stage instance currently.
 <a href=#411 id=411 data-nosnippet>411</a>    </span><span class="kw">pub async fn </span>get_stage_instance(<span class="kw-2">&amp;</span><span class="self">self</span>, http: <span class="kw-2">&amp;</span>Http) -&gt; <span class="prelude-ty">Result</span>&lt;StageInstance&gt; {
-<a href=#412 id=412 data-nosnippet>412</a>        <span class="kw">if </span><span class="self">self</span>.base.<span class="macro">kind !</span>= ChannelType::Stage {
+<a href=#412 id=412 data-nosnippet>412</a>        <span class="kw">if </span><span class="self">self</span>.base.kind != ChannelType::Stage {
 <a href=#413 id=413 data-nosnippet>413</a>            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Model(ModelError::InvalidChannelType));
 <a href=#414 id=414 data-nosnippet>414</a>        }
 <a href=#415 id=415 data-nosnippet>415</a>
@@ -428,7 +428,7 @@
 <a href=#428 id=428 data-nosnippet>428</a>        http: <span class="kw-2">&amp;</span>Http,
 <a href=#429 id=429 data-nosnippet>429</a>        builder: CreateStageInstance&lt;<span class="lifetime">'_</span>&gt;,
 <a href=#430 id=430 data-nosnippet>430</a>    ) -&gt; <span class="prelude-ty">Result</span>&lt;StageInstance&gt; {
-<a href=#431 id=431 data-nosnippet>431</a>        <span class="kw">if </span><span class="self">self</span>.base.<span class="macro">kind !</span>= ChannelType::Stage {
+<a href=#431 id=431 data-nosnippet>431</a>        <span class="kw">if </span><span class="self">self</span>.base.kind != ChannelType::Stage {
 <a href=#432 id=432 data-nosnippet>432</a>            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Model(ModelError::InvalidChannelType));
 <a href=#433 id=433 data-nosnippet>433</a>        }
 <a href=#434 id=434 data-nosnippet>434</a>
@@ -448,7 +448,7 @@
 <a href=#448 id=448 data-nosnippet>448</a>        http: <span class="kw-2">&amp;</span>Http,
 <a href=#449 id=449 data-nosnippet>449</a>        builder: EditStageInstance&lt;<span class="lifetime">'_</span>&gt;,
 <a href=#450 id=450 data-nosnippet>450</a>    ) -&gt; <span class="prelude-ty">Result</span>&lt;StageInstance&gt; {
-<a href=#451 id=451 data-nosnippet>451</a>        <span class="kw">if </span><span class="self">self</span>.base.<span class="macro">kind !</span>= ChannelType::Stage {
+<a href=#451 id=451 data-nosnippet>451</a>        <span class="kw">if </span><span class="self">self</span>.base.kind != ChannelType::Stage {
 <a href=#452 id=452 data-nosnippet>452</a>            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Model(ModelError::InvalidChannelType));
 <a href=#453 id=453 data-nosnippet>453</a>        }
 <a href=#454 id=454 data-nosnippet>454</a>
@@ -463,7 +463,7 @@
 <a href=#463 id=463 data-nosnippet>463</a>    ///
 <a href=#464 id=464 data-nosnippet>464</a>    /// Returns [`Error::Http`] if there is no stage instance currently.
 <a href=#465 id=465 data-nosnippet>465</a>    </span><span class="kw">pub async fn </span>delete_stage_instance(<span class="kw-2">&amp;</span><span class="self">self</span>, http: <span class="kw-2">&amp;</span>Http, reason: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
-<a href=#466 id=466 data-nosnippet>466</a>        <span class="kw">if </span><span class="self">self</span>.base.<span class="macro">kind !</span>= ChannelType::Stage {
+<a href=#466 id=466 data-nosnippet>466</a>        <span class="kw">if </span><span class="self">self</span>.base.kind != ChannelType::Stage {
 <a href=#467 id=467 data-nosnippet>467</a>            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Model(ModelError::InvalidChannelType));
 <a href=#468 id=468 data-nosnippet>468</a>        }
 <a href=#469 id=469 data-nosnippet>469</a>

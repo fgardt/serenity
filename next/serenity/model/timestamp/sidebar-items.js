@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["InnerError","InvalidTimestamp","ParseError","Timestamp"]};
+window.SIDEBAR_ITEMS = {"struct":["InnerError","InvalidTimestamp","ParseError","Timestamp","TimestampOutOfRange"]};

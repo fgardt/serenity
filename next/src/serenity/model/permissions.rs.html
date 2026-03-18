@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/permissions.rs`."><title>permissions.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/</div>permissions.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! A set of permissions for a role or user. These can be assigned directly to a role or as a
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/permissions.rs`."><title>permissions.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (3645249d7 2026-03-16)" data-channel="nightly" data-search-js="search-63369b7b.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">serenity/model/</div>permissions.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! A set of permissions for a role or user. These can be assigned directly to a role or as a
 <a href=#2 id=2 data-nosnippet>2</a>//! channel's permission overrides.
 <a href=#3 id=3 data-nosnippet>3</a>//!
 <a href=#4 id=4 data-nosnippet>4</a>//! For convenience, methods for each permission are available, which can be used to test if the
@@ -113,7 +113,7 @@
 <a href=#113 id=113 data-nosnippet>113</a>                    #[expect(deprecated)]
 <a href=#114 id=114 data-nosnippet>114</a>                </span>)<span class="question-mark">?
 <a href=#115 id=115 data-nosnippet>115</a>                </span><span class="kw">pub fn </span><span class="macro-nonterminal">$perm_lower</span>(<span class="self">self</span>) -&gt; bool {
-<a href=#116 id=116 data-nosnippet>116</a>                    <span class="self">self</span>.contains(<span class="self">Self</span>::<span class="macro-nonterminal">$perm_upper</span>)
+<a href=#116 id=116 data-nosnippet>116</a>                    <span class="self">self</span>.contains(Self::<span class="macro-nonterminal">$perm_upper</span>)
 <a href=#117 id=117 data-nosnippet>117</a>                }
 <a href=#118 id=118 data-nosnippet>118</a>            )*
 <a href=#119 id=119 data-nosnippet>119</a>
@@ -254,7 +254,7 @@
 <a href=#254 id=254 data-nosnippet>254</a><span class="doccomment">/// A set of permissions that can be assigned to [`User`]s and [`Role`]s via
 <a href=#255 id=255 data-nosnippet>255</a>/// [`PermissionOverwrite`]s, roles globally in a [`Guild`], and to [`GuildChannel`]s.
 <a href=#256 id=256 data-nosnippet>256</a>///
-<a href=#257 id=257 data-nosnippet>257</a>/// [Discord docs](https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags).
+<a href=#257 id=257 data-nosnippet>257</a>/// [Discord docs](https://docs.discord.com/developers/topics/permissions#permissions-bitwise-permission-flags).
 <a href=#258 id=258 data-nosnippet>258</a>///
 <a href=#259 id=259 data-nosnippet>259</a>/// [`Guild`]: super::guild::Guild
 <a href=#260 id=260 data-nosnippet>260</a>/// [`GuildChannel`]: super::channel::GuildChannel
@@ -405,85 +405,87 @@
 <a href=#405 id=405 data-nosnippet>405</a>    <span class="doccomment">/// Allows user-installed apps to send public responses.
 <a href=#406 id=406 data-nosnippet>406</a>    </span>USE_EXTERNAL_APPS, use_external_apps, <span class="string">"Use External Apps" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">50</span>;
 <a href=#407 id=407 data-nosnippet>407</a>    <span class="doccomment">/// Allows pinning and unpinning messages.
-<a href=#408 id=408 data-nosnippet>408</a>    </span>PIN_MESSAGES, pin_messages, <span class="string">"Pin Messages" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">51
-<a href=#409 id=409 data-nosnippet>409</a></span>}
-<a href=#410 id=410 data-nosnippet>410</a>
-<a href=#411 id=411 data-nosnippet>411</a><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
-<a href=#412 id=412 data-nosnippet>412</a></span><span class="kw">impl </span>Permissions {
-<a href=#413 id=413 data-nosnippet>413</a>    <span class="attr">#[must_use]
-<a href=#414 id=414 data-nosnippet>414</a>    </span><span class="kw">pub fn </span>dm_permissions() -&gt; <span class="self">Self </span>{
-<a href=#415 id=415 data-nosnippet>415</a>        <span class="self">Self</span>::ADD_REACTIONS
-<a href=#416 id=416 data-nosnippet>416</a>            | <span class="self">Self</span>::STREAM
-<a href=#417 id=417 data-nosnippet>417</a>            | <span class="self">Self</span>::VIEW_CHANNEL
-<a href=#418 id=418 data-nosnippet>418</a>            | <span class="self">Self</span>::SEND_MESSAGES
-<a href=#419 id=419 data-nosnippet>419</a>            | <span class="self">Self</span>::SEND_TTS_MESSAGES
-<a href=#420 id=420 data-nosnippet>420</a>            | <span class="self">Self</span>::EMBED_LINKS
-<a href=#421 id=421 data-nosnippet>421</a>            | <span class="self">Self</span>::ATTACH_FILES
-<a href=#422 id=422 data-nosnippet>422</a>            | <span class="self">Self</span>::READ_MESSAGE_HISTORY
-<a href=#423 id=423 data-nosnippet>423</a>            | <span class="self">Self</span>::MENTION_EVERYONE
-<a href=#424 id=424 data-nosnippet>424</a>            | <span class="self">Self</span>::USE_EXTERNAL_EMOJIS
-<a href=#425 id=425 data-nosnippet>425</a>            | <span class="self">Self</span>::CONNECT
-<a href=#426 id=426 data-nosnippet>426</a>            | <span class="self">Self</span>::SPEAK
-<a href=#427 id=427 data-nosnippet>427</a>            | <span class="self">Self</span>::USE_VAD
-<a href=#428 id=428 data-nosnippet>428</a>            | <span class="self">Self</span>::USE_APPLICATION_COMMANDS
-<a href=#429 id=429 data-nosnippet>429</a>            | <span class="self">Self</span>::USE_EXTERNAL_STICKERS
-<a href=#430 id=430 data-nosnippet>430</a>            | <span class="self">Self</span>::SEND_VOICE_MESSAGES
-<a href=#431 id=431 data-nosnippet>431</a>            | <span class="self">Self</span>::SEND_POLLS
-<a href=#432 id=432 data-nosnippet>432</a>            | <span class="self">Self</span>::USE_EXTERNAL_APPS
-<a href=#433 id=433 data-nosnippet>433</a>            | <span class="self">Self</span>::PIN_MESSAGES
-<a href=#434 id=434 data-nosnippet>434</a>    }
-<a href=#435 id=435 data-nosnippet>435</a>}
-<a href=#436 id=436 data-nosnippet>436</a>
-<a href=#437 id=437 data-nosnippet>437</a><span class="comment">// Manual impl needed because Permissions are usually sent as a stringified integer,
-<a href=#438 id=438 data-nosnippet>438</a>// but audit log changes are sent as an int, which is probably a problem.
-<a href=#439 id=439 data-nosnippet>439</a></span><span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>Permissions {
-<a href=#440 id=440 data-nosnippet>440</a>    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
-<a href=#441 id=441 data-nosnippet>441</a>        <span class="kw">let </span>val = StrOrInt::deserialize(deserializer)<span class="question-mark">?</span>;
-<a href=#442 id=442 data-nosnippet>442</a>        <span class="kw">let </span>val = val.parse().map_err(serde::de::Error::custom)<span class="question-mark">?</span>;
-<a href=#443 id=443 data-nosnippet>443</a>
-<a href=#444 id=444 data-nosnippet>444</a>        <span class="prelude-val">Ok</span>(Permissions::from_bits_truncate(val))
-<a href=#445 id=445 data-nosnippet>445</a>    }
-<a href=#446 id=446 data-nosnippet>446</a>}
-<a href=#447 id=447 data-nosnippet>447</a>
-<a href=#448 id=448 data-nosnippet>448</a><span class="kw">impl </span>Serialize <span class="kw">for </span>Permissions {
-<a href=#449 id=449 data-nosnippet>449</a>    <span class="kw">fn </span>serialize&lt;S: Serializer&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; <span class="prelude-ty">Result</span>&lt;S::Ok, S::Error&gt; {
-<a href=#450 id=450 data-nosnippet>450</a>        serializer.collect_str(<span class="kw-2">&amp;</span><span class="self">self</span>.bits())
-<a href=#451 id=451 data-nosnippet>451</a>    }
-<a href=#452 id=452 data-nosnippet>452</a>}
-<a href=#453 id=453 data-nosnippet>453</a>
-<a href=#454 id=454 data-nosnippet>454</a><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
-<a href=#455 id=455 data-nosnippet>455</a></span><span class="kw">impl </span>fmt::Display <span class="kw">for </span>Permissions {
-<a href=#456 id=456 data-nosnippet>456</a>    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
-<a href=#457 id=457 data-nosnippet>457</a>        <span class="kw">let </span>names = <span class="self">self</span>.get_permission_names();
-<a href=#458 id=458 data-nosnippet>458</a>
-<a href=#459 id=459 data-nosnippet>459</a>        <span class="kw">let </span>total = names.len();
-<a href=#460 id=460 data-nosnippet>460</a>        <span class="kw">for </span>(i, <span class="kw-2">&amp;</span>name) <span class="kw">in </span>names.iter().enumerate() {
-<a href=#461 id=461 data-nosnippet>461</a>            <span class="kw">if </span>i &gt; <span class="number">0 </span>&amp;&amp; <span class="macro">i !</span>= total - <span class="number">1 </span>{
-<a href=#462 id=462 data-nosnippet>462</a>                f.write_str(<span class="string">", "</span>)<span class="question-mark">?</span>;
-<a href=#463 id=463 data-nosnippet>463</a>            }
-<a href=#464 id=464 data-nosnippet>464</a>
-<a href=#465 id=465 data-nosnippet>465</a>            <span class="kw">if </span>total &gt; <span class="number">1 </span>&amp;&amp; i == total - <span class="number">1 </span>{
-<a href=#466 id=466 data-nosnippet>466</a>                f.write_str(<span class="string">" and "</span>)<span class="question-mark">?</span>;
-<a href=#467 id=467 data-nosnippet>467</a>            }
-<a href=#468 id=468 data-nosnippet>468</a>
-<a href=#469 id=469 data-nosnippet>469</a>            f.write_str(name)<span class="question-mark">?</span>;
-<a href=#470 id=470 data-nosnippet>470</a>        }
-<a href=#471 id=471 data-nosnippet>471</a>
-<a href=#472 id=472 data-nosnippet>472</a>        <span class="prelude-val">Ok</span>(())
-<a href=#473 id=473 data-nosnippet>473</a>    }
-<a href=#474 id=474 data-nosnippet>474</a>}
-<a href=#475 id=475 data-nosnippet>475</a>
-<a href=#476 id=476 data-nosnippet>476</a><span class="attr">#[cfg(test)]
-<a href=#477 id=477 data-nosnippet>477</a></span><span class="kw">mod </span>tests {
-<a href=#478 id=478 data-nosnippet>478</a>    <span class="kw">use </span>serde_json::json;
-<a href=#479 id=479 data-nosnippet>479</a>
-<a href=#480 id=480 data-nosnippet>480</a>    <span class="kw">use super</span>::<span class="kw-2">*</span>;
-<a href=#481 id=481 data-nosnippet>481</a>    <span class="kw">use </span><span class="kw">crate</span>::model::utils::assert_json;
-<a href=#482 id=482 data-nosnippet>482</a>
-<a href=#483 id=483 data-nosnippet>483</a>    <span class="attr">#[test]
-<a href=#484 id=484 data-nosnippet>484</a>    </span><span class="kw">fn </span>permissions_serde() {
-<a href=#485 id=485 data-nosnippet>485</a>        <span class="kw">let </span>value = Permissions::MANAGE_GUILD | Permissions::MANAGE_ROLES;
-<a href=#486 id=486 data-nosnippet>486</a>        assert_json(<span class="kw-2">&amp;</span>value, <span class="macro">json!</span>(<span class="string">"268435488"</span>));
-<a href=#487 id=487 data-nosnippet>487</a>    }
-<a href=#488 id=488 data-nosnippet>488</a>}
+<a href=#408 id=408 data-nosnippet>408</a>    </span>PIN_MESSAGES, pin_messages, <span class="string">"Pin Messages" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">51</span>;
+<a href=#409 id=409 data-nosnippet>409</a>    <span class="doccomment">/// Allows bypassing slowmode restrictions
+<a href=#410 id=410 data-nosnippet>410</a>    </span>BYPASS_SLOWMODE, bypass_slowmode, <span class="string">"Bypass Slowmode" </span>= <span class="number">1 </span>&lt;&lt; <span class="number">52
+<a href=#411 id=411 data-nosnippet>411</a></span>}
+<a href=#412 id=412 data-nosnippet>412</a>
+<a href=#413 id=413 data-nosnippet>413</a><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
+<a href=#414 id=414 data-nosnippet>414</a></span><span class="kw">impl </span>Permissions {
+<a href=#415 id=415 data-nosnippet>415</a>    <span class="attr">#[must_use]
+<a href=#416 id=416 data-nosnippet>416</a>    </span><span class="kw">pub fn </span>dm_permissions() -&gt; <span class="self">Self </span>{
+<a href=#417 id=417 data-nosnippet>417</a>        <span class="self">Self</span>::ADD_REACTIONS
+<a href=#418 id=418 data-nosnippet>418</a>            | <span class="self">Self</span>::STREAM
+<a href=#419 id=419 data-nosnippet>419</a>            | <span class="self">Self</span>::VIEW_CHANNEL
+<a href=#420 id=420 data-nosnippet>420</a>            | <span class="self">Self</span>::SEND_MESSAGES
+<a href=#421 id=421 data-nosnippet>421</a>            | <span class="self">Self</span>::SEND_TTS_MESSAGES
+<a href=#422 id=422 data-nosnippet>422</a>            | <span class="self">Self</span>::EMBED_LINKS
+<a href=#423 id=423 data-nosnippet>423</a>            | <span class="self">Self</span>::ATTACH_FILES
+<a href=#424 id=424 data-nosnippet>424</a>            | <span class="self">Self</span>::READ_MESSAGE_HISTORY
+<a href=#425 id=425 data-nosnippet>425</a>            | <span class="self">Self</span>::MENTION_EVERYONE
+<a href=#426 id=426 data-nosnippet>426</a>            | <span class="self">Self</span>::USE_EXTERNAL_EMOJIS
+<a href=#427 id=427 data-nosnippet>427</a>            | <span class="self">Self</span>::CONNECT
+<a href=#428 id=428 data-nosnippet>428</a>            | <span class="self">Self</span>::SPEAK
+<a href=#429 id=429 data-nosnippet>429</a>            | <span class="self">Self</span>::USE_VAD
+<a href=#430 id=430 data-nosnippet>430</a>            | <span class="self">Self</span>::USE_APPLICATION_COMMANDS
+<a href=#431 id=431 data-nosnippet>431</a>            | <span class="self">Self</span>::USE_EXTERNAL_STICKERS
+<a href=#432 id=432 data-nosnippet>432</a>            | <span class="self">Self</span>::SEND_VOICE_MESSAGES
+<a href=#433 id=433 data-nosnippet>433</a>            | <span class="self">Self</span>::SEND_POLLS
+<a href=#434 id=434 data-nosnippet>434</a>            | <span class="self">Self</span>::USE_EXTERNAL_APPS
+<a href=#435 id=435 data-nosnippet>435</a>            | <span class="self">Self</span>::PIN_MESSAGES
+<a href=#436 id=436 data-nosnippet>436</a>    }
+<a href=#437 id=437 data-nosnippet>437</a>}
+<a href=#438 id=438 data-nosnippet>438</a>
+<a href=#439 id=439 data-nosnippet>439</a><span class="comment">// Manual impl needed because Permissions are usually sent as a stringified integer,
+<a href=#440 id=440 data-nosnippet>440</a>// but audit log changes are sent as an int, which is probably a problem.
+<a href=#441 id=441 data-nosnippet>441</a></span><span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>Permissions {
+<a href=#442 id=442 data-nosnippet>442</a>    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
+<a href=#443 id=443 data-nosnippet>443</a>        <span class="kw">let </span>val = StrOrInt::deserialize(deserializer)<span class="question-mark">?</span>;
+<a href=#444 id=444 data-nosnippet>444</a>        <span class="kw">let </span>val = val.parse().map_err(serde::de::Error::custom)<span class="question-mark">?</span>;
+<a href=#445 id=445 data-nosnippet>445</a>
+<a href=#446 id=446 data-nosnippet>446</a>        <span class="prelude-val">Ok</span>(Permissions::from_bits_truncate(val))
+<a href=#447 id=447 data-nosnippet>447</a>    }
+<a href=#448 id=448 data-nosnippet>448</a>}
+<a href=#449 id=449 data-nosnippet>449</a>
+<a href=#450 id=450 data-nosnippet>450</a><span class="kw">impl </span>Serialize <span class="kw">for </span>Permissions {
+<a href=#451 id=451 data-nosnippet>451</a>    <span class="kw">fn </span>serialize&lt;S: Serializer&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; <span class="prelude-ty">Result</span>&lt;S::Ok, S::Error&gt; {
+<a href=#452 id=452 data-nosnippet>452</a>        serializer.collect_str(<span class="kw-2">&amp;</span><span class="self">self</span>.bits())
+<a href=#453 id=453 data-nosnippet>453</a>    }
+<a href=#454 id=454 data-nosnippet>454</a>}
+<a href=#455 id=455 data-nosnippet>455</a>
+<a href=#456 id=456 data-nosnippet>456</a><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
+<a href=#457 id=457 data-nosnippet>457</a></span><span class="kw">impl </span>fmt::Display <span class="kw">for </span>Permissions {
+<a href=#458 id=458 data-nosnippet>458</a>    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+<a href=#459 id=459 data-nosnippet>459</a>        <span class="kw">let </span>names = <span class="self">self</span>.get_permission_names();
+<a href=#460 id=460 data-nosnippet>460</a>
+<a href=#461 id=461 data-nosnippet>461</a>        <span class="kw">let </span>total = names.len();
+<a href=#462 id=462 data-nosnippet>462</a>        <span class="kw">for </span>(i, <span class="kw-2">&amp;</span>name) <span class="kw">in </span>names.iter().enumerate() {
+<a href=#463 id=463 data-nosnippet>463</a>            <span class="kw">if </span>i &gt; <span class="number">0 </span>&amp;&amp; i != total - <span class="number">1 </span>{
+<a href=#464 id=464 data-nosnippet>464</a>                f.write_str(<span class="string">", "</span>)<span class="question-mark">?</span>;
+<a href=#465 id=465 data-nosnippet>465</a>            }
+<a href=#466 id=466 data-nosnippet>466</a>
+<a href=#467 id=467 data-nosnippet>467</a>            <span class="kw">if </span>total &gt; <span class="number">1 </span>&amp;&amp; i == total - <span class="number">1 </span>{
+<a href=#468 id=468 data-nosnippet>468</a>                f.write_str(<span class="string">" and "</span>)<span class="question-mark">?</span>;
+<a href=#469 id=469 data-nosnippet>469</a>            }
+<a href=#470 id=470 data-nosnippet>470</a>
+<a href=#471 id=471 data-nosnippet>471</a>            f.write_str(name)<span class="question-mark">?</span>;
+<a href=#472 id=472 data-nosnippet>472</a>        }
+<a href=#473 id=473 data-nosnippet>473</a>
+<a href=#474 id=474 data-nosnippet>474</a>        <span class="prelude-val">Ok</span>(())
+<a href=#475 id=475 data-nosnippet>475</a>    }
+<a href=#476 id=476 data-nosnippet>476</a>}
+<a href=#477 id=477 data-nosnippet>477</a>
+<a href=#478 id=478 data-nosnippet>478</a><span class="attr">#[cfg(test)]
+<a href=#479 id=479 data-nosnippet>479</a></span><span class="kw">mod </span>tests {
+<a href=#480 id=480 data-nosnippet>480</a>    <span class="kw">use </span>serde_json::json;
+<a href=#481 id=481 data-nosnippet>481</a>
+<a href=#482 id=482 data-nosnippet>482</a>    <span class="kw">use </span>super::<span class="kw-2">*</span>;
+<a href=#483 id=483 data-nosnippet>483</a>    <span class="kw">use </span><span class="kw">crate</span>::model::utils::assert_json;
+<a href=#484 id=484 data-nosnippet>484</a>
+<a href=#485 id=485 data-nosnippet>485</a>    <span class="attr">#[test]
+<a href=#486 id=486 data-nosnippet>486</a>    </span><span class="kw">fn </span>permissions_serde() {
+<a href=#487 id=487 data-nosnippet>487</a>        <span class="kw">let </span>value = Permissions::MANAGE_GUILD | Permissions::MANAGE_ROLES;
+<a href=#488 id=488 data-nosnippet>488</a>        assert_json(<span class="kw-2">&amp;</span>value, <span class="macro">json!</span>(<span class="string">"268435488"</span>));
+<a href=#489 id=489 data-nosnippet>489</a>    }
+<a href=#490 id=490 data-nosnippet>490</a>}
 </code></pre></div></section></main></body></html>

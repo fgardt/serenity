@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/application/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/application/</div>mod.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! Models about OAuth2 applications.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/application/mod.rs`."><title>mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (3645249d7 2026-03-16)" data-channel="nightly" data-search-js="search-63369b7b.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">serenity/model/application/</div>mod.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! Models about OAuth2 applications.
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span>std::collections::HashMap;
 <a href=#4 id=4 data-nosnippet>4</a>
@@ -23,7 +23,7 @@
 <a href=#23 id=23 data-nosnippet>23</a>
 <a href=#24 id=24 data-nosnippet>24</a><span class="doccomment">/// Partial information about the given application.
 <a href=#25 id=25 data-nosnippet>25</a>///
-<a href=#26 id=26 data-nosnippet>26</a>/// Discord docs: [application field of Ready](https://discord.com/developers/docs/topics/gateway-events#ready-ready-event-fields)
+<a href=#26 id=26 data-nosnippet>26</a>/// Discord docs: [application field of Ready](https://docs.discord.com/developers/events/gateway-events#ready-ready-event-fields)
 <a href=#27 id=27 data-nosnippet>27</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#28 id=28 data-nosnippet>28</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#29 id=29 data-nosnippet>29</a>#[non_exhaustive]
@@ -36,7 +36,7 @@
 <a href=#36 id=36 data-nosnippet>36</a>
 <a href=#37 id=37 data-nosnippet>37</a><span class="doccomment">/// Information about the current application and its owner.
 <a href=#38 id=38 data-nosnippet>38</a>///
-<a href=#39 id=39 data-nosnippet>39</a>/// [Discord docs](https://discord.com/developers/docs/resources/application#application-object-application-structure).
+<a href=#39 id=39 data-nosnippet>39</a>/// [Discord docs](https://docs.discord.com/developers/resources/application#application-object-application-structure).
 <a href=#40 id=40 data-nosnippet>40</a></span><span class="attr">#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#41 id=41 data-nosnippet>41</a>#[non_exhaustive]
 <a href=#42 id=42 data-nosnippet>42</a></span><span class="kw">pub struct </span>CurrentApplicationInfo {
@@ -89,7 +89,7 @@
 <a href=#89 id=89 data-nosnippet>89</a>    ///
 <a href=#90 id=90 data-nosnippet>90</a>    /// If included in a message, will render as a rich embed. See the [Discord docs] for details.
 <a href=#91 id=91 data-nosnippet>91</a>    ///
-<a href=#92 id=92 data-nosnippet>92</a>    /// [Discord docs]: https://discord.com/developers/docs/monetization/managing-your-store#linking-to-your-store
+<a href=#92 id=92 data-nosnippet>92</a>    /// [Discord docs]: https://docs.discord.com/developers/monetization/managing-skus#linking-to-your-store
 <a href=#93 id=93 data-nosnippet>93</a>    </span><span class="attr">#[must_use]
 <a href=#94 id=94 data-nosnippet>94</a>    </span><span class="kw">pub fn </span>store_url(<span class="self">self</span>) -&gt; String {
 <a href=#95 id=95 data-nosnippet>95</a>        <span class="macro">format!</span>(<span class="string">"https://discord.com/application-directory/{self}/store"</span>)
@@ -99,7 +99,7 @@
 <a href=#99 id=99 data-nosnippet>99</a><span class="macro">enum_number!</span> {
 <a href=#100 id=100 data-nosnippet>100</a>    <span class="doccomment">/// An enum representing the [installation contexts].
 <a href=#101 id=101 data-nosnippet>101</a>    ///
-<a href=#102 id=102 data-nosnippet>102</a>    /// [interaction contexts](https://discord.com/developers/docs/resources/application#application-object-application-integration-types).
+<a href=#102 id=102 data-nosnippet>102</a>    /// [interaction contexts](https://docs.discord.com/developers/resources/application#application-object-application-integration-types).
 <a href=#103 id=103 data-nosnippet>103</a>    </span><span class="attr">#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Deserialize, Serialize)]
 <a href=#104 id=104 data-nosnippet>104</a>    #[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#105 id=105 data-nosnippet>105</a>    #[non_exhaustive]
@@ -113,7 +113,7 @@
 <a href=#113 id=113 data-nosnippet>113</a><span class="macro">enum_number!</span> {
 <a href=#114 id=114 data-nosnippet>114</a>    <span class="doccomment">/// An enum representing the different [interaction contexts].
 <a href=#115 id=115 data-nosnippet>115</a>    ///
-<a href=#116 id=116 data-nosnippet>116</a>    /// [interaction contexts](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-context-types).
+<a href=#116 id=116 data-nosnippet>116</a>    /// [interaction contexts](https://docs.discord.com/developers/interactions/receiving-and-responding#interaction-object-interaction-context-types).
 <a href=#117 id=117 data-nosnippet>117</a>    </span><span class="attr">#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Deserialize, Serialize)]
 <a href=#118 id=118 data-nosnippet>118</a>    #[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#119 id=119 data-nosnippet>119</a>    #[non_exhaustive]
@@ -130,7 +130,7 @@
 <a href=#130 id=130 data-nosnippet>130</a>
 <a href=#131 id=131 data-nosnippet>131</a><span class="doccomment">/// Information about how the [`CurrentApplicationInfo`] is installed.
 <a href=#132 id=132 data-nosnippet>132</a>///
-<a href=#133 id=133 data-nosnippet>133</a>/// [Discord docs](https://discord.com/developers/docs/resources/application#application-object-application-integration-types).
+<a href=#133 id=133 data-nosnippet>133</a>/// [Discord docs](https://docs.discord.com/developers/resources/application#application-object-application-integration-types).
 <a href=#134 id=134 data-nosnippet>134</a></span><span class="attr">#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#135 id=135 data-nosnippet>135</a></span><span class="kw">pub struct </span>InstallationContextConfig {
 <a href=#136 id=136 data-nosnippet>136</a>    <span class="kw">pub </span>oauth2_install_params: <span class="prelude-ty">Option</span>&lt;InstallParams&gt;,
@@ -138,7 +138,7 @@
 <a href=#138 id=138 data-nosnippet>138</a>
 <a href=#139 id=139 data-nosnippet>139</a><span class="doccomment">/// Information about the Team group of the application.
 <a href=#140 id=140 data-nosnippet>140</a>///
-<a href=#141 id=141 data-nosnippet>141</a>/// [Discord docs](https://discord.com/developers/docs/topics/teams#data-models-team-object).
+<a href=#141 id=141 data-nosnippet>141</a>/// [Discord docs](https://docs.discord.com/developers/topics/teams#data-models-team-object).
 <a href=#142 id=142 data-nosnippet>142</a></span><span class="attr">#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#143 id=143 data-nosnippet>143</a>#[non_exhaustive]
 <a href=#144 id=144 data-nosnippet>144</a></span><span class="kw">pub struct </span>Team {
@@ -156,7 +156,7 @@
 <a href=#156 id=156 data-nosnippet>156</a>
 <a href=#157 id=157 data-nosnippet>157</a><span class="doccomment">/// Information about a Member on a Team.
 <a href=#158 id=158 data-nosnippet>158</a>///
-<a href=#159 id=159 data-nosnippet>159</a>/// [Discord docs](https://discord.com/developers/docs/topics/teams#data-models-team-member-object).
+<a href=#159 id=159 data-nosnippet>159</a>/// [Discord docs](https://docs.discord.com/developers/topics/teams#data-models-team-member-object).
 <a href=#160 id=160 data-nosnippet>160</a></span><span class="attr">#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#161 id=161 data-nosnippet>161</a>#[non_exhaustive]
 <a href=#162 id=162 data-nosnippet>162</a></span><span class="kw">pub struct </span>TeamMember {
@@ -171,7 +171,7 @@
 <a href=#171 id=171 data-nosnippet>171</a>}
 <a href=#172 id=172 data-nosnippet>172</a>
 <a href=#173 id=173 data-nosnippet>173</a><span class="macro">enum_number!</span> {
-<a href=#174 id=174 data-nosnippet>174</a>    <span class="doccomment">/// [Discord docs](https://discord.com/developers/docs/topics/teams#data-models-membership-state-enum).
+<a href=#174 id=174 data-nosnippet>174</a>    <span class="doccomment">/// [Discord docs](https://docs.discord.com/developers/topics/teams#data-models-membership-state-enum).
 <a href=#175 id=175 data-nosnippet>175</a>    </span><span class="attr">#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Deserialize, Serialize)]
 <a href=#176 id=176 data-nosnippet>176</a>    #[non_exhaustive]
 <a href=#177 id=177 data-nosnippet>177</a>    </span><span class="kw">pub enum </span>MembershipState {
@@ -226,7 +226,7 @@
 <a href=#226 id=226 data-nosnippet>226</a><span class="macro">bitflags!</span> {
 <a href=#227 id=227 data-nosnippet>227</a>    <span class="doccomment">/// The flags of the application.
 <a href=#228 id=228 data-nosnippet>228</a>    ///
-<a href=#229 id=229 data-nosnippet>229</a>    /// [Discord docs](https://discord.com/developers/docs/resources/application#application-object-application-flags).
+<a href=#229 id=229 data-nosnippet>229</a>    /// [Discord docs](https://docs.discord.com/developers/resources/application#application-object-application-flags).
 <a href=#230 id=230 data-nosnippet>230</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#231 id=231 data-nosnippet>231</a>    #[derive(Copy, Clone, Default, Debug, Eq, Hash, PartialEq)]
 <a href=#232 id=232 data-nosnippet>232</a>    </span><span class="kw">pub struct </span>ApplicationFlags: u64 {
@@ -238,11 +238,11 @@
 <a href=#238 id=238 data-nosnippet>238</a>        /// on the Bot page in your app's settings
 <a href=#239 id=239 data-nosnippet>239</a>        </span><span class="kw">const </span>GATEWAY_PRESENCE_LIMITED = <span class="number">1 </span>&lt;&lt; <span class="number">13</span>;
 <a href=#240 id=240 data-nosnippet>240</a>        <span class="doccomment">/// Intent required for bots in 100 or more servers to receive member-related events like
-<a href=#241 id=241 data-nosnippet>241</a>        /// guild_member_add. See the list of member-related events under [GUILD_MEMBERS](https://discord.com/developers/docs/topics/gateway#list-of-intents)
+<a href=#241 id=241 data-nosnippet>241</a>        /// guild_member_add. See the list of member-related events under [GUILD_MEMBERS](https://docs.discord.com/developers/events/gateway#list-of-intents)
 <a href=#242 id=242 data-nosnippet>242</a>        </span><span class="kw">const </span>GATEWAY_GUILD_MEMBERS = <span class="number">1 </span>&lt;&lt; <span class="number">14</span>;
 <a href=#243 id=243 data-nosnippet>243</a>        <span class="doccomment">/// Intent required for bots in under 100 servers to receive member-related events like
 <a href=#244 id=244 data-nosnippet>244</a>        /// guild_member_add, found on the Bot page in your app's settings. See the list of
-<a href=#245 id=245 data-nosnippet>245</a>        /// member-related events under [GUILD_MEMBERS](https://discord.com/developers/docs/topics/gateway#list-of-intents)
+<a href=#245 id=245 data-nosnippet>245</a>        /// member-related events under [GUILD_MEMBERS](https://docs.discord.com/developers/events/gateway#list-of-intents)
 <a href=#246 id=246 data-nosnippet>246</a>        </span><span class="kw">const </span>GATEWAY_GUILD_MEMBERS_LIMITED = <span class="number">1 </span>&lt;&lt; <span class="number">15</span>;
 <a href=#247 id=247 data-nosnippet>247</a>        <span class="doccomment">/// Indicates unusual growth of an app that prevents verification
 <a href=#248 id=248 data-nosnippet>248</a>        </span><span class="kw">const </span>VERIFICATION_PENDING_GUILD_LIMIT = <span class="number">1 </span>&lt;&lt; <span class="number">16</span>;
@@ -261,7 +261,7 @@
 <a href=#261 id=261 data-nosnippet>261</a>
 <a href=#262 id=262 data-nosnippet>262</a><span class="doccomment">/// Settings for the application's default in-app authorization link
 <a href=#263 id=263 data-nosnippet>263</a>///
-<a href=#264 id=264 data-nosnippet>264</a>/// [Discord docs](https://discord.com/developers/docs/resources/application#install-params-object-install-params-structure).
+<a href=#264 id=264 data-nosnippet>264</a>/// [Discord docs](https://docs.discord.com/developers/resources/application#install-params-object-install-params-structure).
 <a href=#265 id=265 data-nosnippet>265</a></span><span class="attr">#[derive(Debug, Clone, Serialize, Deserialize)]
 <a href=#266 id=266 data-nosnippet>266</a>#[non_exhaustive]
 <a href=#267 id=267 data-nosnippet>267</a></span><span class="kw">pub struct </span>InstallParams {
