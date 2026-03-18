@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/invite.rs`."><title>invite.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/</div>invite.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! Models for server and channel invites.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/invite.rs`."><title>invite.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (3645249d7 2026-03-16)" data-channel="nightly" data-search-js="search-63369b7b.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">serenity/model/</div>invite.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! Models for server and channel invites.
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="kw">use </span><span class="kw">super</span>::prelude::<span class="kw-2">*</span>;
 <a href=#4 id=4 data-nosnippet>4</a><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
@@ -14,7 +14,7 @@
 <a href=#14 id=14 data-nosnippet>14</a>///
 <a href=#15 id=15 data-nosnippet>15</a>/// Information can not be accessed for guilds the current user is banned from.
 <a href=#16 id=16 data-nosnippet>16</a>///
-<a href=#17 id=17 data-nosnippet>17</a>/// [Discord docs](https://discord.com/developers/docs/resources/invite#invite-object).
+<a href=#17 id=17 data-nosnippet>17</a>/// [Discord docs](https://docs.discord.com/developers/resources/invite#invite-object).
 <a href=#18 id=18 data-nosnippet>18</a></span><span class="attr">#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#19 id=19 data-nosnippet>19</a>#[non_exhaustive]
 <a href=#20 id=20 data-nosnippet>20</a></span><span class="kw">pub struct </span>Invite {
@@ -121,7 +121,7 @@
 <a href=#121 id=121 data-nosnippet>121</a>    /// * `event_id` - An optional server event ID to include with the invite.
 <a href=#122 id=122 data-nosnippet>122</a>    ///
 <a href=#123 id=123 data-nosnippet>123</a>    /// More information about these arguments can be found on Discord's
-<a href=#124 id=124 data-nosnippet>124</a>    /// [API documentation](https://discord.com/developers/docs/resources/invite#get-invite).
+<a href=#124 id=124 data-nosnippet>124</a>    /// [API documentation](https://docs.discord.com/developers/resources/invite#get-invite).
 <a href=#125 id=125 data-nosnippet>125</a>    ///
 <a href=#126 id=126 data-nosnippet>126</a>    /// # Errors
 <a href=#127 id=127 data-nosnippet>127</a>    ///
@@ -194,7 +194,7 @@
 <a href=#194 id=194 data-nosnippet>194</a>
 <a href=#195 id=195 data-nosnippet>195</a><span class="doccomment">/// A minimal amount of information about the channel an invite points to.
 <a href=#196 id=196 data-nosnippet>196</a>///
-<a href=#197 id=197 data-nosnippet>197</a>/// [Discord docs](https://discord.com/developers/docs/resources/invite#invite-object-example-invite-object).
+<a href=#197 id=197 data-nosnippet>197</a>/// [Discord docs](https://docs.discord.com/developers/resources/invite#invite-object-example-invite-object).
 <a href=#198 id=198 data-nosnippet>198</a></span><span class="attr">#[non_exhaustive]
 <a href=#199 id=199 data-nosnippet>199</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#200 id=200 data-nosnippet>200</a></span><span class="kw">pub struct </span>InviteChannel {
@@ -206,7 +206,7 @@
 <a href=#206 id=206 data-nosnippet>206</a>
 <a href=#207 id=207 data-nosnippet>207</a><span class="doccomment">/// Subset of [`Guild`] used in [`Invite`].
 <a href=#208 id=208 data-nosnippet>208</a>///
-<a href=#209 id=209 data-nosnippet>209</a>/// [Discord docs](https://discord.com/developers/docs/resources/invite#invite-object-example-invite-object).
+<a href=#209 id=209 data-nosnippet>209</a>/// [Discord docs](https://docs.discord.com/developers/resources/invite#invite-object-example-invite-object).
 <a href=#210 id=210 data-nosnippet>210</a></span><span class="attr">#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#211 id=211 data-nosnippet>211</a>#[non_exhaustive]
 <a href=#212 id=212 data-nosnippet>212</a></span><span class="kw">pub struct </span>InviteGuild {
@@ -273,7 +273,7 @@
 <a href=#273 id=273 data-nosnippet>273</a>///
 <a href=#274 id=274 data-nosnippet>274</a>/// [Manage Guild]: Permissions::MANAGE_GUILD
 <a href=#275 id=275 data-nosnippet>275</a>///
-<a href=#276 id=276 data-nosnippet>276</a>/// [Discord docs](https://discord.com/developers/docs/resources/invite#invite-metadata-object) (extends [`Invite`] fields).
+<a href=#276 id=276 data-nosnippet>276</a>/// [Discord docs](https://docs.discord.com/developers/resources/invite#invite-metadata-object) (extends [`Invite`] fields).
 <a href=#277 id=277 data-nosnippet>277</a></span><span class="attr">#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#278 id=278 data-nosnippet>278</a>#[non_exhaustive]
 <a href=#279 id=279 data-nosnippet>279</a></span><span class="kw">pub struct </span>RichInvite {
@@ -388,7 +388,7 @@
 <a href=#388 id=388 data-nosnippet>388</a>    }
 <a href=#389 id=389 data-nosnippet>389</a>}
 <a href=#390 id=390 data-nosnippet>390</a>
-<a href=#391 id=391 data-nosnippet>391</a><span class="doccomment">/// [Discord docs](https://discord.com/developers/docs/resources/invite#invite-stage-instance-object).
+<a href=#391 id=391 data-nosnippet>391</a><span class="doccomment">/// [Discord docs](https://docs.discord.com/developers/resources/invite#invite-stage-instance-object).
 <a href=#392 id=392 data-nosnippet>392</a></span><span class="attr">#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#393 id=393 data-nosnippet>393</a>#[non_exhaustive]
 <a href=#394 id=394 data-nosnippet>394</a></span><span class="kw">pub struct </span>InviteStageInstance {
@@ -405,7 +405,7 @@
 <a href=#405 id=405 data-nosnippet>405</a><span class="macro">enum_number!</span> {
 <a href=#406 id=406 data-nosnippet>406</a>    <span class="doccomment">/// Type of target for a voice channel invite.
 <a href=#407 id=407 data-nosnippet>407</a>    ///
-<a href=#408 id=408 data-nosnippet>408</a>    /// [Discord docs](https://discord.com/developers/docs/resources/invite#invite-object-invite-target-types).
+<a href=#408 id=408 data-nosnippet>408</a>    /// [Discord docs](https://docs.discord.com/developers/resources/invite#invite-object-invite-target-types).
 <a href=#409 id=409 data-nosnippet>409</a>    </span><span class="attr">#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Deserialize, Serialize)]
 <a href=#410 id=410 data-nosnippet>410</a>    #[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#411 id=411 data-nosnippet>411</a>    #[serde(from = <span class="string">"u8"</span>, into = <span class="string">"u8"</span>)]

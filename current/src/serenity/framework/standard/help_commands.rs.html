@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/framework/standard/help_commands.rs`."><title>help_commands.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/framework/standard/</div>help_commands.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-4"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! A collection of default help commands for the framework.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/framework/standard/help_commands.rs`."><title>help_commands.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (3645249d7 2026-03-16)" data-channel="nightly" data-search-js="search-63369b7b.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">serenity/framework/standard/</div>help_commands.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-4"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! A collection of default help commands for the framework.
 <a href=#2 id=2 data-nosnippet>2</a>//!
 <a href=#3 id=3 data-nosnippet>3</a>//! # Example
 <a href=#4 id=4 data-nosnippet>4</a>//!
@@ -62,7 +62,7 @@
 <a href=#62 id=62 data-nosnippet>62</a><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
 <a href=#63 id=63 data-nosnippet>63</a></span><span class="kw">use </span><span class="kw">super</span>::structures::Command <span class="kw">as </span>InternalCommand;
 <a href=#64 id=64 data-nosnippet>64</a><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#65 id=65 data-nosnippet>65</a></span><span class="kw">use super</span>::{
+<a href=#65 id=65 data-nosnippet>65</a></span><span class="kw">use </span>super::{
 <a href=#66 id=66 data-nosnippet>66</a>    has_correct_permissions,
 <a href=#67 id=67 data-nosnippet>67</a>    has_correct_roles,
 <a href=#68 id=68 data-nosnippet>68</a>    Args,
@@ -74,7 +74,7 @@
 <a href=#74 id=74 data-nosnippet>74</a>    OnlyIn,
 <a href=#75 id=75 data-nosnippet>75</a>};
 <a href=#76 id=76 data-nosnippet>76</a><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#77 id=77 data-nosnippet>77</a></span><span class="kw">use crate</span>::{
+<a href=#77 id=77 data-nosnippet>77</a></span><span class="kw">use </span>crate::{
 <a href=#78 id=78 data-nosnippet>78</a>    builder::{CreateEmbed, CreateMessage},
 <a href=#79 id=79 data-nosnippet>79</a>    cache::Cache,
 <a href=#80 id=80 data-nosnippet>80</a>    client::Context,
@@ -207,7 +207,7 @@
 <a href=#207 id=207 data-nosnippet>207</a>        }
 <a href=#208 id=208 data-nosnippet>208</a>    }
 <a href=#209 id=209 data-nosnippet>209</a>
-<a href=#210 id=210 data-nosnippet>210</a>    cmd.<span class="macro">only_in !</span>= OnlyIn::Guild
+<a href=#210 id=210 data-nosnippet>210</a>    cmd.only_in != OnlyIn::Guild
 <a href=#211 id=211 data-nosnippet>211</a>}
 <a href=#212 id=212 data-nosnippet>212</a>
 <a href=#213 id=213 data-nosnippet>213</a><span class="doccomment">/// Checks if `search_on` starts with `word` and is then cleanly followed by a `" "`.
@@ -492,928 +492,927 @@
 <a href=#492 id=492 data-nosnippet>492</a>                    <span class="kw-2">&amp;</span>help_options.dm_and_guild_text
 <a href=#493 id=493 data-nosnippet>493</a>                };
 <a href=#494 id=494 data-nosnippet>494</a>
-<a href=#495 id=495 data-nosnippet>495</a>                similar_commands
-<a href=#496 id=496 data-nosnippet>496</a>                    .sort_unstable_by(|a, b| a.levenshtein_distance.cmp(<span class="kw-2">&amp;</span>b.levenshtein_distance));
-<a href=#497 id=497 data-nosnippet>497</a>
-<a href=#498 id=498 data-nosnippet>498</a>                <span class="kw">let </span>check_names: Vec&lt;String&gt; = command
-<a href=#499 id=499 data-nosnippet>499</a>                    .options
-<a href=#500 id=500 data-nosnippet>500</a>                    .checks
-<a href=#501 id=501 data-nosnippet>501</a>                    .iter()
-<a href=#502 id=502 data-nosnippet>502</a>                    .chain(group.options.checks.iter())
-<a href=#503 id=503 data-nosnippet>503</a>                    .filter(|check| check.display_in_help)
-<a href=#504 id=504 data-nosnippet>504</a>                    .map(|check| check.name.to_string())
-<a href=#505 id=505 data-nosnippet>505</a>                    .collect();
-<a href=#506 id=506 data-nosnippet>506</a>
-<a href=#507 id=507 data-nosnippet>507</a>                <span class="kw">let </span>sub_command_names: Vec&lt;String&gt; = options
-<a href=#508 id=508 data-nosnippet>508</a>                    .sub_commands
-<a href=#509 id=509 data-nosnippet>509</a>                    .iter()
-<a href=#510 id=510 data-nosnippet>510</a>                    .filter(|cmd| cmd.options.help_available)
-<a href=#511 id=511 data-nosnippet>511</a>                    .map(|cmd| cmd.options.names[<span class="number">0</span>].to_string())
-<a href=#512 id=512 data-nosnippet>512</a>                    .collect();
-<a href=#513 id=513 data-nosnippet>513</a>
-<a href=#514 id=514 data-nosnippet>514</a>                <span class="kw">return </span><span class="prelude-val">Ok</span>(CustomisedHelpData::SingleCommand {
-<a href=#515 id=515 data-nosnippet>515</a>                    command: Command {
-<a href=#516 id=516 data-nosnippet>516</a>                        name: options.names[<span class="number">0</span>],
-<a href=#517 id=517 data-nosnippet>517</a>                        description: options.desc,
-<a href=#518 id=518 data-nosnippet>518</a>                        group_name: group.name,
-<a href=#519 id=519 data-nosnippet>519</a>                        group_prefixes: group.options.prefixes,
-<a href=#520 id=520 data-nosnippet>520</a>                        checks: check_names,
-<a href=#521 id=521 data-nosnippet>521</a>                        aliases: options.names[<span class="number">1</span>..].to_vec(),
-<a href=#522 id=522 data-nosnippet>522</a>                        availability: available_text,
-<a href=#523 id=523 data-nosnippet>523</a>                        usage: options.usage,
-<a href=#524 id=524 data-nosnippet>524</a>                        usage_sample: options.examples.to_vec(),
-<a href=#525 id=525 data-nosnippet>525</a>                        sub_commands: sub_command_names,
-<a href=#526 id=526 data-nosnippet>526</a>                    },
-<a href=#527 id=527 data-nosnippet>527</a>                });
-<a href=#528 id=528 data-nosnippet>528</a>            }
-<a href=#529 id=529 data-nosnippet>529</a>
-<a href=#530 id=530 data-nosnippet>530</a>            <span class="kw">if let </span><span class="prelude-val">Ok</span>(found) = nested_group_command_search(
-<a href=#531 id=531 data-nosnippet>531</a>                ctx,
-<a href=#532 id=532 data-nosnippet>532</a>                msg,
-<a href=#533 id=533 data-nosnippet>533</a>                group.options.sub_groups,
-<a href=#534 id=534 data-nosnippet>534</a>                name,
-<a href=#535 id=535 data-nosnippet>535</a>                help_options,
-<a href=#536 id=536 data-nosnippet>536</a>                similar_commands,
-<a href=#537 id=537 data-nosnippet>537</a>                owners,
-<a href=#538 id=538 data-nosnippet>538</a>            )
-<a href=#539 id=539 data-nosnippet>539</a>            .<span class="kw">await
-<a href=#540 id=540 data-nosnippet>540</a>            </span>{
-<a href=#541 id=541 data-nosnippet>541</a>                <span class="kw">return </span><span class="prelude-val">Ok</span>(found);
-<a href=#542 id=542 data-nosnippet>542</a>            }
-<a href=#543 id=543 data-nosnippet>543</a>        }
-<a href=#544 id=544 data-nosnippet>544</a>
-<a href=#545 id=545 data-nosnippet>545</a>        <span class="prelude-val">Err</span>(())
-<a href=#546 id=546 data-nosnippet>546</a>    }
-<a href=#547 id=547 data-nosnippet>547</a>    .boxed()
-<a href=#548 id=548 data-nosnippet>548</a>}
-<a href=#549 id=549 data-nosnippet>549</a>
-<a href=#550 id=550 data-nosnippet>550</a><span class="doccomment">/// Tries to extract a single command matching searched command name otherwise returns similar
-<a href=#551 id=551 data-nosnippet>551</a>/// commands.
-<a href=#552 id=552 data-nosnippet>552</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
-<a href=#553 id=553 data-nosnippet>553</a></span><span class="kw">async fn </span>fetch_single_command&lt;<span class="lifetime">'a</span>&gt;(
-<a href=#554 id=554 data-nosnippet>554</a>    ctx: <span class="kw-2">&amp;</span>Context,
-<a href=#555 id=555 data-nosnippet>555</a>    msg: <span class="kw-2">&amp;</span>Message,
-<a href=#556 id=556 data-nosnippet>556</a>    groups: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CommandGroup],
-<a href=#557 id=557 data-nosnippet>557</a>    name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-<a href=#558 id=558 data-nosnippet>558</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
-<a href=#559 id=559 data-nosnippet>559</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
-<a href=#560 id=560 data-nosnippet>560</a>) -&gt; <span class="prelude-ty">Result</span>&lt;CustomisedHelpData&lt;<span class="lifetime">'a</span>&gt;, Vec&lt;SuggestedCommandName&gt;&gt; {
-<a href=#561 id=561 data-nosnippet>561</a>    <span class="kw">let </span><span class="kw-2">mut </span>similar_commands: Vec&lt;SuggestedCommandName&gt; = Vec::new();
-<a href=#562 id=562 data-nosnippet>562</a>    <span class="kw">let </span><span class="kw-2">mut </span>name = name.to_string();
-<a href=#563 id=563 data-nosnippet>563</a>
-<a href=#564 id=564 data-nosnippet>564</a>    nested_group_command_search(
-<a href=#565 id=565 data-nosnippet>565</a>        ctx,
-<a href=#566 id=566 data-nosnippet>566</a>        msg,
-<a href=#567 id=567 data-nosnippet>567</a>        groups,
-<a href=#568 id=568 data-nosnippet>568</a>        <span class="kw-2">&amp;mut </span>name,
-<a href=#569 id=569 data-nosnippet>569</a>        help_options,
-<a href=#570 id=570 data-nosnippet>570</a>        <span class="kw-2">&amp;mut </span>similar_commands,
-<a href=#571 id=571 data-nosnippet>571</a>        owners,
-<a href=#572 id=572 data-nosnippet>572</a>    )
-<a href=#573 id=573 data-nosnippet>573</a>    .<span class="kw">await
-<a href=#574 id=574 data-nosnippet>574</a>    </span>.map_err(|()| similar_commands)
-<a href=#575 id=575 data-nosnippet>575</a>}
-<a href=#576 id=576 data-nosnippet>576</a>
-<a href=#577 id=577 data-nosnippet>577</a><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
-<a href=#578 id=578 data-nosnippet>578</a>#[allow(clippy::too_many_arguments)]
-<a href=#579 id=579 data-nosnippet>579</a></span><span class="kw">async fn </span>fill_eligible_commands&lt;<span class="lifetime">'a</span>&gt;(
-<a href=#580 id=580 data-nosnippet>580</a>    ctx: <span class="kw-2">&amp;</span>Context,
-<a href=#581 id=581 data-nosnippet>581</a>    msg: <span class="kw-2">&amp;</span>Message,
-<a href=#582 id=582 data-nosnippet>582</a>    commands: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>InternalCommand],
-<a href=#583 id=583 data-nosnippet>583</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
-<a href=#584 id=584 data-nosnippet>584</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
-<a href=#585 id=585 data-nosnippet>585</a>    group: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>CommandGroup,
-<a href=#586 id=586 data-nosnippet>586</a>    to_fill: <span class="kw-2">&amp;mut </span>GroupCommandsPair,
-<a href=#587 id=587 data-nosnippet>587</a>    highest_formatter: <span class="kw-2">&amp;mut </span>HelpBehaviour,
-<a href=#588 id=588 data-nosnippet>588</a>) {
-<a href=#589 id=589 data-nosnippet>589</a>    to_fill.name = group.name;
-<a href=#590 id=590 data-nosnippet>590</a>    to_fill.prefixes = group.options.prefixes.to_vec();
-<a href=#591 id=591 data-nosnippet>591</a>
-<a href=#592 id=592 data-nosnippet>592</a>    <span class="kw">let </span>group_behaviour = {
-<a href=#593 id=593 data-nosnippet>593</a>        <span class="kw">if let </span>HelpBehaviour::Hide = highest_formatter {
-<a href=#594 id=594 data-nosnippet>594</a>            HelpBehaviour::Hide
-<a href=#595 id=595 data-nosnippet>595</a>        } <span class="kw">else </span>{
-<a href=#596 id=596 data-nosnippet>596</a>            std::cmp::max(
-<a href=#597 id=597 data-nosnippet>597</a>                <span class="kw-2">*</span>highest_formatter,
-<a href=#598 id=598 data-nosnippet>598</a>                check_common_behaviour(ctx, msg, <span class="kw-2">&amp;</span>group.options, owners, help_options),
-<a href=#599 id=599 data-nosnippet>599</a>            )
-<a href=#600 id=600 data-nosnippet>600</a>        }
-<a href=#601 id=601 data-nosnippet>601</a>    };
-<a href=#602 id=602 data-nosnippet>602</a>
-<a href=#603 id=603 data-nosnippet>603</a>    <span class="kw-2">*</span>highest_formatter = group_behaviour;
-<a href=#604 id=604 data-nosnippet>604</a>
-<a href=#605 id=605 data-nosnippet>605</a>    <span class="kw">for </span>command <span class="kw">in </span>commands {
-<a href=#606 id=606 data-nosnippet>606</a>        <span class="kw">let </span>command = <span class="kw-2">*</span>command;
-<a href=#607 id=607 data-nosnippet>607</a>        <span class="kw">let </span>options = <span class="kw-2">&amp;</span>command.options;
-<a href=#608 id=608 data-nosnippet>608</a>        <span class="kw">let </span>name = <span class="kw-2">&amp;</span>options.names[<span class="number">0</span>];
-<a href=#609 id=609 data-nosnippet>609</a>
-<a href=#610 id=610 data-nosnippet>610</a>        <span class="kw">if </span><span class="macro">group_behaviour !</span>= HelpBehaviour::Nothing {
-<a href=#611 id=611 data-nosnippet>611</a>            <span class="kw">let </span>name = <span class="macro">format_command_name!</span>(<span class="kw-2">&amp;</span>group_behaviour, <span class="kw-2">&amp;</span>name);
-<a href=#612 id=612 data-nosnippet>612</a>            to_fill.command_names.push(name);
-<a href=#613 id=613 data-nosnippet>613</a>
-<a href=#614 id=614 data-nosnippet>614</a>            <span class="kw">continue</span>;
-<a href=#615 id=615 data-nosnippet>615</a>        }
-<a href=#616 id=616 data-nosnippet>616</a>
-<a href=#617 id=617 data-nosnippet>617</a>        <span class="kw">let </span>command_behaviour = check_command_behaviour(
-<a href=#618 id=618 data-nosnippet>618</a>            ctx,
-<a href=#619 id=619 data-nosnippet>619</a>            msg,
-<a href=#620 id=620 data-nosnippet>620</a>            command.options,
-<a href=#621 id=621 data-nosnippet>621</a>            group.options.checks,
-<a href=#622 id=622 data-nosnippet>622</a>            owners,
-<a href=#623 id=623 data-nosnippet>623</a>            help_options,
-<a href=#624 id=624 data-nosnippet>624</a>        )
-<a href=#625 id=625 data-nosnippet>625</a>        .<span class="kw">await</span>;
-<a href=#626 id=626 data-nosnippet>626</a>
-<a href=#627 id=627 data-nosnippet>627</a>        <span class="kw">let </span>name = <span class="macro">format_command_name!</span>(command_behaviour, <span class="kw-2">&amp;</span>name);
-<a href=#628 id=628 data-nosnippet>628</a>        to_fill.command_names.push(name);
-<a href=#629 id=629 data-nosnippet>629</a>    }
-<a href=#630 id=630 data-nosnippet>630</a>}
-<a href=#631 id=631 data-nosnippet>631</a>
-<a href=#632 id=632 data-nosnippet>632</a><span class="doccomment">/// Tries to fetch all commands visible to the user within a group and its sub-groups.
-<a href=#633 id=633 data-nosnippet>633</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
-<a href=#634 id=634 data-nosnippet>634</a>#[allow(clippy::too_many_arguments)]
-<a href=#635 id=635 data-nosnippet>635</a></span><span class="kw">fn </span>fetch_all_eligible_commands_in_group&lt;<span class="lifetime">'rec</span>, <span class="lifetime">'a</span>: <span class="lifetime">'rec</span>&gt;(
-<a href=#636 id=636 data-nosnippet>636</a>    ctx: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>Context,
-<a href=#637 id=637 data-nosnippet>637</a>    msg: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>Message,
-<a href=#638 id=638 data-nosnippet>638</a>    commands: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>InternalCommand],
-<a href=#639 id=639 data-nosnippet>639</a>    owners: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
-<a href=#640 id=640 data-nosnippet>640</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
-<a href=#641 id=641 data-nosnippet>641</a>    group: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>CommandGroup,
-<a href=#642 id=642 data-nosnippet>642</a>    highest_formatter: HelpBehaviour,
-<a href=#643 id=643 data-nosnippet>643</a>) -&gt; BoxFuture&lt;<span class="lifetime">'rec</span>, GroupCommandsPair&gt; {
-<a href=#644 id=644 data-nosnippet>644</a>    <span class="kw">async move </span>{
-<a href=#645 id=645 data-nosnippet>645</a>        <span class="kw">let </span><span class="kw-2">mut </span>group_with_cmds = GroupCommandsPair::default();
-<a href=#646 id=646 data-nosnippet>646</a>        <span class="kw">let </span><span class="kw-2">mut </span>highest_formatter = highest_formatter;
-<a href=#647 id=647 data-nosnippet>647</a>
-<a href=#648 id=648 data-nosnippet>648</a>        fill_eligible_commands(
-<a href=#649 id=649 data-nosnippet>649</a>            ctx,
-<a href=#650 id=650 data-nosnippet>650</a>            msg,
-<a href=#651 id=651 data-nosnippet>651</a>            commands,
-<a href=#652 id=652 data-nosnippet>652</a>            owners,
-<a href=#653 id=653 data-nosnippet>653</a>            help_options,
-<a href=#654 id=654 data-nosnippet>654</a>            group,
-<a href=#655 id=655 data-nosnippet>655</a>            <span class="kw-2">&amp;mut </span>group_with_cmds,
-<a href=#656 id=656 data-nosnippet>656</a>            <span class="kw-2">&amp;mut </span>highest_formatter,
-<a href=#657 id=657 data-nosnippet>657</a>        )
-<a href=#658 id=658 data-nosnippet>658</a>        .<span class="kw">await</span>;
-<a href=#659 id=659 data-nosnippet>659</a>
-<a href=#660 id=660 data-nosnippet>660</a>        <span class="kw">for </span>sub_group <span class="kw">in </span>group.options.sub_groups {
-<a href=#661 id=661 data-nosnippet>661</a>            <span class="kw">if </span>HelpBehaviour::Hide == highest_formatter {
-<a href=#662 id=662 data-nosnippet>662</a>                <span class="kw">break</span>;
-<a href=#663 id=663 data-nosnippet>663</a>            } <span class="kw">else if </span>sub_group.options.commands.is_empty()
-<a href=#664 id=664 data-nosnippet>664</a>                &amp;&amp; sub_group.options.sub_groups.is_empty()
-<a href=#665 id=665 data-nosnippet>665</a>            {
-<a href=#666 id=666 data-nosnippet>666</a>                <span class="kw">continue</span>;
-<a href=#667 id=667 data-nosnippet>667</a>            }
-<a href=#668 id=668 data-nosnippet>668</a>
-<a href=#669 id=669 data-nosnippet>669</a>            <span class="kw">let </span>grouped_cmd = fetch_all_eligible_commands_in_group(
-<a href=#670 id=670 data-nosnippet>670</a>                ctx,
-<a href=#671 id=671 data-nosnippet>671</a>                msg,
-<a href=#672 id=672 data-nosnippet>672</a>                sub_group.options.commands,
-<a href=#673 id=673 data-nosnippet>673</a>                owners,
-<a href=#674 id=674 data-nosnippet>674</a>                help_options,
-<a href=#675 id=675 data-nosnippet>675</a>                sub_group,
-<a href=#676 id=676 data-nosnippet>676</a>                highest_formatter,
-<a href=#677 id=677 data-nosnippet>677</a>            )
-<a href=#678 id=678 data-nosnippet>678</a>            .<span class="kw">await</span>;
-<a href=#679 id=679 data-nosnippet>679</a>
-<a href=#680 id=680 data-nosnippet>680</a>            group_with_cmds.sub_groups.push(grouped_cmd);
-<a href=#681 id=681 data-nosnippet>681</a>        }
-<a href=#682 id=682 data-nosnippet>682</a>
-<a href=#683 id=683 data-nosnippet>683</a>        group_with_cmds
-<a href=#684 id=684 data-nosnippet>684</a>    }
-<a href=#685 id=685 data-nosnippet>685</a>    .boxed()
-<a href=#686 id=686 data-nosnippet>686</a>}
-<a href=#687 id=687 data-nosnippet>687</a>
-<a href=#688 id=688 data-nosnippet>688</a><span class="doccomment">/// Fetch groups with their commands.
-<a href=#689 id=689 data-nosnippet>689</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
-<a href=#690 id=690 data-nosnippet>690</a></span><span class="kw">async fn </span>create_command_group_commands_pair_from_groups(
-<a href=#691 id=691 data-nosnippet>691</a>    ctx: <span class="kw-2">&amp;</span>Context,
-<a href=#692 id=692 data-nosnippet>692</a>    msg: <span class="kw-2">&amp;</span>Message,
-<a href=#693 id=693 data-nosnippet>693</a>    groups: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CommandGroup],
-<a href=#694 id=694 data-nosnippet>694</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
-<a href=#695 id=695 data-nosnippet>695</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
-<a href=#696 id=696 data-nosnippet>696</a>) -&gt; Vec&lt;GroupCommandsPair&gt; {
-<a href=#697 id=697 data-nosnippet>697</a>    <span class="kw">let </span><span class="kw-2">mut </span>listed_groups: Vec&lt;GroupCommandsPair&gt; = Vec::default();
-<a href=#698 id=698 data-nosnippet>698</a>
-<a href=#699 id=699 data-nosnippet>699</a>    <span class="kw">for </span>group <span class="kw">in </span>groups {
-<a href=#700 id=700 data-nosnippet>700</a>        <span class="kw">let </span>group = <span class="kw-2">*</span>group;
-<a href=#701 id=701 data-nosnippet>701</a>
-<a href=#702 id=702 data-nosnippet>702</a>        <span class="kw">let </span>group_with_cmds = create_single_group(ctx, msg, group, owners, help_options).<span class="kw">await</span>;
-<a href=#703 id=703 data-nosnippet>703</a>
-<a href=#704 id=704 data-nosnippet>704</a>        <span class="kw">if </span>!group_with_cmds.command_names.is_empty() || !group_with_cmds.sub_groups.is_empty() {
-<a href=#705 id=705 data-nosnippet>705</a>            listed_groups.push(group_with_cmds);
-<a href=#706 id=706 data-nosnippet>706</a>        }
-<a href=#707 id=707 data-nosnippet>707</a>    }
-<a href=#708 id=708 data-nosnippet>708</a>
-<a href=#709 id=709 data-nosnippet>709</a>    listed_groups
-<a href=#710 id=710 data-nosnippet>710</a>}
-<a href=#711 id=711 data-nosnippet>711</a>
-<a href=#712 id=712 data-nosnippet>712</a><span class="doccomment">/// Fetches a single group with its commands.
-<a href=#713 id=713 data-nosnippet>713</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
-<a href=#714 id=714 data-nosnippet>714</a></span><span class="kw">async fn </span>create_single_group(
-<a href=#715 id=715 data-nosnippet>715</a>    ctx: <span class="kw-2">&amp;</span>Context,
-<a href=#716 id=716 data-nosnippet>716</a>    msg: <span class="kw-2">&amp;</span>Message,
-<a href=#717 id=717 data-nosnippet>717</a>    group: <span class="kw-2">&amp;</span>CommandGroup,
-<a href=#718 id=718 data-nosnippet>718</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
-<a href=#719 id=719 data-nosnippet>719</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
-<a href=#720 id=720 data-nosnippet>720</a>) -&gt; GroupCommandsPair {
-<a href=#721 id=721 data-nosnippet>721</a>    <span class="kw">let </span><span class="kw-2">mut </span>group_with_cmds = fetch_all_eligible_commands_in_group(
-<a href=#722 id=722 data-nosnippet>722</a>        ctx,
-<a href=#723 id=723 data-nosnippet>723</a>        msg,
-<a href=#724 id=724 data-nosnippet>724</a>        group.options.commands,
-<a href=#725 id=725 data-nosnippet>725</a>        owners,
-<a href=#726 id=726 data-nosnippet>726</a>        help_options,
-<a href=#727 id=727 data-nosnippet>727</a>        group,
-<a href=#728 id=728 data-nosnippet>728</a>        HelpBehaviour::Nothing,
-<a href=#729 id=729 data-nosnippet>729</a>    )
-<a href=#730 id=730 data-nosnippet>730</a>    .<span class="kw">await</span>;
-<a href=#731 id=731 data-nosnippet>731</a>
-<a href=#732 id=732 data-nosnippet>732</a>    group_with_cmds.name = group.name;
-<a href=#733 id=733 data-nosnippet>733</a>    group_with_cmds.summary = group.options.summary;
-<a href=#734 id=734 data-nosnippet>734</a>
-<a href=#735 id=735 data-nosnippet>735</a>    group_with_cmds
-<a href=#736 id=736 data-nosnippet>736</a>}
-<a href=#737 id=737 data-nosnippet>737</a>
-<a href=#738 id=738 data-nosnippet>738</a><span class="doccomment">/// If `searched_group` is exactly matching `group_name`, this function returns `true` but does not
-<a href=#739 id=739 data-nosnippet>739</a>/// trim. Otherwise, it is treated as an optionally passed group-name and ends up being removed
-<a href=#740 id=740 data-nosnippet>740</a>/// from `searched_group`.
-<a href=#741 id=741 data-nosnippet>741</a>///
-<a href=#742 id=742 data-nosnippet>742</a>/// If a group has no prefixes, it is not required to be part of `searched_group` to reach a
-<a href=#743 id=743 data-nosnippet>743</a>/// sub-group of `group_name`.
-<a href=#744 id=744 data-nosnippet>744</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
-<a href=#745 id=745 data-nosnippet>745</a></span><span class="kw">fn </span>trim_prefixless_group(group_name: <span class="kw-2">&amp;</span>str, searched_group: <span class="kw-2">&amp;mut </span>String) -&gt; bool {
-<a href=#746 id=746 data-nosnippet>746</a>    <span class="kw">if </span>group_name == searched_group.as_str() {
-<a href=#747 id=747 data-nosnippet>747</a>        <span class="kw">return </span><span class="bool-val">true</span>;
-<a href=#748 id=748 data-nosnippet>748</a>    } <span class="kw">else if </span>starts_with_whole_word(searched_group, group_name) {
-<a href=#749 id=749 data-nosnippet>749</a>        searched_group.drain(..=group_name.len());
-<a href=#750 id=750 data-nosnippet>750</a>        <span class="kw">return </span><span class="bool-val">true</span>;
-<a href=#751 id=751 data-nosnippet>751</a>    }
-<a href=#752 id=752 data-nosnippet>752</a>
-<a href=#753 id=753 data-nosnippet>753</a>    <span class="bool-val">false
-<a href=#754 id=754 data-nosnippet>754</a></span>}
-<a href=#755 id=755 data-nosnippet>755</a>
-<a href=#756 id=756 data-nosnippet>756</a><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
-<a href=#757 id=757 data-nosnippet>757</a></span><span class="kw">pub fn </span>searched_lowercase&lt;<span class="lifetime">'rec</span>, <span class="lifetime">'a</span>: <span class="lifetime">'rec</span>&gt;(
-<a href=#758 id=758 data-nosnippet>758</a>    ctx: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>Context,
-<a href=#759 id=759 data-nosnippet>759</a>    msg: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>Message,
-<a href=#760 id=760 data-nosnippet>760</a>    group: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>CommandGroup,
-<a href=#761 id=761 data-nosnippet>761</a>    owners: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
-<a href=#762 id=762 data-nosnippet>762</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
-<a href=#763 id=763 data-nosnippet>763</a>    searched_named_lowercase: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span><span class="kw-2">mut </span>String,
-<a href=#764 id=764 data-nosnippet>764</a>) -&gt; BoxFuture&lt;<span class="lifetime">'rec</span>, <span class="prelude-ty">Option</span>&lt;CustomisedHelpData&lt;<span class="lifetime">'a</span>&gt;&gt;&gt; {
-<a href=#765 id=765 data-nosnippet>765</a>    <span class="kw">async move </span>{
-<a href=#766 id=766 data-nosnippet>766</a>        <span class="kw">let </span>is_prefixless_group = {
-<a href=#767 id=767 data-nosnippet>767</a>            group.options.prefixes.is_empty()
-<a href=#768 id=768 data-nosnippet>768</a>                &amp;&amp; trim_prefixless_group(<span class="kw-2">&amp;</span>group.name.to_lowercase(), searched_named_lowercase)
-<a href=#769 id=769 data-nosnippet>769</a>        };
-<a href=#770 id=770 data-nosnippet>770</a>        <span class="kw">let </span><span class="kw-2">mut </span>progressed = is_prefixless_group;
-<a href=#771 id=771 data-nosnippet>771</a>        <span class="kw">let </span>is_word_prefix = group.options.prefixes.iter().any(|prefix| {
-<a href=#772 id=772 data-nosnippet>772</a>            <span class="kw">if </span>starts_with_whole_word(searched_named_lowercase, prefix) {
-<a href=#773 id=773 data-nosnippet>773</a>                searched_named_lowercase.drain(..=prefix.len());
-<a href=#774 id=774 data-nosnippet>774</a>                progressed = <span class="bool-val">true</span>;
-<a href=#775 id=775 data-nosnippet>775</a>            }
-<a href=#776 id=776 data-nosnippet>776</a>
-<a href=#777 id=777 data-nosnippet>777</a>            prefix == searched_named_lowercase
-<a href=#778 id=778 data-nosnippet>778</a>        });
-<a href=#779 id=779 data-nosnippet>779</a>
-<a href=#780 id=780 data-nosnippet>780</a>        <span class="kw">if </span>is_prefixless_group || is_word_prefix {
-<a href=#781 id=781 data-nosnippet>781</a>            <span class="kw">let </span>single_group = create_single_group(ctx, msg, group, owners, help_options).<span class="kw">await</span>;
-<a href=#782 id=782 data-nosnippet>782</a>
-<a href=#783 id=783 data-nosnippet>783</a>            <span class="kw">if </span>!single_group.command_names.is_empty() {
-<a href=#784 id=784 data-nosnippet>784</a>                <span class="kw">return </span><span class="prelude-val">Some</span>(CustomisedHelpData::GroupedCommands {
-<a href=#785 id=785 data-nosnippet>785</a>                    help_description: group
-<a href=#786 id=786 data-nosnippet>786</a>                        .options
-<a href=#787 id=787 data-nosnippet>787</a>                        .description
-<a href=#788 id=788 data-nosnippet>788</a>                        .map(ToString::to_string)
-<a href=#789 id=789 data-nosnippet>789</a>                        .unwrap_or_default(),
-<a href=#790 id=790 data-nosnippet>790</a>                    groups: <span class="macro">vec!</span>[single_group],
-<a href=#791 id=791 data-nosnippet>791</a>                });
-<a href=#792 id=792 data-nosnippet>792</a>            }
-<a href=#793 id=793 data-nosnippet>793</a>        } <span class="kw">else if </span>progressed || group.options.prefixes.is_empty() {
-<a href=#794 id=794 data-nosnippet>794</a>            <span class="kw">for </span>sub_group <span class="kw">in </span>group.options.sub_groups {
-<a href=#795 id=795 data-nosnippet>795</a>                <span class="kw">if let </span><span class="prelude-val">Some</span>(found_set) = searched_lowercase(
-<a href=#796 id=796 data-nosnippet>796</a>                    ctx,
-<a href=#797 id=797 data-nosnippet>797</a>                    msg,
-<a href=#798 id=798 data-nosnippet>798</a>                    sub_group,
-<a href=#799 id=799 data-nosnippet>799</a>                    owners,
-<a href=#800 id=800 data-nosnippet>800</a>                    help_options,
-<a href=#801 id=801 data-nosnippet>801</a>                    searched_named_lowercase,
-<a href=#802 id=802 data-nosnippet>802</a>                )
-<a href=#803 id=803 data-nosnippet>803</a>                .<span class="kw">await
-<a href=#804 id=804 data-nosnippet>804</a>                </span>{
-<a href=#805 id=805 data-nosnippet>805</a>                    <span class="kw">return </span><span class="prelude-val">Some</span>(found_set);
-<a href=#806 id=806 data-nosnippet>806</a>                }
-<a href=#807 id=807 data-nosnippet>807</a>            }
-<a href=#808 id=808 data-nosnippet>808</a>        }
-<a href=#809 id=809 data-nosnippet>809</a>
-<a href=#810 id=810 data-nosnippet>810</a>        <span class="prelude-val">None
-<a href=#811 id=811 data-nosnippet>811</a>    </span>}
-<a href=#812 id=812 data-nosnippet>812</a>    .boxed()
-<a href=#813 id=813 data-nosnippet>813</a>}
-<a href=#814 id=814 data-nosnippet>814</a>
-<a href=#815 id=815 data-nosnippet>815</a><span class="doccomment">/// Iterates over all commands and forges them into a [`CustomisedHelpData`], taking
-<a href=#816 id=816 data-nosnippet>816</a>/// [`HelpOptions`] into consideration when deciding on whether a command shall be picked and in
-<a href=#817 id=817 data-nosnippet>817</a>/// what textual format.
-<a href=#818 id=818 data-nosnippet>818</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
-<a href=#819 id=819 data-nosnippet>819</a></span><span class="kw">pub async fn </span>create_customised_help_data&lt;<span class="lifetime">'a</span>&gt;(
-<a href=#820 id=820 data-nosnippet>820</a>    ctx: <span class="kw-2">&amp;</span>Context,
-<a href=#821 id=821 data-nosnippet>821</a>    msg: <span class="kw-2">&amp;</span>Message,
-<a href=#822 id=822 data-nosnippet>822</a>    args: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Args,
-<a href=#823 id=823 data-nosnippet>823</a>    groups: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CommandGroup],
-<a href=#824 id=824 data-nosnippet>824</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
-<a href=#825 id=825 data-nosnippet>825</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
-<a href=#826 id=826 data-nosnippet>826</a>) -&gt; CustomisedHelpData&lt;<span class="lifetime">'a</span>&gt; {
-<a href=#827 id=827 data-nosnippet>827</a>    <span class="kw">if </span>!args.is_empty() {
-<a href=#828 id=828 data-nosnippet>828</a>        <span class="kw">let </span>name = args.message();
-<a href=#829 id=829 data-nosnippet>829</a>
-<a href=#830 id=830 data-nosnippet>830</a>        <span class="kw">return match </span>fetch_single_command(ctx, msg, groups, name, help_options, owners).<span class="kw">await </span>{
-<a href=#831 id=831 data-nosnippet>831</a>            <span class="prelude-val">Ok</span>(single_command) =&gt; single_command,
-<a href=#832 id=832 data-nosnippet>832</a>            <span class="prelude-val">Err</span>(suggestions) =&gt; {
-<a href=#833 id=833 data-nosnippet>833</a>                <span class="kw">let </span><span class="kw-2">mut </span>searched_named_lowercase = name.to_lowercase();
-<a href=#834 id=834 data-nosnippet>834</a>
-<a href=#835 id=835 data-nosnippet>835</a>                <span class="kw">for </span>group <span class="kw">in </span>groups {
-<a href=#836 id=836 data-nosnippet>836</a>                    <span class="kw">if let </span><span class="prelude-val">Some</span>(found_command) = searched_lowercase(
-<a href=#837 id=837 data-nosnippet>837</a>                        ctx,
-<a href=#838 id=838 data-nosnippet>838</a>                        msg,
-<a href=#839 id=839 data-nosnippet>839</a>                        group,
-<a href=#840 id=840 data-nosnippet>840</a>                        owners,
-<a href=#841 id=841 data-nosnippet>841</a>                        help_options,
-<a href=#842 id=842 data-nosnippet>842</a>                        <span class="kw-2">&amp;mut </span>searched_named_lowercase,
-<a href=#843 id=843 data-nosnippet>843</a>                    )
-<a href=#844 id=844 data-nosnippet>844</a>                    .<span class="kw">await
-<a href=#845 id=845 data-nosnippet>845</a>                    </span>{
-<a href=#846 id=846 data-nosnippet>846</a>                        <span class="kw">return </span>found_command;
-<a href=#847 id=847 data-nosnippet>847</a>                    }
-<a href=#848 id=848 data-nosnippet>848</a>                }
-<a href=#849 id=849 data-nosnippet>849</a>
-<a href=#850 id=850 data-nosnippet>850</a>                <span class="kw">if </span>suggestions.is_empty() {
-<a href=#851 id=851 data-nosnippet>851</a>                    CustomisedHelpData::NoCommandFound {
-<a href=#852 id=852 data-nosnippet>852</a>                        help_error_message: help_options.no_help_available_text,
-<a href=#853 id=853 data-nosnippet>853</a>                    }
-<a href=#854 id=854 data-nosnippet>854</a>                } <span class="kw">else </span>{
-<a href=#855 id=855 data-nosnippet>855</a>                    CustomisedHelpData::SuggestedCommands {
-<a href=#856 id=856 data-nosnippet>856</a>                        help_description: help_options.suggestion_text.to_string(),
-<a href=#857 id=857 data-nosnippet>857</a>                        suggestions: Suggestions(suggestions),
-<a href=#858 id=858 data-nosnippet>858</a>                    }
-<a href=#859 id=859 data-nosnippet>859</a>                }
-<a href=#860 id=860 data-nosnippet>860</a>            },
-<a href=#861 id=861 data-nosnippet>861</a>        };
-<a href=#862 id=862 data-nosnippet>862</a>    }
-<a href=#863 id=863 data-nosnippet>863</a>
-<a href=#864 id=864 data-nosnippet>864</a>    <span class="kw">let </span>strikethrough_command_tip = <span class="kw">if </span>msg.is_private() {
-<a href=#865 id=865 data-nosnippet>865</a>        help_options.strikethrough_commands_tip_in_dm
-<a href=#866 id=866 data-nosnippet>866</a>    } <span class="kw">else </span>{
-<a href=#867 id=867 data-nosnippet>867</a>        help_options.strikethrough_commands_tip_in_guild
-<a href=#868 id=868 data-nosnippet>868</a>    };
-<a href=#869 id=869 data-nosnippet>869</a>
-<a href=#870 id=870 data-nosnippet>870</a>    <span class="kw">let </span>description = <span class="kw">if let </span><span class="prelude-val">Some</span>(strikethrough_command_text) = strikethrough_command_tip {
-<a href=#871 id=871 data-nosnippet>871</a>        <span class="macro">format!</span>(<span class="string">"{}\n{strikethrough_command_text}"</span>, help_options.individual_command_tip)
-<a href=#872 id=872 data-nosnippet>872</a>    } <span class="kw">else </span>{
-<a href=#873 id=873 data-nosnippet>873</a>        help_options.individual_command_tip.to_string()
-<a href=#874 id=874 data-nosnippet>874</a>    };
-<a href=#875 id=875 data-nosnippet>875</a>
-<a href=#876 id=876 data-nosnippet>876</a>    <span class="kw">let </span>listed_groups =
-<a href=#877 id=877 data-nosnippet>877</a>        create_command_group_commands_pair_from_groups(ctx, msg, groups, owners, help_options)
-<a href=#878 id=878 data-nosnippet>878</a>            .<span class="kw">await</span>;
-<a href=#879 id=879 data-nosnippet>879</a>
-<a href=#880 id=880 data-nosnippet>880</a>    <span class="kw">if </span>listed_groups.is_empty() {
-<a href=#881 id=881 data-nosnippet>881</a>        CustomisedHelpData::NoCommandFound {
-<a href=#882 id=882 data-nosnippet>882</a>            help_error_message: help_options.no_help_available_text,
-<a href=#883 id=883 data-nosnippet>883</a>        }
-<a href=#884 id=884 data-nosnippet>884</a>    } <span class="kw">else </span>{
-<a href=#885 id=885 data-nosnippet>885</a>        CustomisedHelpData::GroupedCommands {
-<a href=#886 id=886 data-nosnippet>886</a>            help_description: description,
-<a href=#887 id=887 data-nosnippet>887</a>            groups: listed_groups,
-<a href=#888 id=888 data-nosnippet>888</a>        }
-<a href=#889 id=889 data-nosnippet>889</a>    }
-<a href=#890 id=890 data-nosnippet>890</a>}
-<a href=#891 id=891 data-nosnippet>891</a>
-<a href=#892 id=892 data-nosnippet>892</a><span class="doccomment">/// Flattens a group with all its nested sub-groups into the passed `group_text` buffer. If
-<a href=#893 id=893 data-nosnippet>893</a>/// `nest_level` is `0`, this function will skip the group's name.
-<a href=#894 id=894 data-nosnippet>894</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#895 id=895 data-nosnippet>895</a></span><span class="kw">fn </span>flatten_group_to_string(
-<a href=#896 id=896 data-nosnippet>896</a>    group_text: <span class="kw-2">&amp;mut </span>String,
-<a href=#897 id=897 data-nosnippet>897</a>    group: <span class="kw-2">&amp;</span>GroupCommandsPair,
-<a href=#898 id=898 data-nosnippet>898</a>    nest_level: usize,
-<a href=#899 id=899 data-nosnippet>899</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
-<a href=#900 id=900 data-nosnippet>900</a>) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
-<a href=#901 id=901 data-nosnippet>901</a>    <span class="kw">let </span>repeated_indent_str = help_options.indention_prefix.repeat(nest_level);
-<a href=#902 id=902 data-nosnippet>902</a>
-<a href=#903 id=903 data-nosnippet>903</a>    <span class="kw">if </span>nest_level &gt; <span class="number">0 </span>{
-<a href=#904 id=904 data-nosnippet>904</a>        <span class="macro">writeln!</span>(group_text, <span class="string">"{repeated_indent_str}__**{}**__"</span>, group.name,)<span class="question-mark">?</span>;
-<a href=#905 id=905 data-nosnippet>905</a>    }
-<a href=#906 id=906 data-nosnippet>906</a>
-<a href=#907 id=907 data-nosnippet>907</a>    <span class="kw">let </span><span class="kw-2">mut </span>summary_or_prefixes = <span class="bool-val">false</span>;
-<a href=#908 id=908 data-nosnippet>908</a>
-<a href=#909 id=909 data-nosnippet>909</a>    <span class="kw">if let </span><span class="prelude-val">Some</span>(group_summary) = group.summary {
-<a href=#910 id=910 data-nosnippet>910</a>        <span class="macro">writeln!</span>(group_text, <span class="string">"{}*{group_summary}*"</span>, <span class="kw-2">&amp;</span>repeated_indent_str)<span class="question-mark">?</span>;
-<a href=#911 id=911 data-nosnippet>911</a>        summary_or_prefixes = <span class="bool-val">true</span>;
-<a href=#912 id=912 data-nosnippet>912</a>    }
-<a href=#913 id=913 data-nosnippet>913</a>
-<a href=#914 id=914 data-nosnippet>914</a>    <span class="kw">if </span>!group.prefixes.is_empty() {
-<a href=#915 id=915 data-nosnippet>915</a>        <span class="macro">writeln!</span>(
-<a href=#916 id=916 data-nosnippet>916</a>            group_text,
-<a href=#917 id=917 data-nosnippet>917</a>            <span class="string">"{}{}: `{}`"</span>,
-<a href=#918 id=918 data-nosnippet>918</a>            <span class="kw-2">&amp;</span>repeated_indent_str,
-<a href=#919 id=919 data-nosnippet>919</a>            help_options.group_prefix,
-<a href=#920 id=920 data-nosnippet>920</a>            group.prefixes.join(<span class="string">"`, `"</span>),
-<a href=#921 id=921 data-nosnippet>921</a>        )<span class="question-mark">?</span>;
-<a href=#922 id=922 data-nosnippet>922</a>        summary_or_prefixes = <span class="bool-val">true</span>;
-<a href=#923 id=923 data-nosnippet>923</a>    }
-<a href=#924 id=924 data-nosnippet>924</a>
-<a href=#925 id=925 data-nosnippet>925</a>    <span class="kw">if </span>summary_or_prefixes {
-<a href=#926 id=926 data-nosnippet>926</a>        <span class="macro">writeln!</span>(group_text)<span class="question-mark">?</span>;
-<a href=#927 id=927 data-nosnippet>927</a>    }
-<a href=#928 id=928 data-nosnippet>928</a>
-<a href=#929 id=929 data-nosnippet>929</a>    <span class="kw">let </span><span class="kw-2">mut </span>joined_commands = group.command_names.join(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"\n{repeated_indent_str}"</span>));
-<a href=#930 id=930 data-nosnippet>930</a>
-<a href=#931 id=931 data-nosnippet>931</a>    <span class="kw">if </span>!group.command_names.is_empty() {
-<a href=#932 id=932 data-nosnippet>932</a>        joined_commands.insert_str(<span class="number">0</span>, <span class="kw-2">&amp;</span>repeated_indent_str);
-<a href=#933 id=933 data-nosnippet>933</a>    }
-<a href=#934 id=934 data-nosnippet>934</a>
-<a href=#935 id=935 data-nosnippet>935</a>    <span class="macro">writeln!</span>(group_text, <span class="string">"{joined_commands}"</span>)<span class="question-mark">?</span>;
-<a href=#936 id=936 data-nosnippet>936</a>
-<a href=#937 id=937 data-nosnippet>937</a>    <span class="kw">for </span>sub_group <span class="kw">in </span><span class="kw-2">&amp;</span>group.sub_groups {
-<a href=#938 id=938 data-nosnippet>938</a>        <span class="kw">if </span>!(sub_group.command_names.is_empty() &amp;&amp; sub_group.sub_groups.is_empty()) {
-<a href=#939 id=939 data-nosnippet>939</a>            <span class="kw">let </span><span class="kw-2">mut </span>sub_group_text = String::default();
-<a href=#940 id=940 data-nosnippet>940</a>
-<a href=#941 id=941 data-nosnippet>941</a>            flatten_group_to_string(<span class="kw-2">&amp;mut </span>sub_group_text, sub_group, nest_level + <span class="number">1</span>, help_options)<span class="question-mark">?</span>;
-<a href=#942 id=942 data-nosnippet>942</a>
-<a href=#943 id=943 data-nosnippet>943</a>            <span class="macro">write!</span>(group_text, <span class="string">"{sub_group_text}"</span>)<span class="question-mark">?</span>;
-<a href=#944 id=944 data-nosnippet>944</a>        }
-<a href=#945 id=945 data-nosnippet>945</a>    }
-<a href=#946 id=946 data-nosnippet>946</a>
-<a href=#947 id=947 data-nosnippet>947</a>    <span class="prelude-val">Ok</span>(())
-<a href=#948 id=948 data-nosnippet>948</a>}
-<a href=#949 id=949 data-nosnippet>949</a>
-<a href=#950 id=950 data-nosnippet>950</a><span class="doccomment">/// Flattens a group with all its nested sub-groups into the passed `group_text` buffer respecting
-<a href=#951 id=951 data-nosnippet>951</a>/// the plain help format. If `nest_level` is `0`, this function will skip the group's name.
-<a href=#952 id=952 data-nosnippet>952</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#953 id=953 data-nosnippet>953</a></span><span class="kw">fn </span>flatten_group_to_plain_string(
-<a href=#954 id=954 data-nosnippet>954</a>    group_text: <span class="kw-2">&amp;mut </span>String,
-<a href=#955 id=955 data-nosnippet>955</a>    group: <span class="kw-2">&amp;</span>GroupCommandsPair,
-<a href=#956 id=956 data-nosnippet>956</a>    nest_level: usize,
-<a href=#957 id=957 data-nosnippet>957</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
-<a href=#958 id=958 data-nosnippet>958</a>) {
-<a href=#959 id=959 data-nosnippet>959</a>    <span class="kw">let </span>repeated_indent_str = help_options.indention_prefix.repeat(nest_level);
-<a href=#960 id=960 data-nosnippet>960</a>
-<a href=#961 id=961 data-nosnippet>961</a>    <span class="kw">if </span>nest_level &gt; <span class="number">0 </span>{
-<a href=#962 id=962 data-nosnippet>962</a>        <span class="macro">write!</span>(group_text, <span class="string">"\n{repeated_indent_str}**{}**"</span>, group.name)
-<a href=#963 id=963 data-nosnippet>963</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#964 id=964 data-nosnippet>964</a>    }
-<a href=#965 id=965 data-nosnippet>965</a>
-<a href=#966 id=966 data-nosnippet>966</a>    <span class="kw">if </span>group.prefixes.is_empty() {
-<a href=#967 id=967 data-nosnippet>967</a>        group_text.push_str(<span class="string">": "</span>);
-<a href=#968 id=968 data-nosnippet>968</a>    } <span class="kw">else </span>{
-<a href=#969 id=969 data-nosnippet>969</a>        <span class="macro">write!</span>(
-<a href=#970 id=970 data-nosnippet>970</a>            group_text,
-<a href=#971 id=971 data-nosnippet>971</a>            <span class="string">" ({}: `{}`): "</span>,
-<a href=#972 id=972 data-nosnippet>972</a>            help_options.group_prefix,
-<a href=#973 id=973 data-nosnippet>973</a>            group.prefixes.join(<span class="string">"`, `"</span>),
-<a href=#974 id=974 data-nosnippet>974</a>        ).expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#975 id=975 data-nosnippet>975</a>    }
-<a href=#976 id=976 data-nosnippet>976</a>
-<a href=#977 id=977 data-nosnippet>977</a>    <span class="kw">let </span>joined_commands = group.command_names.join(<span class="string">", "</span>);
-<a href=#978 id=978 data-nosnippet>978</a>
-<a href=#979 id=979 data-nosnippet>979</a>    group_text.push_str(<span class="kw-2">&amp;</span>joined_commands);
-<a href=#980 id=980 data-nosnippet>980</a>
-<a href=#981 id=981 data-nosnippet>981</a>    <span class="kw">for </span>sub_group <span class="kw">in </span><span class="kw-2">&amp;</span>group.sub_groups {
-<a href=#982 id=982 data-nosnippet>982</a>        <span class="kw">let </span><span class="kw-2">mut </span>sub_group_text = String::default();
-<a href=#983 id=983 data-nosnippet>983</a>
-<a href=#984 id=984 data-nosnippet>984</a>        flatten_group_to_plain_string(<span class="kw-2">&amp;mut </span>sub_group_text, sub_group, nest_level + <span class="number">1</span>, help_options);
-<a href=#985 id=985 data-nosnippet>985</a>
-<a href=#986 id=986 data-nosnippet>986</a>        group_text.push_str(<span class="kw-2">&amp;</span>sub_group_text);
-<a href=#987 id=987 data-nosnippet>987</a>    }
-<a href=#988 id=988 data-nosnippet>988</a>}
-<a href=#989 id=989 data-nosnippet>989</a>
-<a href=#990 id=990 data-nosnippet>990</a><span class="doccomment">/// Sends an embed listing all groups with their commands.
-<a href=#991 id=991 data-nosnippet>991</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#992 id=992 data-nosnippet>992</a></span><span class="kw">async fn </span>send_grouped_commands_embed(
-<a href=#993 id=993 data-nosnippet>993</a>    cache_http: <span class="kw">impl </span>CacheHttp,
-<a href=#994 id=994 data-nosnippet>994</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
-<a href=#995 id=995 data-nosnippet>995</a>    channel_id: ChannelId,
-<a href=#996 id=996 data-nosnippet>996</a>    help_description: <span class="kw-2">&amp;</span>str,
-<a href=#997 id=997 data-nosnippet>997</a>    groups: <span class="kw-2">&amp;</span>[GroupCommandsPair],
-<a href=#998 id=998 data-nosnippet>998</a>    colour: Colour,
-<a href=#999 id=999 data-nosnippet>999</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
-<a href=#1000 id=1000 data-nosnippet>1000</a>    <span class="comment">// creating embed outside message builder since flatten_group_to_string may return an error.
-<a href=#1001 id=1001 data-nosnippet>1001</a>
-<a href=#1002 id=1002 data-nosnippet>1002</a>    </span><span class="kw">let </span><span class="kw-2">mut </span>embed = CreateEmbed::new().colour(colour).description(help_description);
-<a href=#1003 id=1003 data-nosnippet>1003</a>    <span class="kw">for </span>group <span class="kw">in </span>groups {
-<a href=#1004 id=1004 data-nosnippet>1004</a>        <span class="kw">let </span><span class="kw-2">mut </span>embed_text = String::default();
-<a href=#1005 id=1005 data-nosnippet>1005</a>
-<a href=#1006 id=1006 data-nosnippet>1006</a>        flatten_group_to_string(<span class="kw-2">&amp;mut </span>embed_text, group, <span class="number">0</span>, help_options)<span class="question-mark">?</span>;
-<a href=#1007 id=1007 data-nosnippet>1007</a>
-<a href=#1008 id=1008 data-nosnippet>1008</a>        embed = embed.field(group.name, <span class="kw-2">&amp;</span>embed_text, <span class="bool-val">true</span>);
-<a href=#1009 id=1009 data-nosnippet>1009</a>    }
-<a href=#1010 id=1010 data-nosnippet>1010</a>
-<a href=#1011 id=1011 data-nosnippet>1011</a>    <span class="kw">let </span>builder = CreateMessage::new().embed(embed);
-<a href=#1012 id=1012 data-nosnippet>1012</a>    channel_id.send_message(cache_http, builder).<span class="kw">await
-<a href=#1013 id=1013 data-nosnippet>1013</a></span>}
-<a href=#1014 id=1014 data-nosnippet>1014</a>
-<a href=#1015 id=1015 data-nosnippet>1015</a><span class="doccomment">/// Sends embed showcasing information about a single command.
-<a href=#1016 id=1016 data-nosnippet>1016</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#1017 id=1017 data-nosnippet>1017</a></span><span class="kw">async fn </span>send_single_command_embed(
-<a href=#1018 id=1018 data-nosnippet>1018</a>    cache_http: <span class="kw">impl </span>CacheHttp,
-<a href=#1019 id=1019 data-nosnippet>1019</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
-<a href=#1020 id=1020 data-nosnippet>1020</a>    channel_id: ChannelId,
-<a href=#1021 id=1021 data-nosnippet>1021</a>    command: <span class="kw-2">&amp;</span>Command&lt;<span class="lifetime">'_</span>&gt;,
-<a href=#1022 id=1022 data-nosnippet>1022</a>    colour: Colour,
-<a href=#1023 id=1023 data-nosnippet>1023</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
-<a href=#1024 id=1024 data-nosnippet>1024</a>    <span class="kw">let </span><span class="kw-2">mut </span>embed = CreateEmbed::new().title(command.name).colour(colour);
-<a href=#1025 id=1025 data-nosnippet>1025</a>
-<a href=#1026 id=1026 data-nosnippet>1026</a>    <span class="kw">if let </span><span class="prelude-val">Some</span>(desc) = command.description {
-<a href=#1027 id=1027 data-nosnippet>1027</a>        embed = embed.description(desc);
-<a href=#1028 id=1028 data-nosnippet>1028</a>    }
-<a href=#1029 id=1029 data-nosnippet>1029</a>
-<a href=#1030 id=1030 data-nosnippet>1030</a>    <span class="kw">if let </span><span class="prelude-val">Some</span>(usage) = command.usage {
-<a href=#1031 id=1031 data-nosnippet>1031</a>        <span class="kw">let </span>full_usage_text = <span class="kw">if let </span><span class="prelude-val">Some</span>(first_prefix) = command.group_prefixes.first() {
-<a href=#1032 id=1032 data-nosnippet>1032</a>            <span class="macro">format!</span>(<span class="string">"`{first_prefix} {} {usage}`"</span>, command.name)
-<a href=#1033 id=1033 data-nosnippet>1033</a>        } <span class="kw">else </span>{
-<a href=#1034 id=1034 data-nosnippet>1034</a>            <span class="macro">format!</span>(<span class="string">"`{} {usage}`"</span>, command.name)
-<a href=#1035 id=1035 data-nosnippet>1035</a>        };
-<a href=#1036 id=1036 data-nosnippet>1036</a>
-<a href=#1037 id=1037 data-nosnippet>1037</a>        embed = embed.field(help_options.usage_label, full_usage_text, <span class="bool-val">true</span>);
-<a href=#1038 id=1038 data-nosnippet>1038</a>    }
-<a href=#1039 id=1039 data-nosnippet>1039</a>
-<a href=#1040 id=1040 data-nosnippet>1040</a>    <span class="kw">if </span>!command.usage_sample.is_empty() {
-<a href=#1041 id=1041 data-nosnippet>1041</a>        <span class="kw">let </span>full_example_text = <span class="kw">if let </span><span class="prelude-val">Some</span>(first_prefix) = command.group_prefixes.first() {
-<a href=#1042 id=1042 data-nosnippet>1042</a>            <span class="kw">let </span>format_example = |example| <span class="macro">format!</span>(<span class="string">"`{first_prefix} {} {example}`\n"</span>, command.name);
-<a href=#1043 id=1043 data-nosnippet>1043</a>            command.usage_sample.iter().map(format_example).collect::&lt;String&gt;()
-<a href=#1044 id=1044 data-nosnippet>1044</a>        } <span class="kw">else </span>{
-<a href=#1045 id=1045 data-nosnippet>1045</a>            <span class="kw">let </span>format_example = |example| <span class="macro">format!</span>(<span class="string">"`{} {example}`\n"</span>, command.name);
-<a href=#1046 id=1046 data-nosnippet>1046</a>            command.usage_sample.iter().map(format_example).collect::&lt;String&gt;()
-<a href=#1047 id=1047 data-nosnippet>1047</a>        };
-<a href=#1048 id=1048 data-nosnippet>1048</a>        embed = embed.field(help_options.usage_sample_label, full_example_text, <span class="bool-val">true</span>);
-<a href=#1049 id=1049 data-nosnippet>1049</a>    }
-<a href=#1050 id=1050 data-nosnippet>1050</a>
-<a href=#1051 id=1051 data-nosnippet>1051</a>    embed = embed.field(help_options.grouped_label, command.group_name, <span class="bool-val">true</span>);
-<a href=#1052 id=1052 data-nosnippet>1052</a>
-<a href=#1053 id=1053 data-nosnippet>1053</a>    <span class="kw">if </span>!command.aliases.is_empty() {
-<a href=#1054 id=1054 data-nosnippet>1054</a>        embed = embed.field(
-<a href=#1055 id=1055 data-nosnippet>1055</a>            help_options.aliases_label,
-<a href=#1056 id=1056 data-nosnippet>1056</a>            <span class="macro">format!</span>(<span class="string">"`{}`"</span>, command.aliases.join(<span class="string">"`, `"</span>)),
-<a href=#1057 id=1057 data-nosnippet>1057</a>            <span class="bool-val">true</span>,
-<a href=#1058 id=1058 data-nosnippet>1058</a>        );
-<a href=#1059 id=1059 data-nosnippet>1059</a>    }
-<a href=#1060 id=1060 data-nosnippet>1060</a>
-<a href=#1061 id=1061 data-nosnippet>1061</a>    <span class="kw">if </span>!help_options.available_text.is_empty() &amp;&amp; !command.availability.is_empty() {
-<a href=#1062 id=1062 data-nosnippet>1062</a>        embed = embed.field(help_options.available_text, command.availability, <span class="bool-val">true</span>);
-<a href=#1063 id=1063 data-nosnippet>1063</a>    }
-<a href=#1064 id=1064 data-nosnippet>1064</a>
-<a href=#1065 id=1065 data-nosnippet>1065</a>    <span class="kw">if </span>!command.checks.is_empty() {
-<a href=#1066 id=1066 data-nosnippet>1066</a>        embed = embed.field(
-<a href=#1067 id=1067 data-nosnippet>1067</a>            help_options.checks_label,
-<a href=#1068 id=1068 data-nosnippet>1068</a>            <span class="macro">format!</span>(<span class="string">"`{}`"</span>, command.checks.join(<span class="string">"`, `"</span>)),
-<a href=#1069 id=1069 data-nosnippet>1069</a>            <span class="bool-val">true</span>,
-<a href=#1070 id=1070 data-nosnippet>1070</a>        );
-<a href=#1071 id=1071 data-nosnippet>1071</a>    }
-<a href=#1072 id=1072 data-nosnippet>1072</a>
-<a href=#1073 id=1073 data-nosnippet>1073</a>    <span class="kw">if </span>!command.sub_commands.is_empty() {
-<a href=#1074 id=1074 data-nosnippet>1074</a>        embed = embed.field(
-<a href=#1075 id=1075 data-nosnippet>1075</a>            help_options.sub_commands_label,
-<a href=#1076 id=1076 data-nosnippet>1076</a>            <span class="macro">format!</span>(<span class="string">"`{}`"</span>, command.sub_commands.join(<span class="string">"`, `"</span>)),
-<a href=#1077 id=1077 data-nosnippet>1077</a>            <span class="bool-val">true</span>,
-<a href=#1078 id=1078 data-nosnippet>1078</a>        );
-<a href=#1079 id=1079 data-nosnippet>1079</a>    }
-<a href=#1080 id=1080 data-nosnippet>1080</a>
-<a href=#1081 id=1081 data-nosnippet>1081</a>    <span class="kw">let </span>builder = CreateMessage::new().embed(embed);
-<a href=#1082 id=1082 data-nosnippet>1082</a>    channel_id.send_message(cache_http, builder).<span class="kw">await
-<a href=#1083 id=1083 data-nosnippet>1083</a></span>}
-<a href=#1084 id=1084 data-nosnippet>1084</a>
-<a href=#1085 id=1085 data-nosnippet>1085</a><span class="doccomment">/// Sends embed listing commands that are similar to the sent one.
-<a href=#1086 id=1086 data-nosnippet>1086</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#1087 id=1087 data-nosnippet>1087</a></span><span class="kw">async fn </span>send_suggestion_embed(
-<a href=#1088 id=1088 data-nosnippet>1088</a>    cache_http: <span class="kw">impl </span>CacheHttp,
-<a href=#1089 id=1089 data-nosnippet>1089</a>    channel_id: ChannelId,
-<a href=#1090 id=1090 data-nosnippet>1090</a>    help_description: <span class="kw-2">&amp;</span>str,
-<a href=#1091 id=1091 data-nosnippet>1091</a>    suggestions: <span class="kw-2">&amp;</span>Suggestions,
-<a href=#1092 id=1092 data-nosnippet>1092</a>    colour: Colour,
-<a href=#1093 id=1093 data-nosnippet>1093</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
-<a href=#1094 id=1094 data-nosnippet>1094</a>    <span class="kw">let </span>text = help_description.replace(<span class="string">"{}"</span>, <span class="kw-2">&amp;</span>suggestions.join(<span class="string">"`, `"</span>));
-<a href=#1095 id=1095 data-nosnippet>1095</a>
-<a href=#1096 id=1096 data-nosnippet>1096</a>    <span class="kw">let </span>embed = CreateEmbed::new().colour(colour).description(text);
-<a href=#1097 id=1097 data-nosnippet>1097</a>    <span class="kw">let </span>builder = CreateMessage::new().embed(embed);
-<a href=#1098 id=1098 data-nosnippet>1098</a>    channel_id.send_message(cache_http, builder).<span class="kw">await
-<a href=#1099 id=1099 data-nosnippet>1099</a></span>}
-<a href=#1100 id=1100 data-nosnippet>1100</a>
-<a href=#1101 id=1101 data-nosnippet>1101</a><span class="doccomment">/// Sends an embed explaining fetching commands failed.
-<a href=#1102 id=1102 data-nosnippet>1102</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#1103 id=1103 data-nosnippet>1103</a></span><span class="kw">async fn </span>send_error_embed(
-<a href=#1104 id=1104 data-nosnippet>1104</a>    cache_http: <span class="kw">impl </span>CacheHttp,
-<a href=#1105 id=1105 data-nosnippet>1105</a>    channel_id: ChannelId,
-<a href=#1106 id=1106 data-nosnippet>1106</a>    input: <span class="kw-2">&amp;</span>str,
-<a href=#1107 id=1107 data-nosnippet>1107</a>    colour: Colour,
-<a href=#1108 id=1108 data-nosnippet>1108</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
-<a href=#1109 id=1109 data-nosnippet>1109</a>    <span class="kw">let </span>embed = CreateEmbed::new().colour(colour).description(input);
-<a href=#1110 id=1110 data-nosnippet>1110</a>    <span class="kw">let </span>builder = CreateMessage::new().embed(embed);
-<a href=#1111 id=1111 data-nosnippet>1111</a>    channel_id.send_message(cache_http, builder).<span class="kw">await
-<a href=#1112 id=1112 data-nosnippet>1112</a></span>}
-<a href=#1113 id=1113 data-nosnippet>1113</a>
-<a href=#1114 id=1114 data-nosnippet>1114</a><span class="doccomment">/// Posts an embed showing each individual command group and its commands.
-<a href=#1115 id=1115 data-nosnippet>1115</a>///
-<a href=#1116 id=1116 data-nosnippet>1116</a>/// # Examples
-<a href=#1117 id=1117 data-nosnippet>1117</a>///
-<a href=#1118 id=1118 data-nosnippet>1118</a>/// Use the command with [`StandardFramework::help`]:
-<a href=#1119 id=1119 data-nosnippet>1119</a>///
-<a href=#1120 id=1120 data-nosnippet>1120</a>/// ```rust,no_run
-<a href=#1121 id=1121 data-nosnippet>1121</a>/// # use serenity::prelude::*;
-<a href=#1122 id=1122 data-nosnippet>1122</a>/// use std::collections::HashSet;
-<a href=#1123 id=1123 data-nosnippet>1123</a>/// use std::hash::BuildHasher;
-<a href=#1124 id=1124 data-nosnippet>1124</a>///
-<a href=#1125 id=1125 data-nosnippet>1125</a>/// use serenity::framework::standard::help_commands::*;
-<a href=#1126 id=1126 data-nosnippet>1126</a>/// use serenity::framework::standard::macros::help;
-<a href=#1127 id=1127 data-nosnippet>1127</a>/// use serenity::framework::standard::{
-<a href=#1128 id=1128 data-nosnippet>1128</a>///     Args,
-<a href=#1129 id=1129 data-nosnippet>1129</a>///     CommandGroup,
-<a href=#1130 id=1130 data-nosnippet>1130</a>///     CommandResult,
-<a href=#1131 id=1131 data-nosnippet>1131</a>///     HelpOptions,
-<a href=#1132 id=1132 data-nosnippet>1132</a>///     StandardFramework,
-<a href=#1133 id=1133 data-nosnippet>1133</a>/// };
-<a href=#1134 id=1134 data-nosnippet>1134</a>/// use serenity::model::prelude::*;
-<a href=#1135 id=1135 data-nosnippet>1135</a>///
-<a href=#1136 id=1136 data-nosnippet>1136</a>/// #[help]
-<a href=#1137 id=1137 data-nosnippet>1137</a>/// async fn my_help(
-<a href=#1138 id=1138 data-nosnippet>1138</a>///     context: &amp;Context,
-<a href=#1139 id=1139 data-nosnippet>1139</a>///     msg: &amp;Message,
-<a href=#1140 id=1140 data-nosnippet>1140</a>///     args: Args,
-<a href=#1141 id=1141 data-nosnippet>1141</a>///     help_options: &amp;'static HelpOptions,
-<a href=#1142 id=1142 data-nosnippet>1142</a>///     groups: &amp;[&amp;'static CommandGroup],
-<a href=#1143 id=1143 data-nosnippet>1143</a>///     owners: HashSet&lt;UserId&gt;,
-<a href=#1144 id=1144 data-nosnippet>1144</a>/// ) -&gt; CommandResult {
-<a href=#1145 id=1145 data-nosnippet>1145</a>///     let _ = with_embeds(context, msg, args, &amp;help_options, groups, owners).await?;
-<a href=#1146 id=1146 data-nosnippet>1146</a>///     Ok(())
-<a href=#1147 id=1147 data-nosnippet>1147</a>/// }
-<a href=#1148 id=1148 data-nosnippet>1148</a>///
-<a href=#1149 id=1149 data-nosnippet>1149</a>/// let framework = StandardFramework::new().help(&amp;MY_HELP);
-<a href=#1150 id=1150 data-nosnippet>1150</a>/// ```
-<a href=#1151 id=1151 data-nosnippet>1151</a>///
-<a href=#1152 id=1152 data-nosnippet>1152</a>/// # Errors
-<a href=#1153 id=1153 data-nosnippet>1153</a>///
-<a href=#1154 id=1154 data-nosnippet>1154</a>/// Returns the same errors as [`ChannelId::send_message`].
-<a href=#1155 id=1155 data-nosnippet>1155</a>///
-<a href=#1156 id=1156 data-nosnippet>1156</a>/// [`StandardFramework::help`]: crate::framework::standard::StandardFramework::help
-<a href=#1157 id=1157 data-nosnippet>1157</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#1158 id=1158 data-nosnippet>1158</a></span><span class="kw">pub async fn </span>with_embeds(
-<a href=#1159 id=1159 data-nosnippet>1159</a>    ctx: <span class="kw-2">&amp;</span>Context,
-<a href=#1160 id=1160 data-nosnippet>1160</a>    msg: <span class="kw-2">&amp;</span>Message,
-<a href=#1161 id=1161 data-nosnippet>1161</a>    args: Args,
-<a href=#1162 id=1162 data-nosnippet>1162</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
-<a href=#1163 id=1163 data-nosnippet>1163</a>    groups: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CommandGroup],
-<a href=#1164 id=1164 data-nosnippet>1164</a>    owners: HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
-<a href=#1165 id=1165 data-nosnippet>1165</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
-<a href=#1166 id=1166 data-nosnippet>1166</a>    <span class="kw">let </span>formatted_help =
-<a href=#1167 id=1167 data-nosnippet>1167</a>        create_customised_help_data(ctx, msg, <span class="kw-2">&amp;</span>args, groups, <span class="kw-2">&amp;</span>owners, help_options).<span class="kw">await</span>;
-<a href=#1168 id=1168 data-nosnippet>1168</a>
-<a href=#1169 id=1169 data-nosnippet>1169</a>    <span class="kw">match </span>formatted_help {
-<a href=#1170 id=1170 data-nosnippet>1170</a>        CustomisedHelpData::SuggestedCommands {
-<a href=#1171 id=1171 data-nosnippet>1171</a>            <span class="kw-2">ref </span>help_description,
-<a href=#1172 id=1172 data-nosnippet>1172</a>            <span class="kw-2">ref </span>suggestions,
-<a href=#1173 id=1173 data-nosnippet>1173</a>        } =&gt; {
-<a href=#1174 id=1174 data-nosnippet>1174</a>            send_suggestion_embed(
-<a href=#1175 id=1175 data-nosnippet>1175</a>                <span class="kw-2">&amp;</span>ctx.http,
-<a href=#1176 id=1176 data-nosnippet>1176</a>                msg.channel_id,
-<a href=#1177 id=1177 data-nosnippet>1177</a>                help_description,
-<a href=#1178 id=1178 data-nosnippet>1178</a>                suggestions,
-<a href=#1179 id=1179 data-nosnippet>1179</a>                help_options.embed_error_colour,
-<a href=#1180 id=1180 data-nosnippet>1180</a>            )
-<a href=#1181 id=1181 data-nosnippet>1181</a>            .<span class="kw">await
-<a href=#1182 id=1182 data-nosnippet>1182</a>        </span>},
-<a href=#1183 id=1183 data-nosnippet>1183</a>        CustomisedHelpData::NoCommandFound {
-<a href=#1184 id=1184 data-nosnippet>1184</a>            help_error_message,
-<a href=#1185 id=1185 data-nosnippet>1185</a>        } =&gt; {
-<a href=#1186 id=1186 data-nosnippet>1186</a>            send_error_embed(
-<a href=#1187 id=1187 data-nosnippet>1187</a>                <span class="kw-2">&amp;</span>ctx.http,
-<a href=#1188 id=1188 data-nosnippet>1188</a>                msg.channel_id,
-<a href=#1189 id=1189 data-nosnippet>1189</a>                help_error_message,
-<a href=#1190 id=1190 data-nosnippet>1190</a>                help_options.embed_error_colour,
-<a href=#1191 id=1191 data-nosnippet>1191</a>            )
-<a href=#1192 id=1192 data-nosnippet>1192</a>            .<span class="kw">await
-<a href=#1193 id=1193 data-nosnippet>1193</a>        </span>},
-<a href=#1194 id=1194 data-nosnippet>1194</a>        CustomisedHelpData::GroupedCommands {
-<a href=#1195 id=1195 data-nosnippet>1195</a>            <span class="kw-2">ref </span>help_description,
-<a href=#1196 id=1196 data-nosnippet>1196</a>            <span class="kw-2">ref </span>groups,
-<a href=#1197 id=1197 data-nosnippet>1197</a>        } =&gt; {
-<a href=#1198 id=1198 data-nosnippet>1198</a>            send_grouped_commands_embed(
-<a href=#1199 id=1199 data-nosnippet>1199</a>                <span class="kw-2">&amp;</span>ctx.http,
-<a href=#1200 id=1200 data-nosnippet>1200</a>                help_options,
-<a href=#1201 id=1201 data-nosnippet>1201</a>                msg.channel_id,
-<a href=#1202 id=1202 data-nosnippet>1202</a>                help_description,
-<a href=#1203 id=1203 data-nosnippet>1203</a>                groups,
-<a href=#1204 id=1204 data-nosnippet>1204</a>                help_options.embed_success_colour,
-<a href=#1205 id=1205 data-nosnippet>1205</a>            )
-<a href=#1206 id=1206 data-nosnippet>1206</a>            .<span class="kw">await
-<a href=#1207 id=1207 data-nosnippet>1207</a>        </span>},
-<a href=#1208 id=1208 data-nosnippet>1208</a>        CustomisedHelpData::SingleCommand {
-<a href=#1209 id=1209 data-nosnippet>1209</a>            <span class="kw-2">ref </span>command,
-<a href=#1210 id=1210 data-nosnippet>1210</a>        } =&gt; {
-<a href=#1211 id=1211 data-nosnippet>1211</a>            send_single_command_embed(
-<a href=#1212 id=1212 data-nosnippet>1212</a>                <span class="kw-2">&amp;</span>ctx.http,
-<a href=#1213 id=1213 data-nosnippet>1213</a>                help_options,
-<a href=#1214 id=1214 data-nosnippet>1214</a>                msg.channel_id,
-<a href=#1215 id=1215 data-nosnippet>1215</a>                command,
-<a href=#1216 id=1216 data-nosnippet>1216</a>                help_options.embed_success_colour,
-<a href=#1217 id=1217 data-nosnippet>1217</a>            )
-<a href=#1218 id=1218 data-nosnippet>1218</a>            .<span class="kw">await
-<a href=#1219 id=1219 data-nosnippet>1219</a>        </span>},
-<a href=#1220 id=1220 data-nosnippet>1220</a>    }
-<a href=#1221 id=1221 data-nosnippet>1221</a>}
-<a href=#1222 id=1222 data-nosnippet>1222</a>
-<a href=#1223 id=1223 data-nosnippet>1223</a><span class="doccomment">/// Turns grouped commands into a [`String`] taking plain help format into account.
-<a href=#1224 id=1224 data-nosnippet>1224</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#1225 id=1225 data-nosnippet>1225</a></span><span class="kw">fn </span>grouped_commands_to_plain_string(
-<a href=#1226 id=1226 data-nosnippet>1226</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
-<a href=#1227 id=1227 data-nosnippet>1227</a>    help_description: <span class="kw-2">&amp;</span>str,
-<a href=#1228 id=1228 data-nosnippet>1228</a>    groups: <span class="kw-2">&amp;</span>[GroupCommandsPair],
-<a href=#1229 id=1229 data-nosnippet>1229</a>) -&gt; String {
-<a href=#1230 id=1230 data-nosnippet>1230</a>    <span class="kw">let </span><span class="kw-2">mut </span>result = <span class="string">"__**Commands**__\n"</span>.to_string();
-<a href=#1231 id=1231 data-nosnippet>1231</a>
-<a href=#1232 id=1232 data-nosnippet>1232</a>    result.push_str(help_description);
-<a href=#1233 id=1233 data-nosnippet>1233</a>    result.push(<span class="string">'\n'</span>);
-<a href=#1234 id=1234 data-nosnippet>1234</a>
-<a href=#1235 id=1235 data-nosnippet>1235</a>    <span class="kw">for </span>group <span class="kw">in </span>groups {
-<a href=#1236 id=1236 data-nosnippet>1236</a>        <span class="macro">write!</span>(result, <span class="string">"\n**{}**"</span>, <span class="kw-2">&amp;</span>group.name).expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1237 id=1237 data-nosnippet>1237</a>
-<a href=#1238 id=1238 data-nosnippet>1238</a>        flatten_group_to_plain_string(<span class="kw-2">&amp;mut </span>result, group, <span class="number">0</span>, help_options);
-<a href=#1239 id=1239 data-nosnippet>1239</a>    }
-<a href=#1240 id=1240 data-nosnippet>1240</a>
-<a href=#1241 id=1241 data-nosnippet>1241</a>    result
-<a href=#1242 id=1242 data-nosnippet>1242</a>}
-<a href=#1243 id=1243 data-nosnippet>1243</a>
-<a href=#1244 id=1244 data-nosnippet>1244</a><span class="doccomment">/// Turns a single command into a [`String`] taking plain help format into account.
-<a href=#1245 id=1245 data-nosnippet>1245</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#1246 id=1246 data-nosnippet>1246</a></span><span class="kw">fn </span>single_command_to_plain_string(help_options: <span class="kw-2">&amp;</span>HelpOptions, command: <span class="kw-2">&amp;</span>Command&lt;<span class="lifetime">'_</span>&gt;) -&gt; String {
-<a href=#1247 id=1247 data-nosnippet>1247</a>    <span class="kw">let </span><span class="kw-2">mut </span>result = String::new();
-<a href=#1248 id=1248 data-nosnippet>1248</a>
-<a href=#1249 id=1249 data-nosnippet>1249</a>    <span class="macro">writeln!</span>(result, <span class="string">"__**{}**__"</span>, command.name).expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1250 id=1250 data-nosnippet>1250</a>
-<a href=#1251 id=1251 data-nosnippet>1251</a>    <span class="kw">if </span>!command.aliases.is_empty() {
-<a href=#1252 id=1252 data-nosnippet>1252</a>        <span class="macro">write!</span>(result, <span class="string">"**{}**: `{}`"</span>, help_options.aliases_label, command.aliases.join(<span class="string">"`, `"</span>))
-<a href=#1253 id=1253 data-nosnippet>1253</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1254 id=1254 data-nosnippet>1254</a>    }
-<a href=#1255 id=1255 data-nosnippet>1255</a>
-<a href=#1256 id=1256 data-nosnippet>1256</a>    <span class="kw">if let </span><span class="prelude-val">Some</span>(description) = command.description {
-<a href=#1257 id=1257 data-nosnippet>1257</a>        <span class="macro">writeln!</span>(result, <span class="string">"**{}**: {description}"</span>, help_options.description_label)
-<a href=#1258 id=1258 data-nosnippet>1258</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1259 id=1259 data-nosnippet>1259</a>    }
-<a href=#1260 id=1260 data-nosnippet>1260</a>
-<a href=#1261 id=1261 data-nosnippet>1261</a>    <span class="kw">if let </span><span class="prelude-val">Some</span>(usage) = command.usage {
-<a href=#1262 id=1262 data-nosnippet>1262</a>        <span class="kw">if let </span><span class="prelude-val">Some</span>(first_prefix) = command.group_prefixes.first() {
-<a href=#1263 id=1263 data-nosnippet>1263</a>            <span class="macro">writeln!</span>(
-<a href=#1264 id=1264 data-nosnippet>1264</a>                result,
-<a href=#1265 id=1265 data-nosnippet>1265</a>                <span class="string">"**{}**: `{first_prefix} {} {usage}`"</span>,
-<a href=#1266 id=1266 data-nosnippet>1266</a>                help_options.usage_label, command.name
-<a href=#1267 id=1267 data-nosnippet>1267</a>            )
-<a href=#1268 id=1268 data-nosnippet>1268</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1269 id=1269 data-nosnippet>1269</a>        } <span class="kw">else </span>{
-<a href=#1270 id=1270 data-nosnippet>1270</a>            <span class="macro">writeln!</span>(result, <span class="string">"**{}**: `{} {usage}`"</span>, help_options.usage_label, command.name)
-<a href=#1271 id=1271 data-nosnippet>1271</a>                .expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1272 id=1272 data-nosnippet>1272</a>        }
-<a href=#1273 id=1273 data-nosnippet>1273</a>    }
-<a href=#1274 id=1274 data-nosnippet>1274</a>
-<a href=#1275 id=1275 data-nosnippet>1275</a>    <span class="kw">if </span>!command.usage_sample.is_empty() {
-<a href=#1276 id=1276 data-nosnippet>1276</a>        <span class="kw">if let </span><span class="prelude-val">Some</span>(first_prefix) = command.group_prefixes.first() {
-<a href=#1277 id=1277 data-nosnippet>1277</a>            <span class="kw">let </span>format_example = |example| {
-<a href=#1278 id=1278 data-nosnippet>1278</a>                <span class="macro">writeln!</span>(
-<a href=#1279 id=1279 data-nosnippet>1279</a>                    result,
-<a href=#1280 id=1280 data-nosnippet>1280</a>                    <span class="string">"**{}**: `{first_prefix} {} {example}`"</span>,
-<a href=#1281 id=1281 data-nosnippet>1281</a>                    help_options.usage_sample_label, command.name
-<a href=#1282 id=1282 data-nosnippet>1282</a>                )
-<a href=#1283 id=1283 data-nosnippet>1283</a>                .expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1284 id=1284 data-nosnippet>1284</a>            };
-<a href=#1285 id=1285 data-nosnippet>1285</a>            command.usage_sample.iter().for_each(format_example);
-<a href=#1286 id=1286 data-nosnippet>1286</a>        } <span class="kw">else </span>{
-<a href=#1287 id=1287 data-nosnippet>1287</a>            <span class="kw">let </span>format_example = |example| {
-<a href=#1288 id=1288 data-nosnippet>1288</a>                <span class="macro">writeln!</span>(
-<a href=#1289 id=1289 data-nosnippet>1289</a>                    result,
-<a href=#1290 id=1290 data-nosnippet>1290</a>                    <span class="string">"**{}**: `{} {example}`"</span>,
-<a href=#1291 id=1291 data-nosnippet>1291</a>                    help_options.usage_sample_label, command.name
-<a href=#1292 id=1292 data-nosnippet>1292</a>                )
-<a href=#1293 id=1293 data-nosnippet>1293</a>                .expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1294 id=1294 data-nosnippet>1294</a>            };
-<a href=#1295 id=1295 data-nosnippet>1295</a>            command.usage_sample.iter().for_each(format_example);
-<a href=#1296 id=1296 data-nosnippet>1296</a>        }
-<a href=#1297 id=1297 data-nosnippet>1297</a>    }
-<a href=#1298 id=1298 data-nosnippet>1298</a>
-<a href=#1299 id=1299 data-nosnippet>1299</a>    <span class="macro">writeln!</span>(result, <span class="string">"**{}**: {}"</span>, help_options.grouped_label, command.group_name)
-<a href=#1300 id=1300 data-nosnippet>1300</a>        .expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1301 id=1301 data-nosnippet>1301</a>
-<a href=#1302 id=1302 data-nosnippet>1302</a>    <span class="kw">if </span>!help_options.available_text.is_empty() &amp;&amp; !command.availability.is_empty() {
-<a href=#1303 id=1303 data-nosnippet>1303</a>        <span class="macro">writeln!</span>(result, <span class="string">"**{}**: {}"</span>, help_options.available_text, command.availability)
-<a href=#1304 id=1304 data-nosnippet>1304</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1305 id=1305 data-nosnippet>1305</a>    }
-<a href=#1306 id=1306 data-nosnippet>1306</a>
-<a href=#1307 id=1307 data-nosnippet>1307</a>    <span class="kw">if </span>!command.sub_commands.is_empty() {
-<a href=#1308 id=1308 data-nosnippet>1308</a>        <span class="macro">writeln!</span>(
-<a href=#1309 id=1309 data-nosnippet>1309</a>            result,
-<a href=#1310 id=1310 data-nosnippet>1310</a>            <span class="string">"**{}**: `{}`"</span>,
-<a href=#1311 id=1311 data-nosnippet>1311</a>            help_options.sub_commands_label,
-<a href=#1312 id=1312 data-nosnippet>1312</a>            command.sub_commands.join(<span class="string">"`, `"</span>),
-<a href=#1313 id=1313 data-nosnippet>1313</a>        )
-<a href=#1314 id=1314 data-nosnippet>1314</a>        .expect(<span class="string">"writing to a string should never fail"</span>);
-<a href=#1315 id=1315 data-nosnippet>1315</a>    }
-<a href=#1316 id=1316 data-nosnippet>1316</a>
-<a href=#1317 id=1317 data-nosnippet>1317</a>    result
-<a href=#1318 id=1318 data-nosnippet>1318</a>}
-<a href=#1319 id=1319 data-nosnippet>1319</a>
-<a href=#1320 id=1320 data-nosnippet>1320</a><span class="doccomment">/// Posts formatted text displaying each individual command group and its commands.
-<a href=#1321 id=1321 data-nosnippet>1321</a>///
-<a href=#1322 id=1322 data-nosnippet>1322</a>/// # Examples
-<a href=#1323 id=1323 data-nosnippet>1323</a>///
-<a href=#1324 id=1324 data-nosnippet>1324</a>/// Use the command with `exec_help`:
-<a href=#1325 id=1325 data-nosnippet>1325</a>///
-<a href=#1326 id=1326 data-nosnippet>1326</a>/// ```rust,no_run
-<a href=#1327 id=1327 data-nosnippet>1327</a>/// # use serenity::prelude::*;
-<a href=#1328 id=1328 data-nosnippet>1328</a>/// use std::collections::HashSet;
-<a href=#1329 id=1329 data-nosnippet>1329</a>/// use std::hash::BuildHasher;
-<a href=#1330 id=1330 data-nosnippet>1330</a>///
-<a href=#1331 id=1331 data-nosnippet>1331</a>/// use serenity::framework::standard::help_commands::*;
-<a href=#1332 id=1332 data-nosnippet>1332</a>/// use serenity::framework::standard::macros::help;
-<a href=#1333 id=1333 data-nosnippet>1333</a>/// use serenity::framework::standard::{
-<a href=#1334 id=1334 data-nosnippet>1334</a>///     Args,
-<a href=#1335 id=1335 data-nosnippet>1335</a>///     CommandGroup,
-<a href=#1336 id=1336 data-nosnippet>1336</a>///     CommandResult,
-<a href=#1337 id=1337 data-nosnippet>1337</a>///     HelpOptions,
-<a href=#1338 id=1338 data-nosnippet>1338</a>///     StandardFramework,
-<a href=#1339 id=1339 data-nosnippet>1339</a>/// };
-<a href=#1340 id=1340 data-nosnippet>1340</a>/// use serenity::model::prelude::*;
-<a href=#1341 id=1341 data-nosnippet>1341</a>///
-<a href=#1342 id=1342 data-nosnippet>1342</a>/// #[help]
-<a href=#1343 id=1343 data-nosnippet>1343</a>/// async fn my_help(
-<a href=#1344 id=1344 data-nosnippet>1344</a>///     context: &amp;Context,
-<a href=#1345 id=1345 data-nosnippet>1345</a>///     msg: &amp;Message,
-<a href=#1346 id=1346 data-nosnippet>1346</a>///     args: Args,
-<a href=#1347 id=1347 data-nosnippet>1347</a>///     help_options: &amp;'static HelpOptions,
-<a href=#1348 id=1348 data-nosnippet>1348</a>///     groups: &amp;[&amp;'static CommandGroup],
-<a href=#1349 id=1349 data-nosnippet>1349</a>///     owners: HashSet&lt;UserId&gt;,
-<a href=#1350 id=1350 data-nosnippet>1350</a>/// ) -&gt; CommandResult {
-<a href=#1351 id=1351 data-nosnippet>1351</a>///     let _ = plain(context, msg, args, &amp;help_options, groups, owners).await?;
-<a href=#1352 id=1352 data-nosnippet>1352</a>///     Ok(())
-<a href=#1353 id=1353 data-nosnippet>1353</a>/// }
-<a href=#1354 id=1354 data-nosnippet>1354</a>///
-<a href=#1355 id=1355 data-nosnippet>1355</a>/// let framework = StandardFramework::new().help(&amp;MY_HELP);
-<a href=#1356 id=1356 data-nosnippet>1356</a>/// ```
-<a href=#1357 id=1357 data-nosnippet>1357</a>/// # Errors
-<a href=#1358 id=1358 data-nosnippet>1358</a>///
-<a href=#1359 id=1359 data-nosnippet>1359</a>/// Returns the same errors as [`ChannelId::send_message`].
-<a href=#1360 id=1360 data-nosnippet>1360</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#1361 id=1361 data-nosnippet>1361</a></span><span class="kw">pub async fn </span>plain(
-<a href=#1362 id=1362 data-nosnippet>1362</a>    ctx: <span class="kw-2">&amp;</span>Context,
-<a href=#1363 id=1363 data-nosnippet>1363</a>    msg: <span class="kw-2">&amp;</span>Message,
-<a href=#1364 id=1364 data-nosnippet>1364</a>    args: Args,
-<a href=#1365 id=1365 data-nosnippet>1365</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
-<a href=#1366 id=1366 data-nosnippet>1366</a>    groups: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CommandGroup],
-<a href=#1367 id=1367 data-nosnippet>1367</a>    owners: HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
-<a href=#1368 id=1368 data-nosnippet>1368</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
-<a href=#1369 id=1369 data-nosnippet>1369</a>    <span class="kw">let </span>formatted_help =
-<a href=#1370 id=1370 data-nosnippet>1370</a>        create_customised_help_data(ctx, msg, <span class="kw-2">&amp;</span>args, groups, <span class="kw-2">&amp;</span>owners, help_options).<span class="kw">await</span>;
-<a href=#1371 id=1371 data-nosnippet>1371</a>
-<a href=#1372 id=1372 data-nosnippet>1372</a>    <span class="kw">let </span>result = <span class="kw">match </span>formatted_help {
-<a href=#1373 id=1373 data-nosnippet>1373</a>        CustomisedHelpData::SuggestedCommands {
-<a href=#1374 id=1374 data-nosnippet>1374</a>            <span class="kw-2">ref </span>help_description,
-<a href=#1375 id=1375 data-nosnippet>1375</a>            <span class="kw-2">ref </span>suggestions,
-<a href=#1376 id=1376 data-nosnippet>1376</a>        } =&gt; help_description.replace(<span class="string">"{}"</span>, <span class="kw-2">&amp;</span>suggestions.join(<span class="string">"`, `"</span>)),
-<a href=#1377 id=1377 data-nosnippet>1377</a>        CustomisedHelpData::NoCommandFound {
-<a href=#1378 id=1378 data-nosnippet>1378</a>            help_error_message,
-<a href=#1379 id=1379 data-nosnippet>1379</a>        } =&gt; help_error_message.to_string(),
-<a href=#1380 id=1380 data-nosnippet>1380</a>        CustomisedHelpData::GroupedCommands {
-<a href=#1381 id=1381 data-nosnippet>1381</a>            <span class="kw-2">ref </span>help_description,
-<a href=#1382 id=1382 data-nosnippet>1382</a>            <span class="kw-2">ref </span>groups,
-<a href=#1383 id=1383 data-nosnippet>1383</a>        } =&gt; grouped_commands_to_plain_string(help_options, help_description, groups),
-<a href=#1384 id=1384 data-nosnippet>1384</a>        CustomisedHelpData::SingleCommand {
-<a href=#1385 id=1385 data-nosnippet>1385</a>            <span class="kw-2">ref </span>command,
-<a href=#1386 id=1386 data-nosnippet>1386</a>        } =&gt; single_command_to_plain_string(help_options, command),
-<a href=#1387 id=1387 data-nosnippet>1387</a>    };
-<a href=#1388 id=1388 data-nosnippet>1388</a>
-<a href=#1389 id=1389 data-nosnippet>1389</a>    msg.channel_id.say(<span class="kw-2">&amp;</span>ctx, result).<span class="kw">await
-<a href=#1390 id=1390 data-nosnippet>1390</a></span>}
-<a href=#1391 id=1391 data-nosnippet>1391</a>
-<a href=#1392 id=1392 data-nosnippet>1392</a><span class="attr">#[cfg(all(test, feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
-<a href=#1393 id=1393 data-nosnippet>1393</a></span><span class="kw">mod </span>tests {
-<a href=#1394 id=1394 data-nosnippet>1394</a>    <span class="kw">use super</span>::{SuggestedCommandName, Suggestions};
-<a href=#1395 id=1395 data-nosnippet>1395</a>
-<a href=#1396 id=1396 data-nosnippet>1396</a>    <span class="attr">#[test]
-<a href=#1397 id=1397 data-nosnippet>1397</a>    </span><span class="kw">fn </span>suggestions_join() {
-<a href=#1398 id=1398 data-nosnippet>1398</a>        <span class="kw">let </span>names = <span class="macro">vec!</span>[
-<a href=#1399 id=1399 data-nosnippet>1399</a>            SuggestedCommandName {
-<a href=#1400 id=1400 data-nosnippet>1400</a>                name: <span class="string">"aa"</span>.to_owned(),
-<a href=#1401 id=1401 data-nosnippet>1401</a>                levenshtein_distance: <span class="number">0</span>,
-<a href=#1402 id=1402 data-nosnippet>1402</a>            },
-<a href=#1403 id=1403 data-nosnippet>1403</a>            SuggestedCommandName {
-<a href=#1404 id=1404 data-nosnippet>1404</a>                name: <span class="string">"bbb"</span>.to_owned(),
-<a href=#1405 id=1405 data-nosnippet>1405</a>                levenshtein_distance: <span class="number">0</span>,
-<a href=#1406 id=1406 data-nosnippet>1406</a>            },
-<a href=#1407 id=1407 data-nosnippet>1407</a>            SuggestedCommandName {
-<a href=#1408 id=1408 data-nosnippet>1408</a>                name: <span class="string">"cccc"</span>.to_owned(),
-<a href=#1409 id=1409 data-nosnippet>1409</a>                levenshtein_distance: <span class="number">0</span>,
-<a href=#1410 id=1410 data-nosnippet>1410</a>            },
-<a href=#1411 id=1411 data-nosnippet>1411</a>        ];
-<a href=#1412 id=1412 data-nosnippet>1412</a>
-<a href=#1413 id=1413 data-nosnippet>1413</a>        <span class="kw">let </span>actual = Suggestions(names).join(<span class="string">", "</span>);
-<a href=#1414 id=1414 data-nosnippet>1414</a>
-<a href=#1415 id=1415 data-nosnippet>1415</a>        <span class="macro">assert_eq!</span>(actual, <span class="string">"aa, bbb, cccc"</span>);
-<a href=#1416 id=1416 data-nosnippet>1416</a>        <span class="macro">assert_eq!</span>(actual.capacity(), <span class="number">13</span>);
-<a href=#1417 id=1417 data-nosnippet>1417</a>    }
-<a href=#1418 id=1418 data-nosnippet>1418</a>}
+<a href=#495 id=495 data-nosnippet>495</a>                similar_commands.sort_unstable_by_key(|a| a.levenshtein_distance);
+<a href=#496 id=496 data-nosnippet>496</a>
+<a href=#497 id=497 data-nosnippet>497</a>                <span class="kw">let </span>check_names: Vec&lt;String&gt; = command
+<a href=#498 id=498 data-nosnippet>498</a>                    .options
+<a href=#499 id=499 data-nosnippet>499</a>                    .checks
+<a href=#500 id=500 data-nosnippet>500</a>                    .iter()
+<a href=#501 id=501 data-nosnippet>501</a>                    .chain(group.options.checks.iter())
+<a href=#502 id=502 data-nosnippet>502</a>                    .filter(|check| check.display_in_help)
+<a href=#503 id=503 data-nosnippet>503</a>                    .map(|check| check.name.to_string())
+<a href=#504 id=504 data-nosnippet>504</a>                    .collect();
+<a href=#505 id=505 data-nosnippet>505</a>
+<a href=#506 id=506 data-nosnippet>506</a>                <span class="kw">let </span>sub_command_names: Vec&lt;String&gt; = options
+<a href=#507 id=507 data-nosnippet>507</a>                    .sub_commands
+<a href=#508 id=508 data-nosnippet>508</a>                    .iter()
+<a href=#509 id=509 data-nosnippet>509</a>                    .filter(|cmd| cmd.options.help_available)
+<a href=#510 id=510 data-nosnippet>510</a>                    .map(|cmd| cmd.options.names[<span class="number">0</span>].to_string())
+<a href=#511 id=511 data-nosnippet>511</a>                    .collect();
+<a href=#512 id=512 data-nosnippet>512</a>
+<a href=#513 id=513 data-nosnippet>513</a>                <span class="kw">return </span><span class="prelude-val">Ok</span>(CustomisedHelpData::SingleCommand {
+<a href=#514 id=514 data-nosnippet>514</a>                    command: Command {
+<a href=#515 id=515 data-nosnippet>515</a>                        name: options.names[<span class="number">0</span>],
+<a href=#516 id=516 data-nosnippet>516</a>                        description: options.desc,
+<a href=#517 id=517 data-nosnippet>517</a>                        group_name: group.name,
+<a href=#518 id=518 data-nosnippet>518</a>                        group_prefixes: group.options.prefixes,
+<a href=#519 id=519 data-nosnippet>519</a>                        checks: check_names,
+<a href=#520 id=520 data-nosnippet>520</a>                        aliases: options.names[<span class="number">1</span>..].to_vec(),
+<a href=#521 id=521 data-nosnippet>521</a>                        availability: available_text,
+<a href=#522 id=522 data-nosnippet>522</a>                        usage: options.usage,
+<a href=#523 id=523 data-nosnippet>523</a>                        usage_sample: options.examples.to_vec(),
+<a href=#524 id=524 data-nosnippet>524</a>                        sub_commands: sub_command_names,
+<a href=#525 id=525 data-nosnippet>525</a>                    },
+<a href=#526 id=526 data-nosnippet>526</a>                });
+<a href=#527 id=527 data-nosnippet>527</a>            }
+<a href=#528 id=528 data-nosnippet>528</a>
+<a href=#529 id=529 data-nosnippet>529</a>            <span class="kw">if let </span><span class="prelude-val">Ok</span>(found) = nested_group_command_search(
+<a href=#530 id=530 data-nosnippet>530</a>                ctx,
+<a href=#531 id=531 data-nosnippet>531</a>                msg,
+<a href=#532 id=532 data-nosnippet>532</a>                group.options.sub_groups,
+<a href=#533 id=533 data-nosnippet>533</a>                name,
+<a href=#534 id=534 data-nosnippet>534</a>                help_options,
+<a href=#535 id=535 data-nosnippet>535</a>                similar_commands,
+<a href=#536 id=536 data-nosnippet>536</a>                owners,
+<a href=#537 id=537 data-nosnippet>537</a>            )
+<a href=#538 id=538 data-nosnippet>538</a>            .<span class="kw">await
+<a href=#539 id=539 data-nosnippet>539</a>            </span>{
+<a href=#540 id=540 data-nosnippet>540</a>                <span class="kw">return </span><span class="prelude-val">Ok</span>(found);
+<a href=#541 id=541 data-nosnippet>541</a>            }
+<a href=#542 id=542 data-nosnippet>542</a>        }
+<a href=#543 id=543 data-nosnippet>543</a>
+<a href=#544 id=544 data-nosnippet>544</a>        <span class="prelude-val">Err</span>(())
+<a href=#545 id=545 data-nosnippet>545</a>    }
+<a href=#546 id=546 data-nosnippet>546</a>    .boxed()
+<a href=#547 id=547 data-nosnippet>547</a>}
+<a href=#548 id=548 data-nosnippet>548</a>
+<a href=#549 id=549 data-nosnippet>549</a><span class="doccomment">/// Tries to extract a single command matching searched command name otherwise returns similar
+<a href=#550 id=550 data-nosnippet>550</a>/// commands.
+<a href=#551 id=551 data-nosnippet>551</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+<a href=#552 id=552 data-nosnippet>552</a></span><span class="kw">async fn </span>fetch_single_command&lt;<span class="lifetime">'a</span>&gt;(
+<a href=#553 id=553 data-nosnippet>553</a>    ctx: <span class="kw-2">&amp;</span>Context,
+<a href=#554 id=554 data-nosnippet>554</a>    msg: <span class="kw-2">&amp;</span>Message,
+<a href=#555 id=555 data-nosnippet>555</a>    groups: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CommandGroup],
+<a href=#556 id=556 data-nosnippet>556</a>    name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+<a href=#557 id=557 data-nosnippet>557</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
+<a href=#558 id=558 data-nosnippet>558</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
+<a href=#559 id=559 data-nosnippet>559</a>) -&gt; <span class="prelude-ty">Result</span>&lt;CustomisedHelpData&lt;<span class="lifetime">'a</span>&gt;, Vec&lt;SuggestedCommandName&gt;&gt; {
+<a href=#560 id=560 data-nosnippet>560</a>    <span class="kw">let </span><span class="kw-2">mut </span>similar_commands: Vec&lt;SuggestedCommandName&gt; = Vec::new();
+<a href=#561 id=561 data-nosnippet>561</a>    <span class="kw">let </span><span class="kw-2">mut </span>name = name.to_string();
+<a href=#562 id=562 data-nosnippet>562</a>
+<a href=#563 id=563 data-nosnippet>563</a>    nested_group_command_search(
+<a href=#564 id=564 data-nosnippet>564</a>        ctx,
+<a href=#565 id=565 data-nosnippet>565</a>        msg,
+<a href=#566 id=566 data-nosnippet>566</a>        groups,
+<a href=#567 id=567 data-nosnippet>567</a>        <span class="kw-2">&amp;mut </span>name,
+<a href=#568 id=568 data-nosnippet>568</a>        help_options,
+<a href=#569 id=569 data-nosnippet>569</a>        <span class="kw-2">&amp;mut </span>similar_commands,
+<a href=#570 id=570 data-nosnippet>570</a>        owners,
+<a href=#571 id=571 data-nosnippet>571</a>    )
+<a href=#572 id=572 data-nosnippet>572</a>    .<span class="kw">await
+<a href=#573 id=573 data-nosnippet>573</a>    </span>.map_err(|()| similar_commands)
+<a href=#574 id=574 data-nosnippet>574</a>}
+<a href=#575 id=575 data-nosnippet>575</a>
+<a href=#576 id=576 data-nosnippet>576</a><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+<a href=#577 id=577 data-nosnippet>577</a>#[allow(clippy::too_many_arguments)]
+<a href=#578 id=578 data-nosnippet>578</a></span><span class="kw">async fn </span>fill_eligible_commands&lt;<span class="lifetime">'a</span>&gt;(
+<a href=#579 id=579 data-nosnippet>579</a>    ctx: <span class="kw-2">&amp;</span>Context,
+<a href=#580 id=580 data-nosnippet>580</a>    msg: <span class="kw-2">&amp;</span>Message,
+<a href=#581 id=581 data-nosnippet>581</a>    commands: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>InternalCommand],
+<a href=#582 id=582 data-nosnippet>582</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
+<a href=#583 id=583 data-nosnippet>583</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
+<a href=#584 id=584 data-nosnippet>584</a>    group: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>CommandGroup,
+<a href=#585 id=585 data-nosnippet>585</a>    to_fill: <span class="kw-2">&amp;mut </span>GroupCommandsPair,
+<a href=#586 id=586 data-nosnippet>586</a>    highest_formatter: <span class="kw-2">&amp;mut </span>HelpBehaviour,
+<a href=#587 id=587 data-nosnippet>587</a>) {
+<a href=#588 id=588 data-nosnippet>588</a>    to_fill.name = group.name;
+<a href=#589 id=589 data-nosnippet>589</a>    to_fill.prefixes = group.options.prefixes.to_vec();
+<a href=#590 id=590 data-nosnippet>590</a>
+<a href=#591 id=591 data-nosnippet>591</a>    <span class="kw">let </span>group_behaviour = {
+<a href=#592 id=592 data-nosnippet>592</a>        <span class="kw">if let </span>HelpBehaviour::Hide = highest_formatter {
+<a href=#593 id=593 data-nosnippet>593</a>            HelpBehaviour::Hide
+<a href=#594 id=594 data-nosnippet>594</a>        } <span class="kw">else </span>{
+<a href=#595 id=595 data-nosnippet>595</a>            std::cmp::max(
+<a href=#596 id=596 data-nosnippet>596</a>                <span class="kw-2">*</span>highest_formatter,
+<a href=#597 id=597 data-nosnippet>597</a>                check_common_behaviour(ctx, msg, <span class="kw-2">&amp;</span>group.options, owners, help_options),
+<a href=#598 id=598 data-nosnippet>598</a>            )
+<a href=#599 id=599 data-nosnippet>599</a>        }
+<a href=#600 id=600 data-nosnippet>600</a>    };
+<a href=#601 id=601 data-nosnippet>601</a>
+<a href=#602 id=602 data-nosnippet>602</a>    <span class="kw-2">*</span>highest_formatter = group_behaviour;
+<a href=#603 id=603 data-nosnippet>603</a>
+<a href=#604 id=604 data-nosnippet>604</a>    <span class="kw">for </span>command <span class="kw">in </span>commands {
+<a href=#605 id=605 data-nosnippet>605</a>        <span class="kw">let </span>command = <span class="kw-2">*</span>command;
+<a href=#606 id=606 data-nosnippet>606</a>        <span class="kw">let </span>options = <span class="kw-2">&amp;</span>command.options;
+<a href=#607 id=607 data-nosnippet>607</a>        <span class="kw">let </span>name = <span class="kw-2">&amp;</span>options.names[<span class="number">0</span>];
+<a href=#608 id=608 data-nosnippet>608</a>
+<a href=#609 id=609 data-nosnippet>609</a>        <span class="kw">if </span>group_behaviour != HelpBehaviour::Nothing {
+<a href=#610 id=610 data-nosnippet>610</a>            <span class="kw">let </span>name = <span class="macro">format_command_name!</span>(<span class="kw-2">&amp;</span>group_behaviour, <span class="kw-2">&amp;</span>name);
+<a href=#611 id=611 data-nosnippet>611</a>            to_fill.command_names.push(name);
+<a href=#612 id=612 data-nosnippet>612</a>
+<a href=#613 id=613 data-nosnippet>613</a>            <span class="kw">continue</span>;
+<a href=#614 id=614 data-nosnippet>614</a>        }
+<a href=#615 id=615 data-nosnippet>615</a>
+<a href=#616 id=616 data-nosnippet>616</a>        <span class="kw">let </span>command_behaviour = check_command_behaviour(
+<a href=#617 id=617 data-nosnippet>617</a>            ctx,
+<a href=#618 id=618 data-nosnippet>618</a>            msg,
+<a href=#619 id=619 data-nosnippet>619</a>            command.options,
+<a href=#620 id=620 data-nosnippet>620</a>            group.options.checks,
+<a href=#621 id=621 data-nosnippet>621</a>            owners,
+<a href=#622 id=622 data-nosnippet>622</a>            help_options,
+<a href=#623 id=623 data-nosnippet>623</a>        )
+<a href=#624 id=624 data-nosnippet>624</a>        .<span class="kw">await</span>;
+<a href=#625 id=625 data-nosnippet>625</a>
+<a href=#626 id=626 data-nosnippet>626</a>        <span class="kw">let </span>name = <span class="macro">format_command_name!</span>(command_behaviour, <span class="kw-2">&amp;</span>name);
+<a href=#627 id=627 data-nosnippet>627</a>        to_fill.command_names.push(name);
+<a href=#628 id=628 data-nosnippet>628</a>    }
+<a href=#629 id=629 data-nosnippet>629</a>}
+<a href=#630 id=630 data-nosnippet>630</a>
+<a href=#631 id=631 data-nosnippet>631</a><span class="doccomment">/// Tries to fetch all commands visible to the user within a group and its sub-groups.
+<a href=#632 id=632 data-nosnippet>632</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+<a href=#633 id=633 data-nosnippet>633</a>#[allow(clippy::too_many_arguments)]
+<a href=#634 id=634 data-nosnippet>634</a></span><span class="kw">fn </span>fetch_all_eligible_commands_in_group&lt;<span class="lifetime">'rec</span>, <span class="lifetime">'a</span>: <span class="lifetime">'rec</span>&gt;(
+<a href=#635 id=635 data-nosnippet>635</a>    ctx: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>Context,
+<a href=#636 id=636 data-nosnippet>636</a>    msg: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>Message,
+<a href=#637 id=637 data-nosnippet>637</a>    commands: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>InternalCommand],
+<a href=#638 id=638 data-nosnippet>638</a>    owners: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
+<a href=#639 id=639 data-nosnippet>639</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
+<a href=#640 id=640 data-nosnippet>640</a>    group: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>CommandGroup,
+<a href=#641 id=641 data-nosnippet>641</a>    highest_formatter: HelpBehaviour,
+<a href=#642 id=642 data-nosnippet>642</a>) -&gt; BoxFuture&lt;<span class="lifetime">'rec</span>, GroupCommandsPair&gt; {
+<a href=#643 id=643 data-nosnippet>643</a>    <span class="kw">async move </span>{
+<a href=#644 id=644 data-nosnippet>644</a>        <span class="kw">let </span><span class="kw-2">mut </span>group_with_cmds = GroupCommandsPair::default();
+<a href=#645 id=645 data-nosnippet>645</a>        <span class="kw">let </span><span class="kw-2">mut </span>highest_formatter = highest_formatter;
+<a href=#646 id=646 data-nosnippet>646</a>
+<a href=#647 id=647 data-nosnippet>647</a>        fill_eligible_commands(
+<a href=#648 id=648 data-nosnippet>648</a>            ctx,
+<a href=#649 id=649 data-nosnippet>649</a>            msg,
+<a href=#650 id=650 data-nosnippet>650</a>            commands,
+<a href=#651 id=651 data-nosnippet>651</a>            owners,
+<a href=#652 id=652 data-nosnippet>652</a>            help_options,
+<a href=#653 id=653 data-nosnippet>653</a>            group,
+<a href=#654 id=654 data-nosnippet>654</a>            <span class="kw-2">&amp;mut </span>group_with_cmds,
+<a href=#655 id=655 data-nosnippet>655</a>            <span class="kw-2">&amp;mut </span>highest_formatter,
+<a href=#656 id=656 data-nosnippet>656</a>        )
+<a href=#657 id=657 data-nosnippet>657</a>        .<span class="kw">await</span>;
+<a href=#658 id=658 data-nosnippet>658</a>
+<a href=#659 id=659 data-nosnippet>659</a>        <span class="kw">for </span>sub_group <span class="kw">in </span>group.options.sub_groups {
+<a href=#660 id=660 data-nosnippet>660</a>            <span class="kw">if </span>HelpBehaviour::Hide == highest_formatter {
+<a href=#661 id=661 data-nosnippet>661</a>                <span class="kw">break</span>;
+<a href=#662 id=662 data-nosnippet>662</a>            } <span class="kw">else if </span>sub_group.options.commands.is_empty()
+<a href=#663 id=663 data-nosnippet>663</a>                &amp;&amp; sub_group.options.sub_groups.is_empty()
+<a href=#664 id=664 data-nosnippet>664</a>            {
+<a href=#665 id=665 data-nosnippet>665</a>                <span class="kw">continue</span>;
+<a href=#666 id=666 data-nosnippet>666</a>            }
+<a href=#667 id=667 data-nosnippet>667</a>
+<a href=#668 id=668 data-nosnippet>668</a>            <span class="kw">let </span>grouped_cmd = fetch_all_eligible_commands_in_group(
+<a href=#669 id=669 data-nosnippet>669</a>                ctx,
+<a href=#670 id=670 data-nosnippet>670</a>                msg,
+<a href=#671 id=671 data-nosnippet>671</a>                sub_group.options.commands,
+<a href=#672 id=672 data-nosnippet>672</a>                owners,
+<a href=#673 id=673 data-nosnippet>673</a>                help_options,
+<a href=#674 id=674 data-nosnippet>674</a>                sub_group,
+<a href=#675 id=675 data-nosnippet>675</a>                highest_formatter,
+<a href=#676 id=676 data-nosnippet>676</a>            )
+<a href=#677 id=677 data-nosnippet>677</a>            .<span class="kw">await</span>;
+<a href=#678 id=678 data-nosnippet>678</a>
+<a href=#679 id=679 data-nosnippet>679</a>            group_with_cmds.sub_groups.push(grouped_cmd);
+<a href=#680 id=680 data-nosnippet>680</a>        }
+<a href=#681 id=681 data-nosnippet>681</a>
+<a href=#682 id=682 data-nosnippet>682</a>        group_with_cmds
+<a href=#683 id=683 data-nosnippet>683</a>    }
+<a href=#684 id=684 data-nosnippet>684</a>    .boxed()
+<a href=#685 id=685 data-nosnippet>685</a>}
+<a href=#686 id=686 data-nosnippet>686</a>
+<a href=#687 id=687 data-nosnippet>687</a><span class="doccomment">/// Fetch groups with their commands.
+<a href=#688 id=688 data-nosnippet>688</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+<a href=#689 id=689 data-nosnippet>689</a></span><span class="kw">async fn </span>create_command_group_commands_pair_from_groups(
+<a href=#690 id=690 data-nosnippet>690</a>    ctx: <span class="kw-2">&amp;</span>Context,
+<a href=#691 id=691 data-nosnippet>691</a>    msg: <span class="kw-2">&amp;</span>Message,
+<a href=#692 id=692 data-nosnippet>692</a>    groups: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CommandGroup],
+<a href=#693 id=693 data-nosnippet>693</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
+<a href=#694 id=694 data-nosnippet>694</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
+<a href=#695 id=695 data-nosnippet>695</a>) -&gt; Vec&lt;GroupCommandsPair&gt; {
+<a href=#696 id=696 data-nosnippet>696</a>    <span class="kw">let </span><span class="kw-2">mut </span>listed_groups: Vec&lt;GroupCommandsPair&gt; = Vec::default();
+<a href=#697 id=697 data-nosnippet>697</a>
+<a href=#698 id=698 data-nosnippet>698</a>    <span class="kw">for </span>group <span class="kw">in </span>groups {
+<a href=#699 id=699 data-nosnippet>699</a>        <span class="kw">let </span>group = <span class="kw-2">*</span>group;
+<a href=#700 id=700 data-nosnippet>700</a>
+<a href=#701 id=701 data-nosnippet>701</a>        <span class="kw">let </span>group_with_cmds = create_single_group(ctx, msg, group, owners, help_options).<span class="kw">await</span>;
+<a href=#702 id=702 data-nosnippet>702</a>
+<a href=#703 id=703 data-nosnippet>703</a>        <span class="kw">if </span>!group_with_cmds.command_names.is_empty() || !group_with_cmds.sub_groups.is_empty() {
+<a href=#704 id=704 data-nosnippet>704</a>            listed_groups.push(group_with_cmds);
+<a href=#705 id=705 data-nosnippet>705</a>        }
+<a href=#706 id=706 data-nosnippet>706</a>    }
+<a href=#707 id=707 data-nosnippet>707</a>
+<a href=#708 id=708 data-nosnippet>708</a>    listed_groups
+<a href=#709 id=709 data-nosnippet>709</a>}
+<a href=#710 id=710 data-nosnippet>710</a>
+<a href=#711 id=711 data-nosnippet>711</a><span class="doccomment">/// Fetches a single group with its commands.
+<a href=#712 id=712 data-nosnippet>712</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+<a href=#713 id=713 data-nosnippet>713</a></span><span class="kw">async fn </span>create_single_group(
+<a href=#714 id=714 data-nosnippet>714</a>    ctx: <span class="kw-2">&amp;</span>Context,
+<a href=#715 id=715 data-nosnippet>715</a>    msg: <span class="kw-2">&amp;</span>Message,
+<a href=#716 id=716 data-nosnippet>716</a>    group: <span class="kw-2">&amp;</span>CommandGroup,
+<a href=#717 id=717 data-nosnippet>717</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
+<a href=#718 id=718 data-nosnippet>718</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
+<a href=#719 id=719 data-nosnippet>719</a>) -&gt; GroupCommandsPair {
+<a href=#720 id=720 data-nosnippet>720</a>    <span class="kw">let </span><span class="kw-2">mut </span>group_with_cmds = fetch_all_eligible_commands_in_group(
+<a href=#721 id=721 data-nosnippet>721</a>        ctx,
+<a href=#722 id=722 data-nosnippet>722</a>        msg,
+<a href=#723 id=723 data-nosnippet>723</a>        group.options.commands,
+<a href=#724 id=724 data-nosnippet>724</a>        owners,
+<a href=#725 id=725 data-nosnippet>725</a>        help_options,
+<a href=#726 id=726 data-nosnippet>726</a>        group,
+<a href=#727 id=727 data-nosnippet>727</a>        HelpBehaviour::Nothing,
+<a href=#728 id=728 data-nosnippet>728</a>    )
+<a href=#729 id=729 data-nosnippet>729</a>    .<span class="kw">await</span>;
+<a href=#730 id=730 data-nosnippet>730</a>
+<a href=#731 id=731 data-nosnippet>731</a>    group_with_cmds.name = group.name;
+<a href=#732 id=732 data-nosnippet>732</a>    group_with_cmds.summary = group.options.summary;
+<a href=#733 id=733 data-nosnippet>733</a>
+<a href=#734 id=734 data-nosnippet>734</a>    group_with_cmds
+<a href=#735 id=735 data-nosnippet>735</a>}
+<a href=#736 id=736 data-nosnippet>736</a>
+<a href=#737 id=737 data-nosnippet>737</a><span class="doccomment">/// If `searched_group` is exactly matching `group_name`, this function returns `true` but does not
+<a href=#738 id=738 data-nosnippet>738</a>/// trim. Otherwise, it is treated as an optionally passed group-name and ends up being removed
+<a href=#739 id=739 data-nosnippet>739</a>/// from `searched_group`.
+<a href=#740 id=740 data-nosnippet>740</a>///
+<a href=#741 id=741 data-nosnippet>741</a>/// If a group has no prefixes, it is not required to be part of `searched_group` to reach a
+<a href=#742 id=742 data-nosnippet>742</a>/// sub-group of `group_name`.
+<a href=#743 id=743 data-nosnippet>743</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+<a href=#744 id=744 data-nosnippet>744</a></span><span class="kw">fn </span>trim_prefixless_group(group_name: <span class="kw-2">&amp;</span>str, searched_group: <span class="kw-2">&amp;mut </span>String) -&gt; bool {
+<a href=#745 id=745 data-nosnippet>745</a>    <span class="kw">if </span>group_name == searched_group.as_str() {
+<a href=#746 id=746 data-nosnippet>746</a>        <span class="kw">return </span><span class="bool-val">true</span>;
+<a href=#747 id=747 data-nosnippet>747</a>    } <span class="kw">else if </span>starts_with_whole_word(searched_group, group_name) {
+<a href=#748 id=748 data-nosnippet>748</a>        searched_group.drain(..=group_name.len());
+<a href=#749 id=749 data-nosnippet>749</a>        <span class="kw">return </span><span class="bool-val">true</span>;
+<a href=#750 id=750 data-nosnippet>750</a>    }
+<a href=#751 id=751 data-nosnippet>751</a>
+<a href=#752 id=752 data-nosnippet>752</a>    <span class="bool-val">false
+<a href=#753 id=753 data-nosnippet>753</a></span>}
+<a href=#754 id=754 data-nosnippet>754</a>
+<a href=#755 id=755 data-nosnippet>755</a><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+<a href=#756 id=756 data-nosnippet>756</a></span><span class="kw">pub fn </span>searched_lowercase&lt;<span class="lifetime">'rec</span>, <span class="lifetime">'a</span>: <span class="lifetime">'rec</span>&gt;(
+<a href=#757 id=757 data-nosnippet>757</a>    ctx: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>Context,
+<a href=#758 id=758 data-nosnippet>758</a>    msg: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>Message,
+<a href=#759 id=759 data-nosnippet>759</a>    group: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>CommandGroup,
+<a href=#760 id=760 data-nosnippet>760</a>    owners: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
+<a href=#761 id=761 data-nosnippet>761</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
+<a href=#762 id=762 data-nosnippet>762</a>    searched_named_lowercase: <span class="kw-2">&amp;</span><span class="lifetime">'rec </span><span class="kw-2">mut </span>String,
+<a href=#763 id=763 data-nosnippet>763</a>) -&gt; BoxFuture&lt;<span class="lifetime">'rec</span>, <span class="prelude-ty">Option</span>&lt;CustomisedHelpData&lt;<span class="lifetime">'a</span>&gt;&gt;&gt; {
+<a href=#764 id=764 data-nosnippet>764</a>    <span class="kw">async move </span>{
+<a href=#765 id=765 data-nosnippet>765</a>        <span class="kw">let </span>is_prefixless_group = {
+<a href=#766 id=766 data-nosnippet>766</a>            group.options.prefixes.is_empty()
+<a href=#767 id=767 data-nosnippet>767</a>                &amp;&amp; trim_prefixless_group(<span class="kw-2">&amp;</span>group.name.to_lowercase(), searched_named_lowercase)
+<a href=#768 id=768 data-nosnippet>768</a>        };
+<a href=#769 id=769 data-nosnippet>769</a>        <span class="kw">let </span><span class="kw-2">mut </span>progressed = is_prefixless_group;
+<a href=#770 id=770 data-nosnippet>770</a>        <span class="kw">let </span>is_word_prefix = group.options.prefixes.iter().any(|prefix| {
+<a href=#771 id=771 data-nosnippet>771</a>            <span class="kw">if </span>starts_with_whole_word(searched_named_lowercase, prefix) {
+<a href=#772 id=772 data-nosnippet>772</a>                searched_named_lowercase.drain(..=prefix.len());
+<a href=#773 id=773 data-nosnippet>773</a>                progressed = <span class="bool-val">true</span>;
+<a href=#774 id=774 data-nosnippet>774</a>            }
+<a href=#775 id=775 data-nosnippet>775</a>
+<a href=#776 id=776 data-nosnippet>776</a>            prefix == searched_named_lowercase
+<a href=#777 id=777 data-nosnippet>777</a>        });
+<a href=#778 id=778 data-nosnippet>778</a>
+<a href=#779 id=779 data-nosnippet>779</a>        <span class="kw">if </span>is_prefixless_group || is_word_prefix {
+<a href=#780 id=780 data-nosnippet>780</a>            <span class="kw">let </span>single_group = create_single_group(ctx, msg, group, owners, help_options).<span class="kw">await</span>;
+<a href=#781 id=781 data-nosnippet>781</a>
+<a href=#782 id=782 data-nosnippet>782</a>            <span class="kw">if </span>!single_group.command_names.is_empty() {
+<a href=#783 id=783 data-nosnippet>783</a>                <span class="kw">return </span><span class="prelude-val">Some</span>(CustomisedHelpData::GroupedCommands {
+<a href=#784 id=784 data-nosnippet>784</a>                    help_description: group
+<a href=#785 id=785 data-nosnippet>785</a>                        .options
+<a href=#786 id=786 data-nosnippet>786</a>                        .description
+<a href=#787 id=787 data-nosnippet>787</a>                        .map(ToString::to_string)
+<a href=#788 id=788 data-nosnippet>788</a>                        .unwrap_or_default(),
+<a href=#789 id=789 data-nosnippet>789</a>                    groups: <span class="macro">vec!</span>[single_group],
+<a href=#790 id=790 data-nosnippet>790</a>                });
+<a href=#791 id=791 data-nosnippet>791</a>            }
+<a href=#792 id=792 data-nosnippet>792</a>        } <span class="kw">else if </span>progressed || group.options.prefixes.is_empty() {
+<a href=#793 id=793 data-nosnippet>793</a>            <span class="kw">for </span>sub_group <span class="kw">in </span>group.options.sub_groups {
+<a href=#794 id=794 data-nosnippet>794</a>                <span class="kw">if let </span><span class="prelude-val">Some</span>(found_set) = searched_lowercase(
+<a href=#795 id=795 data-nosnippet>795</a>                    ctx,
+<a href=#796 id=796 data-nosnippet>796</a>                    msg,
+<a href=#797 id=797 data-nosnippet>797</a>                    sub_group,
+<a href=#798 id=798 data-nosnippet>798</a>                    owners,
+<a href=#799 id=799 data-nosnippet>799</a>                    help_options,
+<a href=#800 id=800 data-nosnippet>800</a>                    searched_named_lowercase,
+<a href=#801 id=801 data-nosnippet>801</a>                )
+<a href=#802 id=802 data-nosnippet>802</a>                .<span class="kw">await
+<a href=#803 id=803 data-nosnippet>803</a>                </span>{
+<a href=#804 id=804 data-nosnippet>804</a>                    <span class="kw">return </span><span class="prelude-val">Some</span>(found_set);
+<a href=#805 id=805 data-nosnippet>805</a>                }
+<a href=#806 id=806 data-nosnippet>806</a>            }
+<a href=#807 id=807 data-nosnippet>807</a>        }
+<a href=#808 id=808 data-nosnippet>808</a>
+<a href=#809 id=809 data-nosnippet>809</a>        <span class="prelude-val">None
+<a href=#810 id=810 data-nosnippet>810</a>    </span>}
+<a href=#811 id=811 data-nosnippet>811</a>    .boxed()
+<a href=#812 id=812 data-nosnippet>812</a>}
+<a href=#813 id=813 data-nosnippet>813</a>
+<a href=#814 id=814 data-nosnippet>814</a><span class="doccomment">/// Iterates over all commands and forges them into a [`CustomisedHelpData`], taking
+<a href=#815 id=815 data-nosnippet>815</a>/// [`HelpOptions`] into consideration when deciding on whether a command shall be picked and in
+<a href=#816 id=816 data-nosnippet>816</a>/// what textual format.
+<a href=#817 id=817 data-nosnippet>817</a></span><span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
+<a href=#818 id=818 data-nosnippet>818</a></span><span class="kw">pub async fn </span>create_customised_help_data&lt;<span class="lifetime">'a</span>&gt;(
+<a href=#819 id=819 data-nosnippet>819</a>    ctx: <span class="kw-2">&amp;</span>Context,
+<a href=#820 id=820 data-nosnippet>820</a>    msg: <span class="kw-2">&amp;</span>Message,
+<a href=#821 id=821 data-nosnippet>821</a>    args: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Args,
+<a href=#822 id=822 data-nosnippet>822</a>    groups: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CommandGroup],
+<a href=#823 id=823 data-nosnippet>823</a>    owners: <span class="kw-2">&amp;</span>HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
+<a href=#824 id=824 data-nosnippet>824</a>    help_options: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>HelpOptions,
+<a href=#825 id=825 data-nosnippet>825</a>) -&gt; CustomisedHelpData&lt;<span class="lifetime">'a</span>&gt; {
+<a href=#826 id=826 data-nosnippet>826</a>    <span class="kw">if </span>!args.is_empty() {
+<a href=#827 id=827 data-nosnippet>827</a>        <span class="kw">let </span>name = args.message();
+<a href=#828 id=828 data-nosnippet>828</a>
+<a href=#829 id=829 data-nosnippet>829</a>        <span class="kw">return match </span>fetch_single_command(ctx, msg, groups, name, help_options, owners).<span class="kw">await </span>{
+<a href=#830 id=830 data-nosnippet>830</a>            <span class="prelude-val">Ok</span>(single_command) =&gt; single_command,
+<a href=#831 id=831 data-nosnippet>831</a>            <span class="prelude-val">Err</span>(suggestions) =&gt; {
+<a href=#832 id=832 data-nosnippet>832</a>                <span class="kw">let </span><span class="kw-2">mut </span>searched_named_lowercase = name.to_lowercase();
+<a href=#833 id=833 data-nosnippet>833</a>
+<a href=#834 id=834 data-nosnippet>834</a>                <span class="kw">for </span>group <span class="kw">in </span>groups {
+<a href=#835 id=835 data-nosnippet>835</a>                    <span class="kw">if let </span><span class="prelude-val">Some</span>(found_command) = searched_lowercase(
+<a href=#836 id=836 data-nosnippet>836</a>                        ctx,
+<a href=#837 id=837 data-nosnippet>837</a>                        msg,
+<a href=#838 id=838 data-nosnippet>838</a>                        group,
+<a href=#839 id=839 data-nosnippet>839</a>                        owners,
+<a href=#840 id=840 data-nosnippet>840</a>                        help_options,
+<a href=#841 id=841 data-nosnippet>841</a>                        <span class="kw-2">&amp;mut </span>searched_named_lowercase,
+<a href=#842 id=842 data-nosnippet>842</a>                    )
+<a href=#843 id=843 data-nosnippet>843</a>                    .<span class="kw">await
+<a href=#844 id=844 data-nosnippet>844</a>                    </span>{
+<a href=#845 id=845 data-nosnippet>845</a>                        <span class="kw">return </span>found_command;
+<a href=#846 id=846 data-nosnippet>846</a>                    }
+<a href=#847 id=847 data-nosnippet>847</a>                }
+<a href=#848 id=848 data-nosnippet>848</a>
+<a href=#849 id=849 data-nosnippet>849</a>                <span class="kw">if </span>suggestions.is_empty() {
+<a href=#850 id=850 data-nosnippet>850</a>                    CustomisedHelpData::NoCommandFound {
+<a href=#851 id=851 data-nosnippet>851</a>                        help_error_message: help_options.no_help_available_text,
+<a href=#852 id=852 data-nosnippet>852</a>                    }
+<a href=#853 id=853 data-nosnippet>853</a>                } <span class="kw">else </span>{
+<a href=#854 id=854 data-nosnippet>854</a>                    CustomisedHelpData::SuggestedCommands {
+<a href=#855 id=855 data-nosnippet>855</a>                        help_description: help_options.suggestion_text.to_string(),
+<a href=#856 id=856 data-nosnippet>856</a>                        suggestions: Suggestions(suggestions),
+<a href=#857 id=857 data-nosnippet>857</a>                    }
+<a href=#858 id=858 data-nosnippet>858</a>                }
+<a href=#859 id=859 data-nosnippet>859</a>            },
+<a href=#860 id=860 data-nosnippet>860</a>        };
+<a href=#861 id=861 data-nosnippet>861</a>    }
+<a href=#862 id=862 data-nosnippet>862</a>
+<a href=#863 id=863 data-nosnippet>863</a>    <span class="kw">let </span>strikethrough_command_tip = <span class="kw">if </span>msg.is_private() {
+<a href=#864 id=864 data-nosnippet>864</a>        help_options.strikethrough_commands_tip_in_dm
+<a href=#865 id=865 data-nosnippet>865</a>    } <span class="kw">else </span>{
+<a href=#866 id=866 data-nosnippet>866</a>        help_options.strikethrough_commands_tip_in_guild
+<a href=#867 id=867 data-nosnippet>867</a>    };
+<a href=#868 id=868 data-nosnippet>868</a>
+<a href=#869 id=869 data-nosnippet>869</a>    <span class="kw">let </span>description = <span class="kw">if let </span><span class="prelude-val">Some</span>(strikethrough_command_text) = strikethrough_command_tip {
+<a href=#870 id=870 data-nosnippet>870</a>        <span class="macro">format!</span>(<span class="string">"{}\n{strikethrough_command_text}"</span>, help_options.individual_command_tip)
+<a href=#871 id=871 data-nosnippet>871</a>    } <span class="kw">else </span>{
+<a href=#872 id=872 data-nosnippet>872</a>        help_options.individual_command_tip.to_string()
+<a href=#873 id=873 data-nosnippet>873</a>    };
+<a href=#874 id=874 data-nosnippet>874</a>
+<a href=#875 id=875 data-nosnippet>875</a>    <span class="kw">let </span>listed_groups =
+<a href=#876 id=876 data-nosnippet>876</a>        create_command_group_commands_pair_from_groups(ctx, msg, groups, owners, help_options)
+<a href=#877 id=877 data-nosnippet>877</a>            .<span class="kw">await</span>;
+<a href=#878 id=878 data-nosnippet>878</a>
+<a href=#879 id=879 data-nosnippet>879</a>    <span class="kw">if </span>listed_groups.is_empty() {
+<a href=#880 id=880 data-nosnippet>880</a>        CustomisedHelpData::NoCommandFound {
+<a href=#881 id=881 data-nosnippet>881</a>            help_error_message: help_options.no_help_available_text,
+<a href=#882 id=882 data-nosnippet>882</a>        }
+<a href=#883 id=883 data-nosnippet>883</a>    } <span class="kw">else </span>{
+<a href=#884 id=884 data-nosnippet>884</a>        CustomisedHelpData::GroupedCommands {
+<a href=#885 id=885 data-nosnippet>885</a>            help_description: description,
+<a href=#886 id=886 data-nosnippet>886</a>            groups: listed_groups,
+<a href=#887 id=887 data-nosnippet>887</a>        }
+<a href=#888 id=888 data-nosnippet>888</a>    }
+<a href=#889 id=889 data-nosnippet>889</a>}
+<a href=#890 id=890 data-nosnippet>890</a>
+<a href=#891 id=891 data-nosnippet>891</a><span class="doccomment">/// Flattens a group with all its nested sub-groups into the passed `group_text` buffer. If
+<a href=#892 id=892 data-nosnippet>892</a>/// `nest_level` is `0`, this function will skip the group's name.
+<a href=#893 id=893 data-nosnippet>893</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#894 id=894 data-nosnippet>894</a></span><span class="kw">fn </span>flatten_group_to_string(
+<a href=#895 id=895 data-nosnippet>895</a>    group_text: <span class="kw-2">&amp;mut </span>String,
+<a href=#896 id=896 data-nosnippet>896</a>    group: <span class="kw-2">&amp;</span>GroupCommandsPair,
+<a href=#897 id=897 data-nosnippet>897</a>    nest_level: usize,
+<a href=#898 id=898 data-nosnippet>898</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
+<a href=#899 id=899 data-nosnippet>899</a>) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+<a href=#900 id=900 data-nosnippet>900</a>    <span class="kw">let </span>repeated_indent_str = help_options.indention_prefix.repeat(nest_level);
+<a href=#901 id=901 data-nosnippet>901</a>
+<a href=#902 id=902 data-nosnippet>902</a>    <span class="kw">if </span>nest_level &gt; <span class="number">0 </span>{
+<a href=#903 id=903 data-nosnippet>903</a>        <span class="macro">writeln!</span>(group_text, <span class="string">"{repeated_indent_str}__**{}**__"</span>, group.name)<span class="question-mark">?</span>;
+<a href=#904 id=904 data-nosnippet>904</a>    }
+<a href=#905 id=905 data-nosnippet>905</a>
+<a href=#906 id=906 data-nosnippet>906</a>    <span class="kw">let </span><span class="kw-2">mut </span>summary_or_prefixes = <span class="bool-val">false</span>;
+<a href=#907 id=907 data-nosnippet>907</a>
+<a href=#908 id=908 data-nosnippet>908</a>    <span class="kw">if let </span><span class="prelude-val">Some</span>(group_summary) = group.summary {
+<a href=#909 id=909 data-nosnippet>909</a>        <span class="macro">writeln!</span>(group_text, <span class="string">"{}*{group_summary}*"</span>, <span class="kw-2">&amp;</span>repeated_indent_str)<span class="question-mark">?</span>;
+<a href=#910 id=910 data-nosnippet>910</a>        summary_or_prefixes = <span class="bool-val">true</span>;
+<a href=#911 id=911 data-nosnippet>911</a>    }
+<a href=#912 id=912 data-nosnippet>912</a>
+<a href=#913 id=913 data-nosnippet>913</a>    <span class="kw">if </span>!group.prefixes.is_empty() {
+<a href=#914 id=914 data-nosnippet>914</a>        <span class="macro">writeln!</span>(
+<a href=#915 id=915 data-nosnippet>915</a>            group_text,
+<a href=#916 id=916 data-nosnippet>916</a>            <span class="string">"{}{}: `{}`"</span>,
+<a href=#917 id=917 data-nosnippet>917</a>            <span class="kw-2">&amp;</span>repeated_indent_str,
+<a href=#918 id=918 data-nosnippet>918</a>            help_options.group_prefix,
+<a href=#919 id=919 data-nosnippet>919</a>            group.prefixes.join(<span class="string">"`, `"</span>),
+<a href=#920 id=920 data-nosnippet>920</a>        )<span class="question-mark">?</span>;
+<a href=#921 id=921 data-nosnippet>921</a>        summary_or_prefixes = <span class="bool-val">true</span>;
+<a href=#922 id=922 data-nosnippet>922</a>    }
+<a href=#923 id=923 data-nosnippet>923</a>
+<a href=#924 id=924 data-nosnippet>924</a>    <span class="kw">if </span>summary_or_prefixes {
+<a href=#925 id=925 data-nosnippet>925</a>        <span class="macro">writeln!</span>(group_text)<span class="question-mark">?</span>;
+<a href=#926 id=926 data-nosnippet>926</a>    }
+<a href=#927 id=927 data-nosnippet>927</a>
+<a href=#928 id=928 data-nosnippet>928</a>    <span class="kw">let </span><span class="kw-2">mut </span>joined_commands = group.command_names.join(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"\n{repeated_indent_str}"</span>));
+<a href=#929 id=929 data-nosnippet>929</a>
+<a href=#930 id=930 data-nosnippet>930</a>    <span class="kw">if </span>!group.command_names.is_empty() {
+<a href=#931 id=931 data-nosnippet>931</a>        joined_commands.insert_str(<span class="number">0</span>, <span class="kw-2">&amp;</span>repeated_indent_str);
+<a href=#932 id=932 data-nosnippet>932</a>    }
+<a href=#933 id=933 data-nosnippet>933</a>
+<a href=#934 id=934 data-nosnippet>934</a>    <span class="macro">writeln!</span>(group_text, <span class="string">"{joined_commands}"</span>)<span class="question-mark">?</span>;
+<a href=#935 id=935 data-nosnippet>935</a>
+<a href=#936 id=936 data-nosnippet>936</a>    <span class="kw">for </span>sub_group <span class="kw">in </span><span class="kw-2">&amp;</span>group.sub_groups {
+<a href=#937 id=937 data-nosnippet>937</a>        <span class="kw">if </span>!(sub_group.command_names.is_empty() &amp;&amp; sub_group.sub_groups.is_empty()) {
+<a href=#938 id=938 data-nosnippet>938</a>            <span class="kw">let </span><span class="kw-2">mut </span>sub_group_text = String::default();
+<a href=#939 id=939 data-nosnippet>939</a>
+<a href=#940 id=940 data-nosnippet>940</a>            flatten_group_to_string(<span class="kw-2">&amp;mut </span>sub_group_text, sub_group, nest_level + <span class="number">1</span>, help_options)<span class="question-mark">?</span>;
+<a href=#941 id=941 data-nosnippet>941</a>
+<a href=#942 id=942 data-nosnippet>942</a>            <span class="macro">write!</span>(group_text, <span class="string">"{sub_group_text}"</span>)<span class="question-mark">?</span>;
+<a href=#943 id=943 data-nosnippet>943</a>        }
+<a href=#944 id=944 data-nosnippet>944</a>    }
+<a href=#945 id=945 data-nosnippet>945</a>
+<a href=#946 id=946 data-nosnippet>946</a>    <span class="prelude-val">Ok</span>(())
+<a href=#947 id=947 data-nosnippet>947</a>}
+<a href=#948 id=948 data-nosnippet>948</a>
+<a href=#949 id=949 data-nosnippet>949</a><span class="doccomment">/// Flattens a group with all its nested sub-groups into the passed `group_text` buffer respecting
+<a href=#950 id=950 data-nosnippet>950</a>/// the plain help format. If `nest_level` is `0`, this function will skip the group's name.
+<a href=#951 id=951 data-nosnippet>951</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#952 id=952 data-nosnippet>952</a></span><span class="kw">fn </span>flatten_group_to_plain_string(
+<a href=#953 id=953 data-nosnippet>953</a>    group_text: <span class="kw-2">&amp;mut </span>String,
+<a href=#954 id=954 data-nosnippet>954</a>    group: <span class="kw-2">&amp;</span>GroupCommandsPair,
+<a href=#955 id=955 data-nosnippet>955</a>    nest_level: usize,
+<a href=#956 id=956 data-nosnippet>956</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
+<a href=#957 id=957 data-nosnippet>957</a>) {
+<a href=#958 id=958 data-nosnippet>958</a>    <span class="kw">let </span>repeated_indent_str = help_options.indention_prefix.repeat(nest_level);
+<a href=#959 id=959 data-nosnippet>959</a>
+<a href=#960 id=960 data-nosnippet>960</a>    <span class="kw">if </span>nest_level &gt; <span class="number">0 </span>{
+<a href=#961 id=961 data-nosnippet>961</a>        <span class="macro">write!</span>(group_text, <span class="string">"\n{repeated_indent_str}**{}**"</span>, group.name)
+<a href=#962 id=962 data-nosnippet>962</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#963 id=963 data-nosnippet>963</a>    }
+<a href=#964 id=964 data-nosnippet>964</a>
+<a href=#965 id=965 data-nosnippet>965</a>    <span class="kw">if </span>group.prefixes.is_empty() {
+<a href=#966 id=966 data-nosnippet>966</a>        group_text.push_str(<span class="string">": "</span>);
+<a href=#967 id=967 data-nosnippet>967</a>    } <span class="kw">else </span>{
+<a href=#968 id=968 data-nosnippet>968</a>        <span class="macro">write!</span>(
+<a href=#969 id=969 data-nosnippet>969</a>            group_text,
+<a href=#970 id=970 data-nosnippet>970</a>            <span class="string">" ({}: `{}`): "</span>,
+<a href=#971 id=971 data-nosnippet>971</a>            help_options.group_prefix,
+<a href=#972 id=972 data-nosnippet>972</a>            group.prefixes.join(<span class="string">"`, `"</span>),
+<a href=#973 id=973 data-nosnippet>973</a>        ).expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#974 id=974 data-nosnippet>974</a>    }
+<a href=#975 id=975 data-nosnippet>975</a>
+<a href=#976 id=976 data-nosnippet>976</a>    <span class="kw">let </span>joined_commands = group.command_names.join(<span class="string">", "</span>);
+<a href=#977 id=977 data-nosnippet>977</a>
+<a href=#978 id=978 data-nosnippet>978</a>    group_text.push_str(<span class="kw-2">&amp;</span>joined_commands);
+<a href=#979 id=979 data-nosnippet>979</a>
+<a href=#980 id=980 data-nosnippet>980</a>    <span class="kw">for </span>sub_group <span class="kw">in </span><span class="kw-2">&amp;</span>group.sub_groups {
+<a href=#981 id=981 data-nosnippet>981</a>        <span class="kw">let </span><span class="kw-2">mut </span>sub_group_text = String::default();
+<a href=#982 id=982 data-nosnippet>982</a>
+<a href=#983 id=983 data-nosnippet>983</a>        flatten_group_to_plain_string(<span class="kw-2">&amp;mut </span>sub_group_text, sub_group, nest_level + <span class="number">1</span>, help_options);
+<a href=#984 id=984 data-nosnippet>984</a>
+<a href=#985 id=985 data-nosnippet>985</a>        group_text.push_str(<span class="kw-2">&amp;</span>sub_group_text);
+<a href=#986 id=986 data-nosnippet>986</a>    }
+<a href=#987 id=987 data-nosnippet>987</a>}
+<a href=#988 id=988 data-nosnippet>988</a>
+<a href=#989 id=989 data-nosnippet>989</a><span class="doccomment">/// Sends an embed listing all groups with their commands.
+<a href=#990 id=990 data-nosnippet>990</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#991 id=991 data-nosnippet>991</a></span><span class="kw">async fn </span>send_grouped_commands_embed(
+<a href=#992 id=992 data-nosnippet>992</a>    cache_http: <span class="kw">impl </span>CacheHttp,
+<a href=#993 id=993 data-nosnippet>993</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
+<a href=#994 id=994 data-nosnippet>994</a>    channel_id: ChannelId,
+<a href=#995 id=995 data-nosnippet>995</a>    help_description: <span class="kw-2">&amp;</span>str,
+<a href=#996 id=996 data-nosnippet>996</a>    groups: <span class="kw-2">&amp;</span>[GroupCommandsPair],
+<a href=#997 id=997 data-nosnippet>997</a>    colour: Colour,
+<a href=#998 id=998 data-nosnippet>998</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
+<a href=#999 id=999 data-nosnippet>999</a>    <span class="comment">// creating embed outside message builder since flatten_group_to_string may return an error.
+<a href=#1000 id=1000 data-nosnippet>1000</a>
+<a href=#1001 id=1001 data-nosnippet>1001</a>    </span><span class="kw">let </span><span class="kw-2">mut </span>embed = CreateEmbed::new().colour(colour).description(help_description);
+<a href=#1002 id=1002 data-nosnippet>1002</a>    <span class="kw">for </span>group <span class="kw">in </span>groups {
+<a href=#1003 id=1003 data-nosnippet>1003</a>        <span class="kw">let </span><span class="kw-2">mut </span>embed_text = String::default();
+<a href=#1004 id=1004 data-nosnippet>1004</a>
+<a href=#1005 id=1005 data-nosnippet>1005</a>        flatten_group_to_string(<span class="kw-2">&amp;mut </span>embed_text, group, <span class="number">0</span>, help_options)<span class="question-mark">?</span>;
+<a href=#1006 id=1006 data-nosnippet>1006</a>
+<a href=#1007 id=1007 data-nosnippet>1007</a>        embed = embed.field(group.name, <span class="kw-2">&amp;</span>embed_text, <span class="bool-val">true</span>);
+<a href=#1008 id=1008 data-nosnippet>1008</a>    }
+<a href=#1009 id=1009 data-nosnippet>1009</a>
+<a href=#1010 id=1010 data-nosnippet>1010</a>    <span class="kw">let </span>builder = CreateMessage::new().embed(embed);
+<a href=#1011 id=1011 data-nosnippet>1011</a>    channel_id.send_message(cache_http, builder).<span class="kw">await
+<a href=#1012 id=1012 data-nosnippet>1012</a></span>}
+<a href=#1013 id=1013 data-nosnippet>1013</a>
+<a href=#1014 id=1014 data-nosnippet>1014</a><span class="doccomment">/// Sends embed showcasing information about a single command.
+<a href=#1015 id=1015 data-nosnippet>1015</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#1016 id=1016 data-nosnippet>1016</a></span><span class="kw">async fn </span>send_single_command_embed(
+<a href=#1017 id=1017 data-nosnippet>1017</a>    cache_http: <span class="kw">impl </span>CacheHttp,
+<a href=#1018 id=1018 data-nosnippet>1018</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
+<a href=#1019 id=1019 data-nosnippet>1019</a>    channel_id: ChannelId,
+<a href=#1020 id=1020 data-nosnippet>1020</a>    command: <span class="kw-2">&amp;</span>Command&lt;<span class="lifetime">'_</span>&gt;,
+<a href=#1021 id=1021 data-nosnippet>1021</a>    colour: Colour,
+<a href=#1022 id=1022 data-nosnippet>1022</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
+<a href=#1023 id=1023 data-nosnippet>1023</a>    <span class="kw">let </span><span class="kw-2">mut </span>embed = CreateEmbed::new().title(command.name).colour(colour);
+<a href=#1024 id=1024 data-nosnippet>1024</a>
+<a href=#1025 id=1025 data-nosnippet>1025</a>    <span class="kw">if let </span><span class="prelude-val">Some</span>(desc) = command.description {
+<a href=#1026 id=1026 data-nosnippet>1026</a>        embed = embed.description(desc);
+<a href=#1027 id=1027 data-nosnippet>1027</a>    }
+<a href=#1028 id=1028 data-nosnippet>1028</a>
+<a href=#1029 id=1029 data-nosnippet>1029</a>    <span class="kw">if let </span><span class="prelude-val">Some</span>(usage) = command.usage {
+<a href=#1030 id=1030 data-nosnippet>1030</a>        <span class="kw">let </span>full_usage_text = <span class="kw">if let </span><span class="prelude-val">Some</span>(first_prefix) = command.group_prefixes.first() {
+<a href=#1031 id=1031 data-nosnippet>1031</a>            <span class="macro">format!</span>(<span class="string">"`{first_prefix} {} {usage}`"</span>, command.name)
+<a href=#1032 id=1032 data-nosnippet>1032</a>        } <span class="kw">else </span>{
+<a href=#1033 id=1033 data-nosnippet>1033</a>            <span class="macro">format!</span>(<span class="string">"`{} {usage}`"</span>, command.name)
+<a href=#1034 id=1034 data-nosnippet>1034</a>        };
+<a href=#1035 id=1035 data-nosnippet>1035</a>
+<a href=#1036 id=1036 data-nosnippet>1036</a>        embed = embed.field(help_options.usage_label, full_usage_text, <span class="bool-val">true</span>);
+<a href=#1037 id=1037 data-nosnippet>1037</a>    }
+<a href=#1038 id=1038 data-nosnippet>1038</a>
+<a href=#1039 id=1039 data-nosnippet>1039</a>    <span class="kw">if </span>!command.usage_sample.is_empty() {
+<a href=#1040 id=1040 data-nosnippet>1040</a>        <span class="kw">let </span>full_example_text = <span class="kw">if let </span><span class="prelude-val">Some</span>(first_prefix) = command.group_prefixes.first() {
+<a href=#1041 id=1041 data-nosnippet>1041</a>            <span class="kw">let </span>format_example = |example| <span class="macro">format!</span>(<span class="string">"`{first_prefix} {} {example}`\n"</span>, command.name);
+<a href=#1042 id=1042 data-nosnippet>1042</a>            command.usage_sample.iter().map(format_example).collect::&lt;String&gt;()
+<a href=#1043 id=1043 data-nosnippet>1043</a>        } <span class="kw">else </span>{
+<a href=#1044 id=1044 data-nosnippet>1044</a>            <span class="kw">let </span>format_example = |example| <span class="macro">format!</span>(<span class="string">"`{} {example}`\n"</span>, command.name);
+<a href=#1045 id=1045 data-nosnippet>1045</a>            command.usage_sample.iter().map(format_example).collect::&lt;String&gt;()
+<a href=#1046 id=1046 data-nosnippet>1046</a>        };
+<a href=#1047 id=1047 data-nosnippet>1047</a>        embed = embed.field(help_options.usage_sample_label, full_example_text, <span class="bool-val">true</span>);
+<a href=#1048 id=1048 data-nosnippet>1048</a>    }
+<a href=#1049 id=1049 data-nosnippet>1049</a>
+<a href=#1050 id=1050 data-nosnippet>1050</a>    embed = embed.field(help_options.grouped_label, command.group_name, <span class="bool-val">true</span>);
+<a href=#1051 id=1051 data-nosnippet>1051</a>
+<a href=#1052 id=1052 data-nosnippet>1052</a>    <span class="kw">if </span>!command.aliases.is_empty() {
+<a href=#1053 id=1053 data-nosnippet>1053</a>        embed = embed.field(
+<a href=#1054 id=1054 data-nosnippet>1054</a>            help_options.aliases_label,
+<a href=#1055 id=1055 data-nosnippet>1055</a>            <span class="macro">format!</span>(<span class="string">"`{}`"</span>, command.aliases.join(<span class="string">"`, `"</span>)),
+<a href=#1056 id=1056 data-nosnippet>1056</a>            <span class="bool-val">true</span>,
+<a href=#1057 id=1057 data-nosnippet>1057</a>        );
+<a href=#1058 id=1058 data-nosnippet>1058</a>    }
+<a href=#1059 id=1059 data-nosnippet>1059</a>
+<a href=#1060 id=1060 data-nosnippet>1060</a>    <span class="kw">if </span>!help_options.available_text.is_empty() &amp;&amp; !command.availability.is_empty() {
+<a href=#1061 id=1061 data-nosnippet>1061</a>        embed = embed.field(help_options.available_text, command.availability, <span class="bool-val">true</span>);
+<a href=#1062 id=1062 data-nosnippet>1062</a>    }
+<a href=#1063 id=1063 data-nosnippet>1063</a>
+<a href=#1064 id=1064 data-nosnippet>1064</a>    <span class="kw">if </span>!command.checks.is_empty() {
+<a href=#1065 id=1065 data-nosnippet>1065</a>        embed = embed.field(
+<a href=#1066 id=1066 data-nosnippet>1066</a>            help_options.checks_label,
+<a href=#1067 id=1067 data-nosnippet>1067</a>            <span class="macro">format!</span>(<span class="string">"`{}`"</span>, command.checks.join(<span class="string">"`, `"</span>)),
+<a href=#1068 id=1068 data-nosnippet>1068</a>            <span class="bool-val">true</span>,
+<a href=#1069 id=1069 data-nosnippet>1069</a>        );
+<a href=#1070 id=1070 data-nosnippet>1070</a>    }
+<a href=#1071 id=1071 data-nosnippet>1071</a>
+<a href=#1072 id=1072 data-nosnippet>1072</a>    <span class="kw">if </span>!command.sub_commands.is_empty() {
+<a href=#1073 id=1073 data-nosnippet>1073</a>        embed = embed.field(
+<a href=#1074 id=1074 data-nosnippet>1074</a>            help_options.sub_commands_label,
+<a href=#1075 id=1075 data-nosnippet>1075</a>            <span class="macro">format!</span>(<span class="string">"`{}`"</span>, command.sub_commands.join(<span class="string">"`, `"</span>)),
+<a href=#1076 id=1076 data-nosnippet>1076</a>            <span class="bool-val">true</span>,
+<a href=#1077 id=1077 data-nosnippet>1077</a>        );
+<a href=#1078 id=1078 data-nosnippet>1078</a>    }
+<a href=#1079 id=1079 data-nosnippet>1079</a>
+<a href=#1080 id=1080 data-nosnippet>1080</a>    <span class="kw">let </span>builder = CreateMessage::new().embed(embed);
+<a href=#1081 id=1081 data-nosnippet>1081</a>    channel_id.send_message(cache_http, builder).<span class="kw">await
+<a href=#1082 id=1082 data-nosnippet>1082</a></span>}
+<a href=#1083 id=1083 data-nosnippet>1083</a>
+<a href=#1084 id=1084 data-nosnippet>1084</a><span class="doccomment">/// Sends embed listing commands that are similar to the sent one.
+<a href=#1085 id=1085 data-nosnippet>1085</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#1086 id=1086 data-nosnippet>1086</a></span><span class="kw">async fn </span>send_suggestion_embed(
+<a href=#1087 id=1087 data-nosnippet>1087</a>    cache_http: <span class="kw">impl </span>CacheHttp,
+<a href=#1088 id=1088 data-nosnippet>1088</a>    channel_id: ChannelId,
+<a href=#1089 id=1089 data-nosnippet>1089</a>    help_description: <span class="kw-2">&amp;</span>str,
+<a href=#1090 id=1090 data-nosnippet>1090</a>    suggestions: <span class="kw-2">&amp;</span>Suggestions,
+<a href=#1091 id=1091 data-nosnippet>1091</a>    colour: Colour,
+<a href=#1092 id=1092 data-nosnippet>1092</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
+<a href=#1093 id=1093 data-nosnippet>1093</a>    <span class="kw">let </span>text = help_description.replace(<span class="string">"{}"</span>, <span class="kw-2">&amp;</span>suggestions.join(<span class="string">"`, `"</span>));
+<a href=#1094 id=1094 data-nosnippet>1094</a>
+<a href=#1095 id=1095 data-nosnippet>1095</a>    <span class="kw">let </span>embed = CreateEmbed::new().colour(colour).description(text);
+<a href=#1096 id=1096 data-nosnippet>1096</a>    <span class="kw">let </span>builder = CreateMessage::new().embed(embed);
+<a href=#1097 id=1097 data-nosnippet>1097</a>    channel_id.send_message(cache_http, builder).<span class="kw">await
+<a href=#1098 id=1098 data-nosnippet>1098</a></span>}
+<a href=#1099 id=1099 data-nosnippet>1099</a>
+<a href=#1100 id=1100 data-nosnippet>1100</a><span class="doccomment">/// Sends an embed explaining fetching commands failed.
+<a href=#1101 id=1101 data-nosnippet>1101</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#1102 id=1102 data-nosnippet>1102</a></span><span class="kw">async fn </span>send_error_embed(
+<a href=#1103 id=1103 data-nosnippet>1103</a>    cache_http: <span class="kw">impl </span>CacheHttp,
+<a href=#1104 id=1104 data-nosnippet>1104</a>    channel_id: ChannelId,
+<a href=#1105 id=1105 data-nosnippet>1105</a>    input: <span class="kw-2">&amp;</span>str,
+<a href=#1106 id=1106 data-nosnippet>1106</a>    colour: Colour,
+<a href=#1107 id=1107 data-nosnippet>1107</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
+<a href=#1108 id=1108 data-nosnippet>1108</a>    <span class="kw">let </span>embed = CreateEmbed::new().colour(colour).description(input);
+<a href=#1109 id=1109 data-nosnippet>1109</a>    <span class="kw">let </span>builder = CreateMessage::new().embed(embed);
+<a href=#1110 id=1110 data-nosnippet>1110</a>    channel_id.send_message(cache_http, builder).<span class="kw">await
+<a href=#1111 id=1111 data-nosnippet>1111</a></span>}
+<a href=#1112 id=1112 data-nosnippet>1112</a>
+<a href=#1113 id=1113 data-nosnippet>1113</a><span class="doccomment">/// Posts an embed showing each individual command group and its commands.
+<a href=#1114 id=1114 data-nosnippet>1114</a>///
+<a href=#1115 id=1115 data-nosnippet>1115</a>/// # Examples
+<a href=#1116 id=1116 data-nosnippet>1116</a>///
+<a href=#1117 id=1117 data-nosnippet>1117</a>/// Use the command with [`StandardFramework::help`]:
+<a href=#1118 id=1118 data-nosnippet>1118</a>///
+<a href=#1119 id=1119 data-nosnippet>1119</a>/// ```rust,no_run
+<a href=#1120 id=1120 data-nosnippet>1120</a>/// # use serenity::prelude::*;
+<a href=#1121 id=1121 data-nosnippet>1121</a>/// use std::collections::HashSet;
+<a href=#1122 id=1122 data-nosnippet>1122</a>/// use std::hash::BuildHasher;
+<a href=#1123 id=1123 data-nosnippet>1123</a>///
+<a href=#1124 id=1124 data-nosnippet>1124</a>/// use serenity::framework::standard::help_commands::*;
+<a href=#1125 id=1125 data-nosnippet>1125</a>/// use serenity::framework::standard::macros::help;
+<a href=#1126 id=1126 data-nosnippet>1126</a>/// use serenity::framework::standard::{
+<a href=#1127 id=1127 data-nosnippet>1127</a>///     Args,
+<a href=#1128 id=1128 data-nosnippet>1128</a>///     CommandGroup,
+<a href=#1129 id=1129 data-nosnippet>1129</a>///     CommandResult,
+<a href=#1130 id=1130 data-nosnippet>1130</a>///     HelpOptions,
+<a href=#1131 id=1131 data-nosnippet>1131</a>///     StandardFramework,
+<a href=#1132 id=1132 data-nosnippet>1132</a>/// };
+<a href=#1133 id=1133 data-nosnippet>1133</a>/// use serenity::model::prelude::*;
+<a href=#1134 id=1134 data-nosnippet>1134</a>///
+<a href=#1135 id=1135 data-nosnippet>1135</a>/// #[help]
+<a href=#1136 id=1136 data-nosnippet>1136</a>/// async fn my_help(
+<a href=#1137 id=1137 data-nosnippet>1137</a>///     context: &amp;Context,
+<a href=#1138 id=1138 data-nosnippet>1138</a>///     msg: &amp;Message,
+<a href=#1139 id=1139 data-nosnippet>1139</a>///     args: Args,
+<a href=#1140 id=1140 data-nosnippet>1140</a>///     help_options: &amp;'static HelpOptions,
+<a href=#1141 id=1141 data-nosnippet>1141</a>///     groups: &amp;[&amp;'static CommandGroup],
+<a href=#1142 id=1142 data-nosnippet>1142</a>///     owners: HashSet&lt;UserId&gt;,
+<a href=#1143 id=1143 data-nosnippet>1143</a>/// ) -&gt; CommandResult {
+<a href=#1144 id=1144 data-nosnippet>1144</a>///     let _ = with_embeds(context, msg, args, &amp;help_options, groups, owners).await?;
+<a href=#1145 id=1145 data-nosnippet>1145</a>///     Ok(())
+<a href=#1146 id=1146 data-nosnippet>1146</a>/// }
+<a href=#1147 id=1147 data-nosnippet>1147</a>///
+<a href=#1148 id=1148 data-nosnippet>1148</a>/// let framework = StandardFramework::new().help(&amp;MY_HELP);
+<a href=#1149 id=1149 data-nosnippet>1149</a>/// ```
+<a href=#1150 id=1150 data-nosnippet>1150</a>///
+<a href=#1151 id=1151 data-nosnippet>1151</a>/// # Errors
+<a href=#1152 id=1152 data-nosnippet>1152</a>///
+<a href=#1153 id=1153 data-nosnippet>1153</a>/// Returns the same errors as [`ChannelId::send_message`].
+<a href=#1154 id=1154 data-nosnippet>1154</a>///
+<a href=#1155 id=1155 data-nosnippet>1155</a>/// [`StandardFramework::help`]: crate::framework::standard::StandardFramework::help
+<a href=#1156 id=1156 data-nosnippet>1156</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#1157 id=1157 data-nosnippet>1157</a></span><span class="kw">pub async fn </span>with_embeds(
+<a href=#1158 id=1158 data-nosnippet>1158</a>    ctx: <span class="kw-2">&amp;</span>Context,
+<a href=#1159 id=1159 data-nosnippet>1159</a>    msg: <span class="kw-2">&amp;</span>Message,
+<a href=#1160 id=1160 data-nosnippet>1160</a>    args: Args,
+<a href=#1161 id=1161 data-nosnippet>1161</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
+<a href=#1162 id=1162 data-nosnippet>1162</a>    groups: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CommandGroup],
+<a href=#1163 id=1163 data-nosnippet>1163</a>    owners: HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
+<a href=#1164 id=1164 data-nosnippet>1164</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
+<a href=#1165 id=1165 data-nosnippet>1165</a>    <span class="kw">let </span>formatted_help =
+<a href=#1166 id=1166 data-nosnippet>1166</a>        create_customised_help_data(ctx, msg, <span class="kw-2">&amp;</span>args, groups, <span class="kw-2">&amp;</span>owners, help_options).<span class="kw">await</span>;
+<a href=#1167 id=1167 data-nosnippet>1167</a>
+<a href=#1168 id=1168 data-nosnippet>1168</a>    <span class="kw">match </span>formatted_help {
+<a href=#1169 id=1169 data-nosnippet>1169</a>        CustomisedHelpData::SuggestedCommands {
+<a href=#1170 id=1170 data-nosnippet>1170</a>            <span class="kw-2">ref </span>help_description,
+<a href=#1171 id=1171 data-nosnippet>1171</a>            <span class="kw-2">ref </span>suggestions,
+<a href=#1172 id=1172 data-nosnippet>1172</a>        } =&gt; {
+<a href=#1173 id=1173 data-nosnippet>1173</a>            send_suggestion_embed(
+<a href=#1174 id=1174 data-nosnippet>1174</a>                <span class="kw-2">&amp;</span>ctx.http,
+<a href=#1175 id=1175 data-nosnippet>1175</a>                msg.channel_id,
+<a href=#1176 id=1176 data-nosnippet>1176</a>                help_description,
+<a href=#1177 id=1177 data-nosnippet>1177</a>                suggestions,
+<a href=#1178 id=1178 data-nosnippet>1178</a>                help_options.embed_error_colour,
+<a href=#1179 id=1179 data-nosnippet>1179</a>            )
+<a href=#1180 id=1180 data-nosnippet>1180</a>            .<span class="kw">await
+<a href=#1181 id=1181 data-nosnippet>1181</a>        </span>},
+<a href=#1182 id=1182 data-nosnippet>1182</a>        CustomisedHelpData::NoCommandFound {
+<a href=#1183 id=1183 data-nosnippet>1183</a>            help_error_message,
+<a href=#1184 id=1184 data-nosnippet>1184</a>        } =&gt; {
+<a href=#1185 id=1185 data-nosnippet>1185</a>            send_error_embed(
+<a href=#1186 id=1186 data-nosnippet>1186</a>                <span class="kw-2">&amp;</span>ctx.http,
+<a href=#1187 id=1187 data-nosnippet>1187</a>                msg.channel_id,
+<a href=#1188 id=1188 data-nosnippet>1188</a>                help_error_message,
+<a href=#1189 id=1189 data-nosnippet>1189</a>                help_options.embed_error_colour,
+<a href=#1190 id=1190 data-nosnippet>1190</a>            )
+<a href=#1191 id=1191 data-nosnippet>1191</a>            .<span class="kw">await
+<a href=#1192 id=1192 data-nosnippet>1192</a>        </span>},
+<a href=#1193 id=1193 data-nosnippet>1193</a>        CustomisedHelpData::GroupedCommands {
+<a href=#1194 id=1194 data-nosnippet>1194</a>            <span class="kw-2">ref </span>help_description,
+<a href=#1195 id=1195 data-nosnippet>1195</a>            <span class="kw-2">ref </span>groups,
+<a href=#1196 id=1196 data-nosnippet>1196</a>        } =&gt; {
+<a href=#1197 id=1197 data-nosnippet>1197</a>            send_grouped_commands_embed(
+<a href=#1198 id=1198 data-nosnippet>1198</a>                <span class="kw-2">&amp;</span>ctx.http,
+<a href=#1199 id=1199 data-nosnippet>1199</a>                help_options,
+<a href=#1200 id=1200 data-nosnippet>1200</a>                msg.channel_id,
+<a href=#1201 id=1201 data-nosnippet>1201</a>                help_description,
+<a href=#1202 id=1202 data-nosnippet>1202</a>                groups,
+<a href=#1203 id=1203 data-nosnippet>1203</a>                help_options.embed_success_colour,
+<a href=#1204 id=1204 data-nosnippet>1204</a>            )
+<a href=#1205 id=1205 data-nosnippet>1205</a>            .<span class="kw">await
+<a href=#1206 id=1206 data-nosnippet>1206</a>        </span>},
+<a href=#1207 id=1207 data-nosnippet>1207</a>        CustomisedHelpData::SingleCommand {
+<a href=#1208 id=1208 data-nosnippet>1208</a>            <span class="kw-2">ref </span>command,
+<a href=#1209 id=1209 data-nosnippet>1209</a>        } =&gt; {
+<a href=#1210 id=1210 data-nosnippet>1210</a>            send_single_command_embed(
+<a href=#1211 id=1211 data-nosnippet>1211</a>                <span class="kw-2">&amp;</span>ctx.http,
+<a href=#1212 id=1212 data-nosnippet>1212</a>                help_options,
+<a href=#1213 id=1213 data-nosnippet>1213</a>                msg.channel_id,
+<a href=#1214 id=1214 data-nosnippet>1214</a>                command,
+<a href=#1215 id=1215 data-nosnippet>1215</a>                help_options.embed_success_colour,
+<a href=#1216 id=1216 data-nosnippet>1216</a>            )
+<a href=#1217 id=1217 data-nosnippet>1217</a>            .<span class="kw">await
+<a href=#1218 id=1218 data-nosnippet>1218</a>        </span>},
+<a href=#1219 id=1219 data-nosnippet>1219</a>    }
+<a href=#1220 id=1220 data-nosnippet>1220</a>}
+<a href=#1221 id=1221 data-nosnippet>1221</a>
+<a href=#1222 id=1222 data-nosnippet>1222</a><span class="doccomment">/// Turns grouped commands into a [`String`] taking plain help format into account.
+<a href=#1223 id=1223 data-nosnippet>1223</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#1224 id=1224 data-nosnippet>1224</a></span><span class="kw">fn </span>grouped_commands_to_plain_string(
+<a href=#1225 id=1225 data-nosnippet>1225</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
+<a href=#1226 id=1226 data-nosnippet>1226</a>    help_description: <span class="kw-2">&amp;</span>str,
+<a href=#1227 id=1227 data-nosnippet>1227</a>    groups: <span class="kw-2">&amp;</span>[GroupCommandsPair],
+<a href=#1228 id=1228 data-nosnippet>1228</a>) -&gt; String {
+<a href=#1229 id=1229 data-nosnippet>1229</a>    <span class="kw">let </span><span class="kw-2">mut </span>result = <span class="string">"__**Commands**__\n"</span>.to_string();
+<a href=#1230 id=1230 data-nosnippet>1230</a>
+<a href=#1231 id=1231 data-nosnippet>1231</a>    result.push_str(help_description);
+<a href=#1232 id=1232 data-nosnippet>1232</a>    result.push(<span class="string">'\n'</span>);
+<a href=#1233 id=1233 data-nosnippet>1233</a>
+<a href=#1234 id=1234 data-nosnippet>1234</a>    <span class="kw">for </span>group <span class="kw">in </span>groups {
+<a href=#1235 id=1235 data-nosnippet>1235</a>        <span class="macro">write!</span>(result, <span class="string">"\n**{}**"</span>, <span class="kw-2">&amp;</span>group.name).expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1236 id=1236 data-nosnippet>1236</a>
+<a href=#1237 id=1237 data-nosnippet>1237</a>        flatten_group_to_plain_string(<span class="kw-2">&amp;mut </span>result, group, <span class="number">0</span>, help_options);
+<a href=#1238 id=1238 data-nosnippet>1238</a>    }
+<a href=#1239 id=1239 data-nosnippet>1239</a>
+<a href=#1240 id=1240 data-nosnippet>1240</a>    result
+<a href=#1241 id=1241 data-nosnippet>1241</a>}
+<a href=#1242 id=1242 data-nosnippet>1242</a>
+<a href=#1243 id=1243 data-nosnippet>1243</a><span class="doccomment">/// Turns a single command into a [`String`] taking plain help format into account.
+<a href=#1244 id=1244 data-nosnippet>1244</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#1245 id=1245 data-nosnippet>1245</a></span><span class="kw">fn </span>single_command_to_plain_string(help_options: <span class="kw-2">&amp;</span>HelpOptions, command: <span class="kw-2">&amp;</span>Command&lt;<span class="lifetime">'_</span>&gt;) -&gt; String {
+<a href=#1246 id=1246 data-nosnippet>1246</a>    <span class="kw">let </span><span class="kw-2">mut </span>result = String::new();
+<a href=#1247 id=1247 data-nosnippet>1247</a>
+<a href=#1248 id=1248 data-nosnippet>1248</a>    <span class="macro">writeln!</span>(result, <span class="string">"__**{}**__"</span>, command.name).expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1249 id=1249 data-nosnippet>1249</a>
+<a href=#1250 id=1250 data-nosnippet>1250</a>    <span class="kw">if </span>!command.aliases.is_empty() {
+<a href=#1251 id=1251 data-nosnippet>1251</a>        <span class="macro">write!</span>(result, <span class="string">"**{}**: `{}`"</span>, help_options.aliases_label, command.aliases.join(<span class="string">"`, `"</span>))
+<a href=#1252 id=1252 data-nosnippet>1252</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1253 id=1253 data-nosnippet>1253</a>    }
+<a href=#1254 id=1254 data-nosnippet>1254</a>
+<a href=#1255 id=1255 data-nosnippet>1255</a>    <span class="kw">if let </span><span class="prelude-val">Some</span>(description) = command.description {
+<a href=#1256 id=1256 data-nosnippet>1256</a>        <span class="macro">writeln!</span>(result, <span class="string">"**{}**: {description}"</span>, help_options.description_label)
+<a href=#1257 id=1257 data-nosnippet>1257</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1258 id=1258 data-nosnippet>1258</a>    }
+<a href=#1259 id=1259 data-nosnippet>1259</a>
+<a href=#1260 id=1260 data-nosnippet>1260</a>    <span class="kw">if let </span><span class="prelude-val">Some</span>(usage) = command.usage {
+<a href=#1261 id=1261 data-nosnippet>1261</a>        <span class="kw">if let </span><span class="prelude-val">Some</span>(first_prefix) = command.group_prefixes.first() {
+<a href=#1262 id=1262 data-nosnippet>1262</a>            <span class="macro">writeln!</span>(
+<a href=#1263 id=1263 data-nosnippet>1263</a>                result,
+<a href=#1264 id=1264 data-nosnippet>1264</a>                <span class="string">"**{}**: `{first_prefix} {} {usage}`"</span>,
+<a href=#1265 id=1265 data-nosnippet>1265</a>                help_options.usage_label, command.name
+<a href=#1266 id=1266 data-nosnippet>1266</a>            )
+<a href=#1267 id=1267 data-nosnippet>1267</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1268 id=1268 data-nosnippet>1268</a>        } <span class="kw">else </span>{
+<a href=#1269 id=1269 data-nosnippet>1269</a>            <span class="macro">writeln!</span>(result, <span class="string">"**{}**: `{} {usage}`"</span>, help_options.usage_label, command.name)
+<a href=#1270 id=1270 data-nosnippet>1270</a>                .expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1271 id=1271 data-nosnippet>1271</a>        }
+<a href=#1272 id=1272 data-nosnippet>1272</a>    }
+<a href=#1273 id=1273 data-nosnippet>1273</a>
+<a href=#1274 id=1274 data-nosnippet>1274</a>    <span class="kw">if </span>!command.usage_sample.is_empty() {
+<a href=#1275 id=1275 data-nosnippet>1275</a>        <span class="kw">if let </span><span class="prelude-val">Some</span>(first_prefix) = command.group_prefixes.first() {
+<a href=#1276 id=1276 data-nosnippet>1276</a>            <span class="kw">let </span>format_example = |example| {
+<a href=#1277 id=1277 data-nosnippet>1277</a>                <span class="macro">writeln!</span>(
+<a href=#1278 id=1278 data-nosnippet>1278</a>                    result,
+<a href=#1279 id=1279 data-nosnippet>1279</a>                    <span class="string">"**{}**: `{first_prefix} {} {example}`"</span>,
+<a href=#1280 id=1280 data-nosnippet>1280</a>                    help_options.usage_sample_label, command.name
+<a href=#1281 id=1281 data-nosnippet>1281</a>                )
+<a href=#1282 id=1282 data-nosnippet>1282</a>                .expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1283 id=1283 data-nosnippet>1283</a>            };
+<a href=#1284 id=1284 data-nosnippet>1284</a>            command.usage_sample.iter().for_each(format_example);
+<a href=#1285 id=1285 data-nosnippet>1285</a>        } <span class="kw">else </span>{
+<a href=#1286 id=1286 data-nosnippet>1286</a>            <span class="kw">let </span>format_example = |example| {
+<a href=#1287 id=1287 data-nosnippet>1287</a>                <span class="macro">writeln!</span>(
+<a href=#1288 id=1288 data-nosnippet>1288</a>                    result,
+<a href=#1289 id=1289 data-nosnippet>1289</a>                    <span class="string">"**{}**: `{} {example}`"</span>,
+<a href=#1290 id=1290 data-nosnippet>1290</a>                    help_options.usage_sample_label, command.name
+<a href=#1291 id=1291 data-nosnippet>1291</a>                )
+<a href=#1292 id=1292 data-nosnippet>1292</a>                .expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1293 id=1293 data-nosnippet>1293</a>            };
+<a href=#1294 id=1294 data-nosnippet>1294</a>            command.usage_sample.iter().for_each(format_example);
+<a href=#1295 id=1295 data-nosnippet>1295</a>        }
+<a href=#1296 id=1296 data-nosnippet>1296</a>    }
+<a href=#1297 id=1297 data-nosnippet>1297</a>
+<a href=#1298 id=1298 data-nosnippet>1298</a>    <span class="macro">writeln!</span>(result, <span class="string">"**{}**: {}"</span>, help_options.grouped_label, command.group_name)
+<a href=#1299 id=1299 data-nosnippet>1299</a>        .expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1300 id=1300 data-nosnippet>1300</a>
+<a href=#1301 id=1301 data-nosnippet>1301</a>    <span class="kw">if </span>!help_options.available_text.is_empty() &amp;&amp; !command.availability.is_empty() {
+<a href=#1302 id=1302 data-nosnippet>1302</a>        <span class="macro">writeln!</span>(result, <span class="string">"**{}**: {}"</span>, help_options.available_text, command.availability)
+<a href=#1303 id=1303 data-nosnippet>1303</a>            .expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1304 id=1304 data-nosnippet>1304</a>    }
+<a href=#1305 id=1305 data-nosnippet>1305</a>
+<a href=#1306 id=1306 data-nosnippet>1306</a>    <span class="kw">if </span>!command.sub_commands.is_empty() {
+<a href=#1307 id=1307 data-nosnippet>1307</a>        <span class="macro">writeln!</span>(
+<a href=#1308 id=1308 data-nosnippet>1308</a>            result,
+<a href=#1309 id=1309 data-nosnippet>1309</a>            <span class="string">"**{}**: `{}`"</span>,
+<a href=#1310 id=1310 data-nosnippet>1310</a>            help_options.sub_commands_label,
+<a href=#1311 id=1311 data-nosnippet>1311</a>            command.sub_commands.join(<span class="string">"`, `"</span>),
+<a href=#1312 id=1312 data-nosnippet>1312</a>        )
+<a href=#1313 id=1313 data-nosnippet>1313</a>        .expect(<span class="string">"writing to a string should never fail"</span>);
+<a href=#1314 id=1314 data-nosnippet>1314</a>    }
+<a href=#1315 id=1315 data-nosnippet>1315</a>
+<a href=#1316 id=1316 data-nosnippet>1316</a>    result
+<a href=#1317 id=1317 data-nosnippet>1317</a>}
+<a href=#1318 id=1318 data-nosnippet>1318</a>
+<a href=#1319 id=1319 data-nosnippet>1319</a><span class="doccomment">/// Posts formatted text displaying each individual command group and its commands.
+<a href=#1320 id=1320 data-nosnippet>1320</a>///
+<a href=#1321 id=1321 data-nosnippet>1321</a>/// # Examples
+<a href=#1322 id=1322 data-nosnippet>1322</a>///
+<a href=#1323 id=1323 data-nosnippet>1323</a>/// Use the command with `exec_help`:
+<a href=#1324 id=1324 data-nosnippet>1324</a>///
+<a href=#1325 id=1325 data-nosnippet>1325</a>/// ```rust,no_run
+<a href=#1326 id=1326 data-nosnippet>1326</a>/// # use serenity::prelude::*;
+<a href=#1327 id=1327 data-nosnippet>1327</a>/// use std::collections::HashSet;
+<a href=#1328 id=1328 data-nosnippet>1328</a>/// use std::hash::BuildHasher;
+<a href=#1329 id=1329 data-nosnippet>1329</a>///
+<a href=#1330 id=1330 data-nosnippet>1330</a>/// use serenity::framework::standard::help_commands::*;
+<a href=#1331 id=1331 data-nosnippet>1331</a>/// use serenity::framework::standard::macros::help;
+<a href=#1332 id=1332 data-nosnippet>1332</a>/// use serenity::framework::standard::{
+<a href=#1333 id=1333 data-nosnippet>1333</a>///     Args,
+<a href=#1334 id=1334 data-nosnippet>1334</a>///     CommandGroup,
+<a href=#1335 id=1335 data-nosnippet>1335</a>///     CommandResult,
+<a href=#1336 id=1336 data-nosnippet>1336</a>///     HelpOptions,
+<a href=#1337 id=1337 data-nosnippet>1337</a>///     StandardFramework,
+<a href=#1338 id=1338 data-nosnippet>1338</a>/// };
+<a href=#1339 id=1339 data-nosnippet>1339</a>/// use serenity::model::prelude::*;
+<a href=#1340 id=1340 data-nosnippet>1340</a>///
+<a href=#1341 id=1341 data-nosnippet>1341</a>/// #[help]
+<a href=#1342 id=1342 data-nosnippet>1342</a>/// async fn my_help(
+<a href=#1343 id=1343 data-nosnippet>1343</a>///     context: &amp;Context,
+<a href=#1344 id=1344 data-nosnippet>1344</a>///     msg: &amp;Message,
+<a href=#1345 id=1345 data-nosnippet>1345</a>///     args: Args,
+<a href=#1346 id=1346 data-nosnippet>1346</a>///     help_options: &amp;'static HelpOptions,
+<a href=#1347 id=1347 data-nosnippet>1347</a>///     groups: &amp;[&amp;'static CommandGroup],
+<a href=#1348 id=1348 data-nosnippet>1348</a>///     owners: HashSet&lt;UserId&gt;,
+<a href=#1349 id=1349 data-nosnippet>1349</a>/// ) -&gt; CommandResult {
+<a href=#1350 id=1350 data-nosnippet>1350</a>///     let _ = plain(context, msg, args, &amp;help_options, groups, owners).await?;
+<a href=#1351 id=1351 data-nosnippet>1351</a>///     Ok(())
+<a href=#1352 id=1352 data-nosnippet>1352</a>/// }
+<a href=#1353 id=1353 data-nosnippet>1353</a>///
+<a href=#1354 id=1354 data-nosnippet>1354</a>/// let framework = StandardFramework::new().help(&amp;MY_HELP);
+<a href=#1355 id=1355 data-nosnippet>1355</a>/// ```
+<a href=#1356 id=1356 data-nosnippet>1356</a>/// # Errors
+<a href=#1357 id=1357 data-nosnippet>1357</a>///
+<a href=#1358 id=1358 data-nosnippet>1358</a>/// Returns the same errors as [`ChannelId::send_message`].
+<a href=#1359 id=1359 data-nosnippet>1359</a></span><span class="attr">#[cfg(all(feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#1360 id=1360 data-nosnippet>1360</a></span><span class="kw">pub async fn </span>plain(
+<a href=#1361 id=1361 data-nosnippet>1361</a>    ctx: <span class="kw-2">&amp;</span>Context,
+<a href=#1362 id=1362 data-nosnippet>1362</a>    msg: <span class="kw-2">&amp;</span>Message,
+<a href=#1363 id=1363 data-nosnippet>1363</a>    args: Args,
+<a href=#1364 id=1364 data-nosnippet>1364</a>    help_options: <span class="kw-2">&amp;</span>HelpOptions,
+<a href=#1365 id=1365 data-nosnippet>1365</a>    groups: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>CommandGroup],
+<a href=#1366 id=1366 data-nosnippet>1366</a>    owners: HashSet&lt;UserId, <span class="kw">impl </span>std::hash::BuildHasher + Send + Sync&gt;,
+<a href=#1367 id=1367 data-nosnippet>1367</a>) -&gt; <span class="prelude-ty">Result</span>&lt;Message, Error&gt; {
+<a href=#1368 id=1368 data-nosnippet>1368</a>    <span class="kw">let </span>formatted_help =
+<a href=#1369 id=1369 data-nosnippet>1369</a>        create_customised_help_data(ctx, msg, <span class="kw-2">&amp;</span>args, groups, <span class="kw-2">&amp;</span>owners, help_options).<span class="kw">await</span>;
+<a href=#1370 id=1370 data-nosnippet>1370</a>
+<a href=#1371 id=1371 data-nosnippet>1371</a>    <span class="kw">let </span>result = <span class="kw">match </span>formatted_help {
+<a href=#1372 id=1372 data-nosnippet>1372</a>        CustomisedHelpData::SuggestedCommands {
+<a href=#1373 id=1373 data-nosnippet>1373</a>            <span class="kw-2">ref </span>help_description,
+<a href=#1374 id=1374 data-nosnippet>1374</a>            <span class="kw-2">ref </span>suggestions,
+<a href=#1375 id=1375 data-nosnippet>1375</a>        } =&gt; help_description.replace(<span class="string">"{}"</span>, <span class="kw-2">&amp;</span>suggestions.join(<span class="string">"`, `"</span>)),
+<a href=#1376 id=1376 data-nosnippet>1376</a>        CustomisedHelpData::NoCommandFound {
+<a href=#1377 id=1377 data-nosnippet>1377</a>            help_error_message,
+<a href=#1378 id=1378 data-nosnippet>1378</a>        } =&gt; help_error_message.to_string(),
+<a href=#1379 id=1379 data-nosnippet>1379</a>        CustomisedHelpData::GroupedCommands {
+<a href=#1380 id=1380 data-nosnippet>1380</a>            <span class="kw-2">ref </span>help_description,
+<a href=#1381 id=1381 data-nosnippet>1381</a>            <span class="kw-2">ref </span>groups,
+<a href=#1382 id=1382 data-nosnippet>1382</a>        } =&gt; grouped_commands_to_plain_string(help_options, help_description, groups),
+<a href=#1383 id=1383 data-nosnippet>1383</a>        CustomisedHelpData::SingleCommand {
+<a href=#1384 id=1384 data-nosnippet>1384</a>            <span class="kw-2">ref </span>command,
+<a href=#1385 id=1385 data-nosnippet>1385</a>        } =&gt; single_command_to_plain_string(help_options, command),
+<a href=#1386 id=1386 data-nosnippet>1386</a>    };
+<a href=#1387 id=1387 data-nosnippet>1387</a>
+<a href=#1388 id=1388 data-nosnippet>1388</a>    msg.channel_id.say(<span class="kw-2">&amp;</span>ctx, result).<span class="kw">await
+<a href=#1389 id=1389 data-nosnippet>1389</a></span>}
+<a href=#1390 id=1390 data-nosnippet>1390</a>
+<a href=#1391 id=1391 data-nosnippet>1391</a><span class="attr">#[cfg(all(test, feature = <span class="string">"cache"</span>, feature = <span class="string">"http"</span>))]
+<a href=#1392 id=1392 data-nosnippet>1392</a></span><span class="kw">mod </span>tests {
+<a href=#1393 id=1393 data-nosnippet>1393</a>    <span class="kw">use </span>super::{SuggestedCommandName, Suggestions};
+<a href=#1394 id=1394 data-nosnippet>1394</a>
+<a href=#1395 id=1395 data-nosnippet>1395</a>    <span class="attr">#[test]
+<a href=#1396 id=1396 data-nosnippet>1396</a>    </span><span class="kw">fn </span>suggestions_join() {
+<a href=#1397 id=1397 data-nosnippet>1397</a>        <span class="kw">let </span>names = <span class="macro">vec!</span>[
+<a href=#1398 id=1398 data-nosnippet>1398</a>            SuggestedCommandName {
+<a href=#1399 id=1399 data-nosnippet>1399</a>                name: <span class="string">"aa"</span>.to_owned(),
+<a href=#1400 id=1400 data-nosnippet>1400</a>                levenshtein_distance: <span class="number">0</span>,
+<a href=#1401 id=1401 data-nosnippet>1401</a>            },
+<a href=#1402 id=1402 data-nosnippet>1402</a>            SuggestedCommandName {
+<a href=#1403 id=1403 data-nosnippet>1403</a>                name: <span class="string">"bbb"</span>.to_owned(),
+<a href=#1404 id=1404 data-nosnippet>1404</a>                levenshtein_distance: <span class="number">0</span>,
+<a href=#1405 id=1405 data-nosnippet>1405</a>            },
+<a href=#1406 id=1406 data-nosnippet>1406</a>            SuggestedCommandName {
+<a href=#1407 id=1407 data-nosnippet>1407</a>                name: <span class="string">"cccc"</span>.to_owned(),
+<a href=#1408 id=1408 data-nosnippet>1408</a>                levenshtein_distance: <span class="number">0</span>,
+<a href=#1409 id=1409 data-nosnippet>1409</a>            },
+<a href=#1410 id=1410 data-nosnippet>1410</a>        ];
+<a href=#1411 id=1411 data-nosnippet>1411</a>
+<a href=#1412 id=1412 data-nosnippet>1412</a>        <span class="kw">let </span>actual = Suggestions(names).join(<span class="string">", "</span>);
+<a href=#1413 id=1413 data-nosnippet>1413</a>
+<a href=#1414 id=1414 data-nosnippet>1414</a>        <span class="macro">assert_eq!</span>(actual, <span class="string">"aa, bbb, cccc"</span>);
+<a href=#1415 id=1415 data-nosnippet>1415</a>        <span class="macro">assert_eq!</span>(actual.capacity(), <span class="number">13</span>);
+<a href=#1416 id=1416 data-nosnippet>1416</a>    }
+<a href=#1417 id=1417 data-nosnippet>1417</a>}
 </code></pre></div></section></main></body></html>

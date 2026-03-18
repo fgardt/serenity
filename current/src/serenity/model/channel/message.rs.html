@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/message.rs`."><title>message.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/model/channel/</div>message.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-4"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! Models relating to Discord channels.
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/model/channel/message.rs`."><title>message.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (3645249d7 2026-03-16)" data-channel="nightly" data-search-js="search-63369b7b.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../../static.files/src-script-813739b1.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">serenity/model/channel/</div>message.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-4"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="doccomment">//! Models relating to Discord channels.
 <a href=#2 id=2 data-nosnippet>2</a>
 <a href=#3 id=3 data-nosnippet>3</a></span><span class="attr">#[cfg(feature = <span class="string">"model"</span>)]
 <a href=#4 id=4 data-nosnippet>4</a></span><span class="kw">use </span>std::fmt::Display;
@@ -28,8 +28,8 @@
 <a href=#28 id=28 data-nosnippet>28</a>
 <a href=#29 id=29 data-nosnippet>29</a><span class="doccomment">/// A representation of a message over a guild's text channel, a group, or a private channel.
 <a href=#30 id=30 data-nosnippet>30</a>///
-<a href=#31 id=31 data-nosnippet>31</a>/// [Discord docs](https://discord.com/developers/docs/resources/channel#message-object) with some
-<a href=#32 id=32 data-nosnippet>32</a>/// [extra fields](https://discord.com/developers/docs/topics/gateway-events#message-create-message-create-extra-fields).
+<a href=#31 id=31 data-nosnippet>31</a>/// [Discord docs](https://docs.discord.com/developers/resources/message#message-object) with some
+<a href=#32 id=32 data-nosnippet>32</a>/// [extra fields](https://docs.discord.com/developers/events/gateway-events#message-create-message-create-extra-fields).
 <a href=#33 id=33 data-nosnippet>33</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#34 id=34 data-nosnippet>34</a>#[derive(Clone, Debug, Default, Deserialize, Serialize)]
 <a href=#35 id=35 data-nosnippet>35</a>#[non_exhaustive]
@@ -72,7 +72,7 @@
 <a href=#72 id=72 data-nosnippet>72</a>    ///
 <a href=#73 id=73 data-nosnippet>73</a>    /// [Refer to Discord's documentation for more information][discord-docs].
 <a href=#74 id=74 data-nosnippet>74</a>    ///
-<a href=#75 id=75 data-nosnippet>75</a>    /// [discord-docs]: https://discord.com/developers/docs/resources/channel#message-object
+<a href=#75 id=75 data-nosnippet>75</a>    /// [discord-docs]: https://docs.discord.com/developers/resources/message#message-object
 <a href=#76 id=76 data-nosnippet>76</a>    </span><span class="attr">#[serde(default = <span class="string">"Vec::new"</span>)]
 <a href=#77 id=77 data-nosnippet>77</a>    </span><span class="kw">pub </span>mention_channels: Vec&lt;ChannelMention&gt;,
 <a href=#78 id=78 data-nosnippet>78</a>    <span class="doccomment">/// An vector of the files attached to a message.
@@ -175,7 +175,7 @@
 <a href=#175 id=175 data-nosnippet>175</a>        <span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
 <a href=#176 id=176 data-nosnippet>176</a>        </span>{
 <a href=#177 id=177 data-nosnippet>177</a>            <span class="kw">if let </span><span class="prelude-val">Some</span>(cache) = cache_http.cache() {
-<a href=#178 id=178 data-nosnippet>178</a>                <span class="kw">if </span><span class="self">self</span>.author.<span class="macro">id !</span>= cache.current_user().id &amp;&amp; <span class="self">self</span>.guild_id.is_some() {
+<a href=#178 id=178 data-nosnippet>178</a>                <span class="kw">if </span><span class="self">self</span>.author.id != cache.current_user().id &amp;&amp; <span class="self">self</span>.guild_id.is_some() {
 <a href=#179 id=179 data-nosnippet>179</a>                    utils::user_has_perms_cache(
 <a href=#180 id=180 data-nosnippet>180</a>                        cache,
 <a href=#181 id=181 data-nosnippet>181</a>                        <span class="self">self</span>.channel_id,
@@ -189,7 +189,7 @@
 <a href=#189 id=189 data-nosnippet>189</a>            <span class="kw">if </span>flags.contains(MessageFlags::CROSSPOSTED) {
 <a href=#190 id=190 data-nosnippet>190</a>                <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Model(ModelError::MessageAlreadyCrossposted));
 <a href=#191 id=191 data-nosnippet>191</a>            } <span class="kw">else if </span>flags.contains(MessageFlags::IS_CROSSPOST)
-<a href=#192 id=192 data-nosnippet>192</a>                || <span class="self">self</span>.<span class="macro">kind !</span>= MessageType::Regular
+<a href=#192 id=192 data-nosnippet>192</a>                || <span class="self">self</span>.kind != MessageType::Regular
 <a href=#193 id=193 data-nosnippet>193</a>            {
 <a href=#194 id=194 data-nosnippet>194</a>                <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Model(ModelError::CannotCrosspostMessage));
 <a href=#195 id=195 data-nosnippet>195</a>            }
@@ -272,7 +272,7 @@
 <a href=#272 id=272 data-nosnippet>272</a>        <span class="attr">#[cfg(feature = <span class="string">"cache"</span>)]
 <a href=#273 id=273 data-nosnippet>273</a>        </span>{
 <a href=#274 id=274 data-nosnippet>274</a>            <span class="kw">if let </span><span class="prelude-val">Some</span>(cache) = cache_http.cache() {
-<a href=#275 id=275 data-nosnippet>275</a>                <span class="kw">if </span><span class="self">self</span>.author.<span class="macro">id !</span>= cache.current_user().id {
+<a href=#275 id=275 data-nosnippet>275</a>                <span class="kw">if </span><span class="self">self</span>.author.id != cache.current_user().id {
 <a href=#276 id=276 data-nosnippet>276</a>                    utils::user_has_perms_cache(
 <a href=#277 id=277 data-nosnippet>277</a>                        cache,
 <a href=#278 id=278 data-nosnippet>278</a>                        <span class="self">self</span>.channel_id,
@@ -928,7 +928,7 @@
 <a href=#928 id=928 data-nosnippet>928</a>/// Multiple of the same [reaction type] are sent into one [`MessageReaction`], with an associated
 <a href=#929 id=929 data-nosnippet>929</a>/// [`Self::count`].
 <a href=#930 id=930 data-nosnippet>930</a>///
-<a href=#931 id=931 data-nosnippet>931</a>/// [Discord docs](https://discord.com/developers/docs/resources/channel#reaction-object).
+<a href=#931 id=931 data-nosnippet>931</a>/// [Discord docs](https://docs.discord.com/developers/resources/message#reaction-object).
 <a href=#932 id=932 data-nosnippet>932</a>///
 <a href=#933 id=933 data-nosnippet>933</a>/// [reaction type]: ReactionType
 <a href=#934 id=934 data-nosnippet>934</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
@@ -954,7 +954,7 @@
 <a href=#954 id=954 data-nosnippet>954</a>
 <a href=#955 id=955 data-nosnippet>955</a><span class="doccomment">/// A representation of reaction count details.
 <a href=#956 id=956 data-nosnippet>956</a>///
-<a href=#957 id=957 data-nosnippet>957</a>/// [Discord docs](https://discord.com/developers/docs/resources/channel#reaction-count-details-object).
+<a href=#957 id=957 data-nosnippet>957</a>/// [Discord docs](https://docs.discord.com/developers/resources/message#reaction-count-details-object).
 <a href=#958 id=958 data-nosnippet>958</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#959 id=959 data-nosnippet>959</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#960 id=960 data-nosnippet>960</a>#[non_exhaustive]
@@ -966,7 +966,7 @@
 <a href=#966 id=966 data-nosnippet>966</a><span class="macro">enum_number!</span> {
 <a href=#967 id=967 data-nosnippet>967</a>    <span class="doccomment">/// Differentiates between regular and different types of system messages.
 <a href=#968 id=968 data-nosnippet>968</a>    ///
-<a href=#969 id=969 data-nosnippet>969</a>    /// [Discord docs](https://discord.com/developers/docs/resources/channel#message-object-message-types).
+<a href=#969 id=969 data-nosnippet>969</a>    /// [Discord docs](https://docs.discord.com/developers/resources/message#message-object-message-types).
 <a href=#970 id=970 data-nosnippet>970</a>    </span><span class="attr">#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd, Deserialize, Serialize)]
 <a href=#971 id=971 data-nosnippet>971</a>    #[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#972 id=972 data-nosnippet>972</a>    #[serde(from = <span class="string">"u8"</span>, into = <span class="string">"u8"</span>)]
@@ -1038,7 +1038,7 @@
 <a href=#1038 id=1038 data-nosnippet>1038</a>}
 <a href=#1039 id=1039 data-nosnippet>1039</a>
 <a href=#1040 id=1040 data-nosnippet>1040</a><span class="macro">enum_number!</span> {
-<a href=#1041 id=1041 data-nosnippet>1041</a>    <span class="doccomment">/// [Discord docs](https://discord.com/developers/docs/resources/channel#message-object-message-activity-types).
+<a href=#1041 id=1041 data-nosnippet>1041</a>    <span class="doccomment">/// [Discord docs](https://docs.discord.com/developers/resources/message#message-object-message-activity-types).
 <a href=#1042 id=1042 data-nosnippet>1042</a>    </span><span class="attr">#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Deserialize, Serialize)]
 <a href=#1043 id=1043 data-nosnippet>1043</a>    #[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1044 id=1044 data-nosnippet>1044</a>    #[serde(from = <span class="string">"u8"</span>, into = <span class="string">"u8"</span>)]
@@ -1054,8 +1054,8 @@
 <a href=#1054 id=1054 data-nosnippet>1054</a>
 <a href=#1055 id=1055 data-nosnippet>1055</a><span class="doccomment">/// Rich Presence application information.
 <a href=#1056 id=1056 data-nosnippet>1056</a>///
-<a href=#1057 id=1057 data-nosnippet>1057</a>/// [Discord docs](https://discord.com/developers/docs/resources/application#application-object),
-<a href=#1058 id=1058 data-nosnippet>1058</a>/// [subset undocumented](https://discord.com/developers/docs/resources/channel#message-object-message-structure).
+<a href=#1057 id=1057 data-nosnippet>1057</a>/// [Discord docs](https://docs.discord.com/developers/resources/application#application-object),
+<a href=#1058 id=1058 data-nosnippet>1058</a>/// [subset undocumented](https://docs.discord.com/developers/resources/message#message-object-message-structure).
 <a href=#1059 id=1059 data-nosnippet>1059</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1060 id=1060 data-nosnippet>1060</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#1061 id=1061 data-nosnippet>1061</a>#[non_exhaustive]
@@ -1074,7 +1074,7 @@
 <a href=#1074 id=1074 data-nosnippet>1074</a>
 <a href=#1075 id=1075 data-nosnippet>1075</a><span class="doccomment">/// Rich Presence activity information.
 <a href=#1076 id=1076 data-nosnippet>1076</a>///
-<a href=#1077 id=1077 data-nosnippet>1077</a>/// [Discord docs](https://discord.com/developers/docs/resources/channel#message-object-message-activity-structure).
+<a href=#1077 id=1077 data-nosnippet>1077</a>/// [Discord docs](https://docs.discord.com/developers/resources/message#message-object-message-activity-structure).
 <a href=#1078 id=1078 data-nosnippet>1078</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1079 id=1079 data-nosnippet>1079</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#1080 id=1080 data-nosnippet>1080</a>#[non_exhaustive]
@@ -1089,7 +1089,7 @@
 <a href=#1089 id=1089 data-nosnippet>1089</a><span class="macro">enum_number!</span> {
 <a href=#1090 id=1090 data-nosnippet>1090</a>    <span class="doccomment">/// Message Reference Type information
 <a href=#1091 id=1091 data-nosnippet>1091</a>    ///
-<a href=#1092 id=1092 data-nosnippet>1092</a>    /// [Discord docs](https://discord.com/developers/docs/resources/message#message-reference-types)
+<a href=#1092 id=1092 data-nosnippet>1092</a>    /// [Discord docs](https://docs.discord.com/developers/resources/message#message-reference-types)
 <a href=#1093 id=1093 data-nosnippet>1093</a>    </span><span class="attr">#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd, Deserialize, Serialize)]
 <a href=#1094 id=1094 data-nosnippet>1094</a>    #[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1095 id=1095 data-nosnippet>1095</a>    #[serde(from = <span class="string">"u8"</span>, into = <span class="string">"u8"</span>)]
@@ -1104,7 +1104,7 @@
 <a href=#1104 id=1104 data-nosnippet>1104</a>
 <a href=#1105 id=1105 data-nosnippet>1105</a><span class="doccomment">/// Reference data sent with crossposted messages.
 <a href=#1106 id=1106 data-nosnippet>1106</a>///
-<a href=#1107 id=1107 data-nosnippet>1107</a>/// [Discord docs](https://discord.com/developers/docs/resources/channel#message-reference-object-message-reference-structure).
+<a href=#1107 id=1107 data-nosnippet>1107</a>/// [Discord docs](https://docs.discord.com/developers/resources/message#message-reference-structure).
 <a href=#1108 id=1108 data-nosnippet>1108</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1109 id=1109 data-nosnippet>1109</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#1110 id=1110 data-nosnippet>1110</a>#[non_exhaustive]
@@ -1179,7 +1179,7 @@
 <a href=#1179 id=1179 data-nosnippet>1179</a>    }
 <a href=#1180 id=1180 data-nosnippet>1180</a>}
 <a href=#1181 id=1181 data-nosnippet>1181</a>
-<a href=#1182 id=1182 data-nosnippet>1182</a><span class="doccomment">/// [Discord docs](https://discord.com/developers/docs/resources/channel#channel-mention-object).
+<a href=#1182 id=1182 data-nosnippet>1182</a><span class="doccomment">/// [Discord docs](https://docs.discord.com/developers/resources/message#channel-mention-object).
 <a href=#1183 id=1183 data-nosnippet>1183</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1184 id=1184 data-nosnippet>1184</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#1185 id=1185 data-nosnippet>1185</a>#[non_exhaustive]
@@ -1195,7 +1195,7 @@
 <a href=#1195 id=1195 data-nosnippet>1195</a>    </span><span class="kw">pub </span>name: String,
 <a href=#1196 id=1196 data-nosnippet>1196</a>}
 <a href=#1197 id=1197 data-nosnippet>1197</a>
-<a href=#1198 id=1198 data-nosnippet>1198</a><span class="doccomment">/// [Discord docs](https://discord.com/developers/docs/resources/message#message-snapshot-structure)
+<a href=#1198 id=1198 data-nosnippet>1198</a><span class="doccomment">/// [Discord docs](https://docs.discord.com/developers/resources/message#message-snapshot-structure)
 <a href=#1199 id=1199 data-nosnippet>1199</a>///
 <a href=#1200 id=1200 data-nosnippet>1200</a>/// For field documentation, see [`Message`].
 <a href=#1201 id=1201 data-nosnippet>1201</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
@@ -1239,7 +1239,7 @@
 <a href=#1239 id=1239 data-nosnippet>1239</a><span class="macro">bitflags!</span> {
 <a href=#1240 id=1240 data-nosnippet>1240</a>    <span class="doccomment">/// Describes extra features of the message.
 <a href=#1241 id=1241 data-nosnippet>1241</a>    ///
-<a href=#1242 id=1242 data-nosnippet>1242</a>    /// [Discord docs](https://discord.com/developers/docs/resources/channel#message-object-message-flags).
+<a href=#1242 id=1242 data-nosnippet>1242</a>    /// [Discord docs](https://docs.discord.com/developers/resources/message#message-object-message-flags).
 <a href=#1243 id=1243 data-nosnippet>1243</a>    </span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1244 id=1244 data-nosnippet>1244</a>    #[derive(Copy, Clone, Default, Debug, Eq, Hash, PartialEq)]
 <a href=#1245 id=1245 data-nosnippet>1245</a>    </span><span class="kw">pub struct </span>MessageFlags: u64 {
@@ -1328,7 +1328,7 @@
 <a href=#1328 id=1328 data-nosnippet>1328</a>    }
 <a href=#1329 id=1329 data-nosnippet>1329</a>}
 <a href=#1330 id=1330 data-nosnippet>1330</a>
-<a href=#1331 id=1331 data-nosnippet>1331</a><span class="doccomment">/// [Discord docs](https://discord.com/developers/docs/resources/channel#role-subscription-data-object)
+<a href=#1331 id=1331 data-nosnippet>1331</a><span class="doccomment">/// [Discord docs](https://docs.discord.com/developers/resources/message#role-subscription-data-object)
 <a href=#1332 id=1332 data-nosnippet>1332</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1333 id=1333 data-nosnippet>1333</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#1334 id=1334 data-nosnippet>1334</a></span><span class="kw">pub struct </span>RoleSubscriptionData {
@@ -1344,7 +1344,7 @@
 <a href=#1344 id=1344 data-nosnippet>1344</a>
 <a href=#1345 id=1345 data-nosnippet>1345</a><span class="doccomment">/// A poll that has been attached to a [`Message`].
 <a href=#1346 id=1346 data-nosnippet>1346</a>///
-<a href=#1347 id=1347 data-nosnippet>1347</a>/// [Discord docs](https://discord.com/developers/docs/resources/poll#poll-object)
+<a href=#1347 id=1347 data-nosnippet>1347</a>/// [Discord docs](https://docs.discord.com/developers/resources/poll#poll-object)
 <a href=#1348 id=1348 data-nosnippet>1348</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1349 id=1349 data-nosnippet>1349</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#1350 id=1350 data-nosnippet>1350</a>#[non_exhaustive]
@@ -1365,7 +1365,7 @@
 <a href=#1365 id=1365 data-nosnippet>1365</a>///
 <a href=#1366 id=1366 data-nosnippet>1366</a>/// Currently holds text and an optional emoji, but this is expected to change in future
 <a href=#1367 id=1367 data-nosnippet>1367</a>///
-<a href=#1368 id=1368 data-nosnippet>1368</a>/// [Discord docs](https://discord.com/developers/docs/resources/poll#poll-media-object)
+<a href=#1368 id=1368 data-nosnippet>1368</a>/// [Discord docs](https://docs.discord.com/developers/resources/poll#poll-media-object)
 <a href=#1369 id=1369 data-nosnippet>1369</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1370 id=1370 data-nosnippet>1370</a>#[derive(Clone, Debug, Default, Deserialize, Serialize)]
 <a href=#1371 id=1371 data-nosnippet>1371</a>#[non_exhaustive]
@@ -1376,7 +1376,7 @@
 <a href=#1376 id=1376 data-nosnippet>1376</a>
 <a href=#1377 id=1377 data-nosnippet>1377</a><span class="doccomment">/// The "Partial Emoji" attached to a [`PollMedia`] model.
 <a href=#1378 id=1378 data-nosnippet>1378</a>///
-<a href=#1379 id=1379 data-nosnippet>1379</a>/// [Discord docs](https://discord.com/developers/docs/resources/poll#poll-media-object)
+<a href=#1379 id=1379 data-nosnippet>1379</a>/// [Discord docs](https://docs.discord.com/developers/resources/poll#poll-media-object)
 <a href=#1380 id=1380 data-nosnippet>1380</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1381 id=1381 data-nosnippet>1381</a>#[derive(Clone, Debug, Serialize)]
 <a href=#1382 id=1382 data-nosnippet>1382</a>#[serde(rename_all = <span class="string">"lowercase"</span>)]
@@ -1418,7 +1418,7 @@
 <a href=#1418 id=1418 data-nosnippet>1418</a>
 <a href=#1419 id=1419 data-nosnippet>1419</a><span class="doccomment">/// A possible answer for a [`Poll`].
 <a href=#1420 id=1420 data-nosnippet>1420</a>///
-<a href=#1421 id=1421 data-nosnippet>1421</a>/// [Discord docs](https://discord.com/developers/docs/resources/poll#poll-answer-object)
+<a href=#1421 id=1421 data-nosnippet>1421</a>/// [Discord docs](https://docs.discord.com/developers/resources/poll#poll-answer-object)
 <a href=#1422 id=1422 data-nosnippet>1422</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1423 id=1423 data-nosnippet>1423</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#1424 id=1424 data-nosnippet>1424</a>#[non_exhaustive]
@@ -1432,7 +1432,7 @@
 <a href=#1432 id=1432 data-nosnippet>1432</a>    ///
 <a href=#1433 id=1433 data-nosnippet>1433</a>    /// Currently, there is only the one option.
 <a href=#1434 id=1434 data-nosnippet>1434</a>    ///
-<a href=#1435 id=1435 data-nosnippet>1435</a>    /// [Discord docs](https://discord.com/developers/docs/resources/poll#layout-type)
+<a href=#1435 id=1435 data-nosnippet>1435</a>    /// [Discord docs](https://docs.discord.com/developers/resources/poll#layout-type)
 <a href=#1436 id=1436 data-nosnippet>1436</a>    </span><span class="attr">#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd, Deserialize, Serialize)]
 <a href=#1437 id=1437 data-nosnippet>1437</a>    #[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1438 id=1438 data-nosnippet>1438</a>    #[serde(from = <span class="string">"u8"</span>, into = <span class="string">"u8"</span>)]
@@ -1448,7 +1448,7 @@
 <a href=#1448 id=1448 data-nosnippet>1448</a>///
 <a href=#1449 id=1449 data-nosnippet>1449</a>/// If `is_finalized` is `false`, `answer_counts` will be inaccurate due to Discord's scale.
 <a href=#1450 id=1450 data-nosnippet>1450</a>///
-<a href=#1451 id=1451 data-nosnippet>1451</a>/// [Discord docs](https://discord.com/developers/docs/resources/poll#poll-results-object-poll-results-object-structure)
+<a href=#1451 id=1451 data-nosnippet>1451</a>/// [Discord docs](https://docs.discord.com/developers/resources/poll#poll-results-object-poll-results-object-structure)
 <a href=#1452 id=1452 data-nosnippet>1452</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1453 id=1453 data-nosnippet>1453</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#1454 id=1454 data-nosnippet>1454</a>#[non_exhaustive]
@@ -1459,7 +1459,7 @@
 <a href=#1459 id=1459 data-nosnippet>1459</a>
 <a href=#1460 id=1460 data-nosnippet>1460</a><span class="doccomment">/// The count of a single [`PollAnswer`]'s results.
 <a href=#1461 id=1461 data-nosnippet>1461</a>///
-<a href=#1462 id=1462 data-nosnippet>1462</a>/// [Discord docs](https://discord.com/developers/docs/resources/poll#poll-results-object-poll-answer-count-object-structure)
+<a href=#1462 id=1462 data-nosnippet>1462</a>/// [Discord docs](https://docs.discord.com/developers/resources/poll#poll-answer-object-poll-answer-object-structure)
 <a href=#1463 id=1463 data-nosnippet>1463</a></span><span class="attr">#[cfg_attr(feature = <span class="string">"typesize"</span>, derive(typesize::derive::TypeSize))]
 <a href=#1464 id=1464 data-nosnippet>1464</a>#[derive(Clone, Debug, Deserialize, Serialize)]
 <a href=#1465 id=1465 data-nosnippet>1465</a>#[non_exhaustive]
@@ -1476,7 +1476,7 @@
 <a href=#1476 id=1476 data-nosnippet>1476</a>
 <a href=#1477 id=1477 data-nosnippet>1477</a>    <span class="kw">use </span>dashmap::DashMap;
 <a href=#1478 id=1478 data-nosnippet>1478</a>
-<a href=#1479 id=1479 data-nosnippet>1479</a>    <span class="kw">use super</span>::{
+<a href=#1479 id=1479 data-nosnippet>1479</a>    <span class="kw">use </span>super::{
 <a href=#1480 id=1480 data-nosnippet>1480</a>        Guild,
 <a href=#1481 id=1481 data-nosnippet>1481</a>        GuildChannel,
 <a href=#1482 id=1482 data-nosnippet>1482</a>        Member,

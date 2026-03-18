@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/gateway/shard.rs`."><title>shard.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ca0dd0c4.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.93.0-nightly (1d60f9e07 2025-12-01)" data-channel="nightly" data-search-js="search-9e2438ea.js" data-stringdex-js="stringdex-a3946164.js" data-settings-js="settings-c38705f0.js" ><script src="../../../static.files/storage-e2aeef58.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-a410ff4d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-263c88ec.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">serenity/gateway/</div>shard.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="kw">use </span>std::sync::Arc;
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/gateway/shard.rs`."><title>shard.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-17e0aaed.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="serenity" data-themes="" data-resource-suffix="" data-rustdoc-version="1.96.0-nightly (3645249d7 2026-03-16)" data-channel="nightly" data-search-js="search-63369b7b.js" data-stringdex-js="stringdex-2da4960a.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../../../static.files/src-script-813739b1.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-5013f961.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-f7c3ffd8.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1><div class="sub-heading">serenity/gateway/</div>shard.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap digits-3"><pre class="rust"><code><a href=#1 id=1 data-nosnippet>1</a><span class="kw">use </span>std::sync::Arc;
 <a href=#2 id=2 data-nosnippet>2</a><span class="kw">use </span>std::time::{Duration <span class="kw">as </span>StdDuration, Instant};
 <a href=#3 id=3 data-nosnippet>3</a>
 <a href=#4 id=4 data-nosnippet>4</a><span class="kw">use </span>tokio::sync::Mutex;
@@ -7,7 +7,7 @@
 <a href=#7 id=7 data-nosnippet>7</a><span class="kw">use </span>tracing::{debug, error, info, instrument, trace, warn};
 <a href=#8 id=8 data-nosnippet>8</a><span class="kw">use </span>url::Url;
 <a href=#9 id=9 data-nosnippet>9</a>
-<a href=#10 id=10 data-nosnippet>10</a><span class="kw">use super</span>::{
+<a href=#10 id=10 data-nosnippet>10</a><span class="kw">use </span>super::{
 <a href=#11 id=11 data-nosnippet>11</a>    ActivityData,
 <a href=#12 id=12 data-nosnippet>12</a>    ChunkGuildFilter,
 <a href=#13 id=13 data-nosnippet>13</a>    ConnectionStage,
@@ -52,7 +52,7 @@
 <a href=#52 id=52 data-nosnippet>52</a>///
 <a href=#53 id=53 data-nosnippet>53</a>/// [`Client`]: crate::Client
 <a href=#54 id=54 data-nosnippet>54</a>/// [`receive`]: #method.receive
-<a href=#55 id=55 data-nosnippet>55</a>/// [docs]: https://discord.com/developers/docs/topics/gateway#sharding
+<a href=#55 id=55 data-nosnippet>55</a>/// [docs]: https://docs.discord.com/developers/events/gateway#sharding
 <a href=#56 id=56 data-nosnippet>56</a>/// [module docs]: crate::gateway#sharding
 <a href=#57 id=57 data-nosnippet>57</a></span><span class="kw">pub struct </span>Shard {
 <a href=#58 id=58 data-nosnippet>58</a>    <span class="kw">pub </span>client: WsClient,
@@ -382,7 +382,7 @@
 <a href=#382 id=382 data-nosnippet>382</a>        }
 <a href=#383 id=383 data-nosnippet>383</a>
 <a href=#384 id=384 data-nosnippet>384</a>        <span class="kw">let </span>resume = num
-<a href=#385 id=385 data-nosnippet>385</a>            .map_or(<span class="bool-val">true</span>, |x| <span class="macro">x !</span>= close_codes::AUTHENTICATION_FAILED &amp;&amp; <span class="self">self</span>.session_id.is_some());
+<a href=#385 id=385 data-nosnippet>385</a>            .map_or(<span class="bool-val">true</span>, |x| x != close_codes::AUTHENTICATION_FAILED &amp;&amp; <span class="self">self</span>.session_id.is_some());
 <a href=#386 id=386 data-nosnippet>386</a>
 <a href=#387 id=387 data-nosnippet>387</a>        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="kw">if </span>resume {
 <a href=#388 id=388 data-nosnippet>388</a>            ShardAction::Reconnect(ReconnectType::Resume)
@@ -650,108 +650,127 @@
 <a href=#650 id=650 data-nosnippet>650</a>        <span class="self">self</span>.client.send_chunk_guild(guild_id, <span class="kw-2">&amp;</span><span class="self">self</span>.info, limit, presences, filter, nonce).<span class="kw">await
 <a href=#651 id=651 data-nosnippet>651</a>    </span>}
 <a href=#652 id=652 data-nosnippet>652</a>
-<a href=#653 id=653 data-nosnippet>653</a>    <span class="doccomment">/// Sets the shard as going into identifying stage, which sets:
-<a href=#654 id=654 data-nosnippet>654</a>    /// - the time that the last heartbeat sent as being now
-<a href=#655 id=655 data-nosnippet>655</a>    /// - the `stage` to [`ConnectionStage::Identifying`]
+<a href=#653 id=653 data-nosnippet>653</a>    <span class="doccomment">/// Requests [Soundboard sounds][soundboard] to be fetched from one or multiple [`Guild`]s.
+<a href=#654 id=654 data-nosnippet>654</a>    ///
+<a href=#655 id=655 data-nosnippet>655</a>    /// This will ask the gateway to start sending soundboard sounds.
 <a href=#656 id=656 data-nosnippet>656</a>    ///
-<a href=#657 id=657 data-nosnippet>657</a>    /// # Errors
-<a href=#658 id=658 data-nosnippet>658</a>    /// Errors if there is a problem with the WS connection.
-<a href=#659 id=659 data-nosnippet>659</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
-<a href=#660 id=660 data-nosnippet>660</a>    </span><span class="kw">pub async fn </span>identify(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
-<a href=#661 id=661 data-nosnippet>661</a>        <span class="self">self</span>.client.send_identify(<span class="kw-2">&amp;</span><span class="self">self</span>.info, <span class="kw-2">&amp;</span><span class="self">self</span>.token, <span class="self">self</span>.intents, <span class="kw-2">&amp;</span><span class="self">self</span>.presence).<span class="kw">await</span><span class="question-mark">?</span>;
-<a href=#662 id=662 data-nosnippet>662</a>
-<a href=#663 id=663 data-nosnippet>663</a>        <span class="self">self</span>.last_heartbeat_sent = <span class="prelude-val">Some</span>(Instant::now());
-<a href=#664 id=664 data-nosnippet>664</a>        <span class="self">self</span>.stage = ConnectionStage::Identifying;
-<a href=#665 id=665 data-nosnippet>665</a>
-<a href=#666 id=666 data-nosnippet>666</a>        <span class="prelude-val">Ok</span>(())
-<a href=#667 id=667 data-nosnippet>667</a>    }
+<a href=#657 id=657 data-nosnippet>657</a>    /// Soundboard sounds are sent as the [`Event::SoundboardSounds`] event.
+<a href=#658 id=658 data-nosnippet>658</a>    ///
+<a href=#659 id=659 data-nosnippet>659</a>    /// # Errors
+<a href=#660 id=660 data-nosnippet>660</a>    /// Errors if there is a problem with the WS connection.
+<a href=#661 id=661 data-nosnippet>661</a>    ///
+<a href=#662 id=662 data-nosnippet>662</a>    /// [`Event::SoundboardSounds`]: crate::model::event::Event::SoundboardSounds
+<a href=#663 id=663 data-nosnippet>663</a>    /// [`Guild`]: crate::model::guild::Guild
+<a href=#664 id=664 data-nosnippet>664</a>    /// [soundboard]: crate::model::soundboard::Soundboard
+<a href=#665 id=665 data-nosnippet>665</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
+<a href=#666 id=666 data-nosnippet>666</a>    </span><span class="kw">pub async fn </span>request_soundboard_sounds(<span class="kw-2">&amp;mut </span><span class="self">self</span>, guild_ids: <span class="kw-2">&amp;</span>[GuildId]) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+<a href=#667 id=667 data-nosnippet>667</a>        <span class="macro">debug!</span>(<span class="string">"[{:?}] Requesting soundboard sounds"</span>, <span class="self">self</span>.info);
 <a href=#668 id=668 data-nosnippet>668</a>
-<a href=#669 id=669 data-nosnippet>669</a>    <span class="doccomment">/// Initializes a new WebSocket client.
-<a href=#670 id=670 data-nosnippet>670</a>    ///
-<a href=#671 id=671 data-nosnippet>671</a>    /// This will set the stage of the shard before and after instantiation of the client.
-<a href=#672 id=672 data-nosnippet>672</a>    ///
-<a href=#673 id=673 data-nosnippet>673</a>    /// # Errors
-<a href=#674 id=674 data-nosnippet>674</a>    ///
-<a href=#675 id=675 data-nosnippet>675</a>    /// Errors if unable to establish a websocket connection.
-<a href=#676 id=676 data-nosnippet>676</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
-<a href=#677 id=677 data-nosnippet>677</a>    </span><span class="kw">pub async fn </span>initialize(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;WsClient&gt; {
-<a href=#678 id=678 data-nosnippet>678</a>        <span class="macro">debug!</span>(<span class="string">"[{:?}] Initializing."</span>, <span class="self">self</span>.info);
-<a href=#679 id=679 data-nosnippet>679</a>
-<a href=#680 id=680 data-nosnippet>680</a>        <span class="comment">// We need to do two, sort of three things here:
-<a href=#681 id=681 data-nosnippet>681</a>        // - set the stage of the shard as opening the websocket connection
-<a href=#682 id=682 data-nosnippet>682</a>        // - open the websocket connection
-<a href=#683 id=683 data-nosnippet>683</a>        // - if successful, set the current stage as Handshaking
-<a href=#684 id=684 data-nosnippet>684</a>        //
-<a href=#685 id=685 data-nosnippet>685</a>        // This is used to accurately assess whether the state of the shard is accurate when a
-<a href=#686 id=686 data-nosnippet>686</a>        // Hello is received.
-<a href=#687 id=687 data-nosnippet>687</a>        </span><span class="self">self</span>.stage = ConnectionStage::Connecting;
-<a href=#688 id=688 data-nosnippet>688</a>        <span class="self">self</span>.started = Instant::now();
-<a href=#689 id=689 data-nosnippet>689</a>        <span class="kw">let </span>url = <span class="kw-2">&amp;</span><span class="self">self</span>.ws_url.lock().<span class="kw">await</span>.clone();
-<a href=#690 id=690 data-nosnippet>690</a>        <span class="kw">let </span>client = connect(url).<span class="kw">await</span><span class="question-mark">?</span>;
-<a href=#691 id=691 data-nosnippet>691</a>        <span class="self">self</span>.stage = ConnectionStage::Handshake;
-<a href=#692 id=692 data-nosnippet>692</a>
-<a href=#693 id=693 data-nosnippet>693</a>        <span class="prelude-val">Ok</span>(client)
-<a href=#694 id=694 data-nosnippet>694</a>    }
-<a href=#695 id=695 data-nosnippet>695</a>
-<a href=#696 id=696 data-nosnippet>696</a>    <span class="attr">#[instrument(skip(<span class="self">self</span>))]
-<a href=#697 id=697 data-nosnippet>697</a>    </span><span class="kw">pub async fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
-<a href=#698 id=698 data-nosnippet>698</a>        <span class="self">self</span>.last_heartbeat_sent = <span class="prelude-val">Some</span>(Instant::now());
-<a href=#699 id=699 data-nosnippet>699</a>        <span class="self">self</span>.last_heartbeat_ack = <span class="prelude-val">None</span>;
-<a href=#700 id=700 data-nosnippet>700</a>        <span class="self">self</span>.heartbeat_interval = <span class="prelude-val">None</span>;
-<a href=#701 id=701 data-nosnippet>701</a>        <span class="self">self</span>.last_heartbeat_acknowledged = <span class="bool-val">true</span>;
-<a href=#702 id=702 data-nosnippet>702</a>        <span class="self">self</span>.session_id = <span class="prelude-val">None</span>;
-<a href=#703 id=703 data-nosnippet>703</a>        <span class="self">self</span>.stage = ConnectionStage::Disconnected;
-<a href=#704 id=704 data-nosnippet>704</a>        <span class="self">self</span>.seq = <span class="number">0</span>;
-<a href=#705 id=705 data-nosnippet>705</a>    }
-<a href=#706 id=706 data-nosnippet>706</a>
-<a href=#707 id=707 data-nosnippet>707</a>    <span class="doccomment">/// # Errors
-<a href=#708 id=708 data-nosnippet>708</a>    ///
-<a href=#709 id=709 data-nosnippet>709</a>    /// Errors if unable to re-establish a websocket connection.
-<a href=#710 id=710 data-nosnippet>710</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
-<a href=#711 id=711 data-nosnippet>711</a>    </span><span class="kw">pub async fn </span>resume(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
-<a href=#712 id=712 data-nosnippet>712</a>        <span class="macro">debug!</span>(<span class="string">"[{:?}] Attempting to resume"</span>, <span class="self">self</span>.info);
-<a href=#713 id=713 data-nosnippet>713</a>
-<a href=#714 id=714 data-nosnippet>714</a>        <span class="self">self</span>.client = <span class="self">self</span>.initialize().<span class="kw">await</span><span class="question-mark">?</span>;
-<a href=#715 id=715 data-nosnippet>715</a>        <span class="self">self</span>.stage = ConnectionStage::Resuming;
-<a href=#716 id=716 data-nosnippet>716</a>
-<a href=#717 id=717 data-nosnippet>717</a>        <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.session_id {
-<a href=#718 id=718 data-nosnippet>718</a>            <span class="prelude-val">Some</span>(session_id) =&gt; {
-<a href=#719 id=719 data-nosnippet>719</a>                <span class="self">self</span>.client.send_resume(<span class="kw-2">&amp;</span><span class="self">self</span>.info, session_id, <span class="self">self</span>.seq, <span class="kw-2">&amp;</span><span class="self">self</span>.token).<span class="kw">await
-<a href=#720 id=720 data-nosnippet>720</a>            </span>},
-<a href=#721 id=721 data-nosnippet>721</a>            <span class="prelude-val">None </span>=&gt; <span class="prelude-val">Err</span>(Error::Gateway(GatewayError::NoSessionId)),
-<a href=#722 id=722 data-nosnippet>722</a>        }
-<a href=#723 id=723 data-nosnippet>723</a>    }
-<a href=#724 id=724 data-nosnippet>724</a>
-<a href=#725 id=725 data-nosnippet>725</a>    <span class="doccomment">/// # Errors
-<a href=#726 id=726 data-nosnippet>726</a>    ///
-<a href=#727 id=727 data-nosnippet>727</a>    /// Errors if unable to re-establish a websocket connection.
-<a href=#728 id=728 data-nosnippet>728</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
-<a href=#729 id=729 data-nosnippet>729</a>    </span><span class="kw">pub async fn </span>reconnect(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
-<a href=#730 id=730 data-nosnippet>730</a>        <span class="macro">info!</span>(<span class="string">"[{:?}] Attempting to reconnect"</span>, <span class="self">self</span>.shard_info());
-<a href=#731 id=731 data-nosnippet>731</a>
-<a href=#732 id=732 data-nosnippet>732</a>        <span class="self">self</span>.reset().<span class="kw">await</span>;
+<a href=#669 id=669 data-nosnippet>669</a>        <span class="self">self</span>.client.request_soundboard_sounds(guild_ids, <span class="kw-2">&amp;</span><span class="self">self</span>.info).<span class="kw">await
+<a href=#670 id=670 data-nosnippet>670</a>    </span>}
+<a href=#671 id=671 data-nosnippet>671</a>
+<a href=#672 id=672 data-nosnippet>672</a>    <span class="doccomment">/// Sets the shard as going into identifying stage, which sets:
+<a href=#673 id=673 data-nosnippet>673</a>    /// - the time that the last heartbeat sent as being now
+<a href=#674 id=674 data-nosnippet>674</a>    /// - the `stage` to [`ConnectionStage::Identifying`]
+<a href=#675 id=675 data-nosnippet>675</a>    ///
+<a href=#676 id=676 data-nosnippet>676</a>    /// # Errors
+<a href=#677 id=677 data-nosnippet>677</a>    /// Errors if there is a problem with the WS connection.
+<a href=#678 id=678 data-nosnippet>678</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
+<a href=#679 id=679 data-nosnippet>679</a>    </span><span class="kw">pub async fn </span>identify(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+<a href=#680 id=680 data-nosnippet>680</a>        <span class="self">self</span>.client.send_identify(<span class="kw-2">&amp;</span><span class="self">self</span>.info, <span class="kw-2">&amp;</span><span class="self">self</span>.token, <span class="self">self</span>.intents, <span class="kw-2">&amp;</span><span class="self">self</span>.presence).<span class="kw">await</span><span class="question-mark">?</span>;
+<a href=#681 id=681 data-nosnippet>681</a>
+<a href=#682 id=682 data-nosnippet>682</a>        <span class="self">self</span>.last_heartbeat_sent = <span class="prelude-val">Some</span>(Instant::now());
+<a href=#683 id=683 data-nosnippet>683</a>        <span class="self">self</span>.stage = ConnectionStage::Identifying;
+<a href=#684 id=684 data-nosnippet>684</a>
+<a href=#685 id=685 data-nosnippet>685</a>        <span class="prelude-val">Ok</span>(())
+<a href=#686 id=686 data-nosnippet>686</a>    }
+<a href=#687 id=687 data-nosnippet>687</a>
+<a href=#688 id=688 data-nosnippet>688</a>    <span class="doccomment">/// Initializes a new WebSocket client.
+<a href=#689 id=689 data-nosnippet>689</a>    ///
+<a href=#690 id=690 data-nosnippet>690</a>    /// This will set the stage of the shard before and after instantiation of the client.
+<a href=#691 id=691 data-nosnippet>691</a>    ///
+<a href=#692 id=692 data-nosnippet>692</a>    /// # Errors
+<a href=#693 id=693 data-nosnippet>693</a>    ///
+<a href=#694 id=694 data-nosnippet>694</a>    /// Errors if unable to establish a websocket connection.
+<a href=#695 id=695 data-nosnippet>695</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
+<a href=#696 id=696 data-nosnippet>696</a>    </span><span class="kw">pub async fn </span>initialize(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;WsClient&gt; {
+<a href=#697 id=697 data-nosnippet>697</a>        <span class="macro">debug!</span>(<span class="string">"[{:?}] Initializing."</span>, <span class="self">self</span>.info);
+<a href=#698 id=698 data-nosnippet>698</a>
+<a href=#699 id=699 data-nosnippet>699</a>        <span class="comment">// We need to do two, sort of three things here:
+<a href=#700 id=700 data-nosnippet>700</a>        // - set the stage of the shard as opening the websocket connection
+<a href=#701 id=701 data-nosnippet>701</a>        // - open the websocket connection
+<a href=#702 id=702 data-nosnippet>702</a>        // - if successful, set the current stage as Handshaking
+<a href=#703 id=703 data-nosnippet>703</a>        //
+<a href=#704 id=704 data-nosnippet>704</a>        // This is used to accurately assess whether the state of the shard is accurate when a
+<a href=#705 id=705 data-nosnippet>705</a>        // Hello is received.
+<a href=#706 id=706 data-nosnippet>706</a>        </span><span class="self">self</span>.stage = ConnectionStage::Connecting;
+<a href=#707 id=707 data-nosnippet>707</a>        <span class="self">self</span>.started = Instant::now();
+<a href=#708 id=708 data-nosnippet>708</a>        <span class="kw">let </span>url = <span class="kw-2">&amp;</span><span class="self">self</span>.ws_url.lock().<span class="kw">await</span>.clone();
+<a href=#709 id=709 data-nosnippet>709</a>        <span class="kw">let </span>client = connect(url).<span class="kw">await</span><span class="question-mark">?</span>;
+<a href=#710 id=710 data-nosnippet>710</a>        <span class="self">self</span>.stage = ConnectionStage::Handshake;
+<a href=#711 id=711 data-nosnippet>711</a>
+<a href=#712 id=712 data-nosnippet>712</a>        <span class="prelude-val">Ok</span>(client)
+<a href=#713 id=713 data-nosnippet>713</a>    }
+<a href=#714 id=714 data-nosnippet>714</a>
+<a href=#715 id=715 data-nosnippet>715</a>    <span class="attr">#[instrument(skip(<span class="self">self</span>))]
+<a href=#716 id=716 data-nosnippet>716</a>    </span><span class="kw">pub async fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+<a href=#717 id=717 data-nosnippet>717</a>        <span class="self">self</span>.last_heartbeat_sent = <span class="prelude-val">Some</span>(Instant::now());
+<a href=#718 id=718 data-nosnippet>718</a>        <span class="self">self</span>.last_heartbeat_ack = <span class="prelude-val">None</span>;
+<a href=#719 id=719 data-nosnippet>719</a>        <span class="self">self</span>.heartbeat_interval = <span class="prelude-val">None</span>;
+<a href=#720 id=720 data-nosnippet>720</a>        <span class="self">self</span>.last_heartbeat_acknowledged = <span class="bool-val">true</span>;
+<a href=#721 id=721 data-nosnippet>721</a>        <span class="self">self</span>.session_id = <span class="prelude-val">None</span>;
+<a href=#722 id=722 data-nosnippet>722</a>        <span class="self">self</span>.stage = ConnectionStage::Disconnected;
+<a href=#723 id=723 data-nosnippet>723</a>        <span class="self">self</span>.seq = <span class="number">0</span>;
+<a href=#724 id=724 data-nosnippet>724</a>    }
+<a href=#725 id=725 data-nosnippet>725</a>
+<a href=#726 id=726 data-nosnippet>726</a>    <span class="doccomment">/// # Errors
+<a href=#727 id=727 data-nosnippet>727</a>    ///
+<a href=#728 id=728 data-nosnippet>728</a>    /// Errors if unable to re-establish a websocket connection.
+<a href=#729 id=729 data-nosnippet>729</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
+<a href=#730 id=730 data-nosnippet>730</a>    </span><span class="kw">pub async fn </span>resume(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+<a href=#731 id=731 data-nosnippet>731</a>        <span class="macro">debug!</span>(<span class="string">"[{:?}] Attempting to resume"</span>, <span class="self">self</span>.info);
+<a href=#732 id=732 data-nosnippet>732</a>
 <a href=#733 id=733 data-nosnippet>733</a>        <span class="self">self</span>.client = <span class="self">self</span>.initialize().<span class="kw">await</span><span class="question-mark">?</span>;
-<a href=#734 id=734 data-nosnippet>734</a>
-<a href=#735 id=735 data-nosnippet>735</a>        <span class="prelude-val">Ok</span>(())
-<a href=#736 id=736 data-nosnippet>736</a>    }
-<a href=#737 id=737 data-nosnippet>737</a>
-<a href=#738 id=738 data-nosnippet>738</a>    <span class="doccomment">/// # Errors
-<a href=#739 id=739 data-nosnippet>739</a>    ///
-<a href=#740 id=740 data-nosnippet>740</a>    /// Errors if there is a problem with the WS connection.
-<a href=#741 id=741 data-nosnippet>741</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
-<a href=#742 id=742 data-nosnippet>742</a>    </span><span class="kw">pub async fn </span>update_presence(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
-<a href=#743 id=743 data-nosnippet>743</a>        <span class="self">self</span>.client.send_presence_update(<span class="kw-2">&amp;</span><span class="self">self</span>.info, <span class="kw-2">&amp;</span><span class="self">self</span>.presence).<span class="kw">await
-<a href=#744 id=744 data-nosnippet>744</a>    </span>}
-<a href=#745 id=745 data-nosnippet>745</a>}
-<a href=#746 id=746 data-nosnippet>746</a>
-<a href=#747 id=747 data-nosnippet>747</a><span class="kw">async fn </span>connect(base_url: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;WsClient&gt; {
-<a href=#748 id=748 data-nosnippet>748</a>    <span class="kw">let </span>url =
-<a href=#749 id=749 data-nosnippet>749</a>        Url::parse(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"{base_url}?v={}"</span>, constants::GATEWAY_VERSION)).map_err(|why| {
-<a href=#750 id=750 data-nosnippet>750</a>            <span class="macro">warn!</span>(<span class="string">"Error building gateway URL with base `{}`: {:?}"</span>, base_url, why);
-<a href=#751 id=751 data-nosnippet>751</a>
-<a href=#752 id=752 data-nosnippet>752</a>            Error::Gateway(GatewayError::BuildingUrl)
-<a href=#753 id=753 data-nosnippet>753</a>        })<span class="question-mark">?</span>;
-<a href=#754 id=754 data-nosnippet>754</a>
-<a href=#755 id=755 data-nosnippet>755</a>    WsClient::connect(url).<span class="kw">await
-<a href=#756 id=756 data-nosnippet>756</a></span>}
+<a href=#734 id=734 data-nosnippet>734</a>        <span class="self">self</span>.stage = ConnectionStage::Resuming;
+<a href=#735 id=735 data-nosnippet>735</a>
+<a href=#736 id=736 data-nosnippet>736</a>        <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.session_id {
+<a href=#737 id=737 data-nosnippet>737</a>            <span class="prelude-val">Some</span>(session_id) =&gt; {
+<a href=#738 id=738 data-nosnippet>738</a>                <span class="self">self</span>.client.send_resume(<span class="kw-2">&amp;</span><span class="self">self</span>.info, session_id, <span class="self">self</span>.seq, <span class="kw-2">&amp;</span><span class="self">self</span>.token).<span class="kw">await
+<a href=#739 id=739 data-nosnippet>739</a>            </span>},
+<a href=#740 id=740 data-nosnippet>740</a>            <span class="prelude-val">None </span>=&gt; <span class="prelude-val">Err</span>(Error::Gateway(GatewayError::NoSessionId)),
+<a href=#741 id=741 data-nosnippet>741</a>        }
+<a href=#742 id=742 data-nosnippet>742</a>    }
+<a href=#743 id=743 data-nosnippet>743</a>
+<a href=#744 id=744 data-nosnippet>744</a>    <span class="doccomment">/// # Errors
+<a href=#745 id=745 data-nosnippet>745</a>    ///
+<a href=#746 id=746 data-nosnippet>746</a>    /// Errors if unable to re-establish a websocket connection.
+<a href=#747 id=747 data-nosnippet>747</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
+<a href=#748 id=748 data-nosnippet>748</a>    </span><span class="kw">pub async fn </span>reconnect(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+<a href=#749 id=749 data-nosnippet>749</a>        <span class="macro">info!</span>(<span class="string">"[{:?}] Attempting to reconnect"</span>, <span class="self">self</span>.shard_info());
+<a href=#750 id=750 data-nosnippet>750</a>
+<a href=#751 id=751 data-nosnippet>751</a>        <span class="self">self</span>.reset().<span class="kw">await</span>;
+<a href=#752 id=752 data-nosnippet>752</a>        <span class="self">self</span>.client = <span class="self">self</span>.initialize().<span class="kw">await</span><span class="question-mark">?</span>;
+<a href=#753 id=753 data-nosnippet>753</a>
+<a href=#754 id=754 data-nosnippet>754</a>        <span class="prelude-val">Ok</span>(())
+<a href=#755 id=755 data-nosnippet>755</a>    }
+<a href=#756 id=756 data-nosnippet>756</a>
+<a href=#757 id=757 data-nosnippet>757</a>    <span class="doccomment">/// # Errors
+<a href=#758 id=758 data-nosnippet>758</a>    ///
+<a href=#759 id=759 data-nosnippet>759</a>    /// Errors if there is a problem with the WS connection.
+<a href=#760 id=760 data-nosnippet>760</a>    </span><span class="attr">#[instrument(skip(<span class="self">self</span>))]
+<a href=#761 id=761 data-nosnippet>761</a>    </span><span class="kw">pub async fn </span>update_presence(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+<a href=#762 id=762 data-nosnippet>762</a>        <span class="self">self</span>.client.send_presence_update(<span class="kw-2">&amp;</span><span class="self">self</span>.info, <span class="kw-2">&amp;</span><span class="self">self</span>.presence).<span class="kw">await
+<a href=#763 id=763 data-nosnippet>763</a>    </span>}
+<a href=#764 id=764 data-nosnippet>764</a>}
+<a href=#765 id=765 data-nosnippet>765</a>
+<a href=#766 id=766 data-nosnippet>766</a><span class="kw">async fn </span>connect(base_url: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;WsClient&gt; {
+<a href=#767 id=767 data-nosnippet>767</a>    <span class="kw">let </span>url =
+<a href=#768 id=768 data-nosnippet>768</a>        Url::parse(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"{base_url}?v={}"</span>, constants::GATEWAY_VERSION)).map_err(|why| {
+<a href=#769 id=769 data-nosnippet>769</a>            <span class="macro">warn!</span>(<span class="string">"Error building gateway URL with base `{}`: {:?}"</span>, base_url, why);
+<a href=#770 id=770 data-nosnippet>770</a>
+<a href=#771 id=771 data-nosnippet>771</a>            Error::Gateway(GatewayError::BuildingUrl)
+<a href=#772 id=772 data-nosnippet>772</a>        })<span class="question-mark">?</span>;
+<a href=#773 id=773 data-nosnippet>773</a>
+<a href=#774 id=774 data-nosnippet>774</a>    WsClient::connect(url).<span class="kw">await
+<a href=#775 id=775 data-nosnippet>775</a></span>}
 </code></pre></div></section></main></body></html>
